@@ -49,10 +49,10 @@
     <Compile Include="IPixelProvider.cs" />
     <Compile Include="ISetPixelProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scanning\DefaultScanner.cs" />
-    <Compile Include="Scanning\IPixelReplacer.cs" />
-    <Compile Include="Scanning\IPixelScanner.cs" />
-    <Compile Include="Scanning\RectangleScanner.cs" />
+    <Compile Include="Manipulation\DefaultScanner.cs" />
+    <Compile Include="Manipulation\IPixelReplacer.cs" />
+    <Compile Include="Manipulation\IPixelScanner.cs" />
+    <Compile Include="Manipulation\RectangleScanner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Overview.cd" />

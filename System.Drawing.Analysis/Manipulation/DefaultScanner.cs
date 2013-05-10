@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace System.Drawing.Analysis.Scanning
+namespace System.Drawing.Analysis.Manipulation
 {
     public class DefaultScanner : IPixelScanner
     {

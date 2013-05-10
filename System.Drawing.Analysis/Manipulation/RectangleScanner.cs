@@ -1,4 +1,4 @@
-namespace System.Drawing.Analysis.Scanning
+namespace System.Drawing.Analysis.Manipulation
 {
     public class RectangleScanner : IPixelScanner
     {
