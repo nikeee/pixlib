@@ -2,24 +2,34 @@ namespace System.Drawing.Analysis
 {
     public class SlowBitmapPixelProvider : IPixelProvider
     {
+        private readonly Bitmap _bitmap;
+        public Bitmap Bitmap { get { return _bitmap; } }
+
+        public SlowBitmapPixelProvider(Bitmap bitmap)
+        {
+            if(bitmap == null)
+                throw new ArgumentNullException("bitmap");
+            _bitmap = bitmap;
+        }
+
         public Color GetPixel(int x, int y)
         {
-            throw new NotImplementedException();
+            return _bitmap.GetPixel(x, y);
         }
 
-        public Color GetPixel(Point p)
+        public Color GetPixel(Point point)
         {
-            throw new NotImplementedException();
+            return GetPixel(point.X, point.Y);
         }
 
-        public void SetPixel(int x, int y, Color c)
+        public void SetPixel(int x, int y, Color color)
         {
-            throw new NotImplementedException();
+            _bitmap.SetPixel(x, y, color);
         }
 
-        public void SetPixel(Point p, Color c)
+        public void SetPixel(Point point, Color color)
         {
-            throw new NotImplementedException();
+            SetPixel(point.X, point.Y, color);
         }
     }
 }

@@ -3,6 +3,6 @@
     public interface IGetPixelProvider
     {
         Color GetPixel(int x, int y);
-        Color GetPixel(Point p);
+        Color GetPixel(Point point);
     }
 }
