@@ -4,6 +4,7 @@ namespace System.Drawing.Analysis.Manipulation
 {
     public class DefaultScanner : IPixelScanner
     {
+        // TODO: Take account of the view
         public Rectangle View { get; set; }
 
         private readonly IGetPixelProvider _provider;
@@ -52,6 +53,26 @@ namespace System.Drawing.Analysis.Manipulation
                     if (_provider.GetPixel(x, y) == color)
                         return new Point(x, y);
             return default(Point?);
+        }
+
+        public bool All(Color color)
+        {
+            int y;
+            for (int x = 0; x < _provider.Size.Width; ++x)
+                for (y = 0; y < _provider.Size.Height; ++y)
+                    if (_provider.GetPixel(x, y) != color)
+                        return false;
+            return true;
+        }
+
+        public bool Any(Color color)
+        {
+            int y;
+            for (int x = 0; x < _provider.Size.Width; ++x)
+                for (y = 0; y < _provider.Size.Height; ++y)
+                    if (_provider.GetPixel(x, y) == color)
+                        return true;
+            return false;
         }
     }
 }

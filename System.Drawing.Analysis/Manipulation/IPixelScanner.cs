@@ -12,6 +12,10 @@ namespace System.Drawing.Analysis.Manipulation
         Point First(Color color);
         Point? FirstOrDefault(Color color);
 
+
+        bool All(Color color);
+        bool Any(Color color);
+
         // TODO: Implement
     }
 }

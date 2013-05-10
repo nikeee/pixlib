@@ -33,5 +33,15 @@ namespace System.Drawing.Analysis.Manipulation
         {
             throw new NotImplementedException();
         }
+
+        public bool All(Color color)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Any(Color color)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
