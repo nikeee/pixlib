@@ -1,1 +1,1 @@
-Simple an fast image processing using .NET.
+Simple and fast image processing using .NET.
