@@ -1,62 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="System.Drawing.Analysis.BitmapPixelProvider" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.75" Y="3.25" Width="2" />
+    <Position X="2.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BitmapPixelProvider.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="System.Drawing.Analysis.Scanning.DefaultScanner" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+  <Class Name="System.Drawing.Analysis.Manipulation.DefaultScanner" Collapsed="true">
+    <Position X="2.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Scanning\DefaultScanner.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Manipulation\DefaultScanner.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="System.Drawing.Analysis.Scanning.RectangleScanner" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3" Y="0.5" Width="1.5" />
+  <Class Name="System.Drawing.Analysis.Manipulation.RectangleScanner" Collapsed="true">
+    <Position X="4" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Scanning\RectangleScanner.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Manipulation\RectangleScanner.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="System.Drawing.Analysis.IGetPixelProvider" Collapsed="true">
-    <Position X="0.5" Y="4" Width="1.75" />
+    <Position X="2.5" Y="2" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IPixelGetProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="System.Drawing.Analysis.IPixelProvider" Collapsed="true">
-    <Position X="0.5" Y="3.25" Width="1.75" />
+    <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IPixelProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="System.Drawing.Analysis.ISetPixelProvider" Collapsed="true">
-    <Position X="0.5" Y="4.75" Width="1.75" />
+    <Position X="0.5" Y="2" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ISetPixelProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="System.Drawing.Analysis.Scanning.IPixelReplacer" Collapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.75" />
+  <Interface Name="System.Drawing.Analysis.Manipulation.IPixelReplacer" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Scanning\IPixelReplacer.cs</FileName>
+      <FileName>Manipulation\IPixelReplacer.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="System.Drawing.Analysis.Scanning.IPixelScanner" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.75" />
+  <Interface Name="System.Drawing.Analysis.Manipulation.IPixelScanner" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Scanning\IPixelScanner.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Manipulation\IPixelScanner.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
