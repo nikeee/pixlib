@@ -32,6 +32,12 @@ namespace System.Drawing.Analysis
             SetPixel(point.X, point.Y, color);
         }
 
+        public Color SwapColor(int x, int y, Color color)
+        {
+            var c = GetPixel(x, y);
+            SetPixel(x, y, color);
+            return c;
+        }
 
         #region explicits
 

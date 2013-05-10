@@ -12,7 +12,6 @@ namespace System.Drawing.Analysis
             if (bitmap == null)
                 throw new ArgumentNullException("bitmap");
             _bitmap = bitmap;
-
             throw new NotImplementedException();
         }
 
@@ -32,6 +31,11 @@ namespace System.Drawing.Analysis
         }
 
         public void SetPixel(Point p, Color color)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Color SwapColor(int x, int y, Color color)
         {
             throw new NotImplementedException();
         }

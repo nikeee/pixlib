@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace System.Drawing.Analysis.Manipulation
+﻿namespace System.Drawing.Analysis.Manipulation
 {
     public class DefaultScanner : IPixelScanner
     {
