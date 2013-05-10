@@ -9,21 +9,20 @@ namespace System.Drawing.Analysis
         
         public Size Size { get; private set; }
 
-        private bool _disposeBitmapOnFinalize = true;
-        public bool DisposeBitmapOnFinalize
-        {
-            get { return _disposeBitmapOnFinalize; }
-            set { _disposeBitmapOnFinalize = value; }
-        }
+        public bool DisposeBitmapOnFinalize { get; set; }
 
         #region Ctors
-
+        
         public BitmapPixelProvider(Bitmap bitmap)
+            : this(bitmap, true)
+        { }
+        public BitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
             if (bitmap == null)
                 throw new ArgumentNullException("bitmap");
             _bitmap = bitmap;
             Size = _bitmap.Size;
+            DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
         }
 
         #endregion
@@ -84,7 +83,7 @@ namespace System.Drawing.Analysis
 
             if (disposing)
             {
-                if (_disposeBitmapOnFinalize && _bitmap != null)
+                if (DisposeBitmapOnFinalize && _bitmap != null)
                     _bitmap.Dispose();
             }
             _disposed = true;
