@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace System.Drawing.Analysis
 {
     public class SlowBitmapPixelProvider : IPixelProvider
@@ -19,6 +21,25 @@ namespace System.Drawing.Analysis
 
         #endregion
 
+        #region static inits
+
+        public static SlowBitmapPixelProvider FromScreen()
+        {
+            return FromScreen(Environment.VirtualScreen);
+        }
+        public static SlowBitmapPixelProvider FromScreen(Rectangle rectangle)
+        {
+            if (rectangle.Width < 1)
+                throw new InvalidDataException("The width must not be 0 or less.");
+            if (rectangle.Height < 1)
+                throw new InvalidDataException("The height must not be 0 or less.");
+
+            var bmp = new Bitmap(rectangle.Width, rectangle.Height);
+
+            throw new NotImplementedException();
+        }
+
+        #endregion
 
         public Color GetPixel(int x, int y)
         {
