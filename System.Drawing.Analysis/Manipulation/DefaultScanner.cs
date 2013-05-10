@@ -22,6 +22,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public IEnumerable<Point> FindPixels(Color color)
         {
+            // TODO: Take account of the view
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
             {
@@ -37,6 +38,7 @@ namespace System.Drawing.Analysis.Manipulation
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
         public Point First(Color color)
         {
+            // TODO: Take account of the view
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
@@ -47,6 +49,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public Point? FirstOrDefault(Color color)
         {
+            // TODO: Take account of the view
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
@@ -57,6 +60,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public bool All(Color color)
         {
+            // TODO: Take account of the view
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
@@ -67,6 +71,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public bool Any(Color color)
         {
+            // TODO: Take account of the view
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
@@ -77,6 +82,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public void ForEach(Action<int, int, Color> action)
         {
+            // TODO: Take account of the view
             if(action == null)
                 throw new ArgumentNullException("action");
 

@@ -1,5 +1,3 @@
-using System.IO;
-
 namespace System.Drawing.Analysis
 {
     public class SlowBitmapPixelProvider : IPixelProvider
@@ -16,6 +14,7 @@ namespace System.Drawing.Analysis
         public SlowBitmapPixelProvider(Bitmap bitmap)
             : this(bitmap, true)
         { }
+
         public SlowBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
             if (bitmap == null)

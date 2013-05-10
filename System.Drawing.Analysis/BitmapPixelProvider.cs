@@ -1,9 +1,9 @@
+// TODO: Implement using LockBits and unsafe pointers
+
 namespace System.Drawing.Analysis
 {
     public class BitmapPixelProvider : IPixelProvider
     {
-        // TODO: Implement using LockBits and unsafe pointers
-
         private readonly Bitmap _bitmap;
         public Bitmap Bitmap { get { return _bitmap; } }
         
@@ -16,6 +16,7 @@ namespace System.Drawing.Analysis
         public BitmapPixelProvider(Bitmap bitmap)
             : this(bitmap, true)
         { }
+
         public BitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
             if (bitmap == null)
@@ -28,8 +29,7 @@ namespace System.Drawing.Analysis
         #endregion
 
         #region static inits
-
-
+        
         public static BitmapPixelProvider FromScreen()
         {
             return FromScreen(Environment.VirtualScreen);
