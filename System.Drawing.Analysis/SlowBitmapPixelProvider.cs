@@ -31,5 +31,16 @@ namespace System.Drawing.Analysis
         {
             SetPixel(point.X, point.Y, color);
         }
+
+
+#region explicits
+
+        public static explicit operator SlowBitmapPixelProvider(Bitmap bitmap)
+        {
+            return new SlowBitmapPixelProvider(bitmap);
+        }
+
+#endregion
+
     }
 }
