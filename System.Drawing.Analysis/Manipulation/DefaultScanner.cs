@@ -7,7 +7,7 @@ namespace System.Drawing.Analysis.Manipulation
         public Rectangle View { get; set; }
 
         private readonly IGetPixelProvider _provider;
-        
+
         #region Ctors
 
         public DefaultScanner(IGetPixelProvider provider)
@@ -21,7 +21,17 @@ namespace System.Drawing.Analysis.Manipulation
 
         public IEnumerable<Point> FindPixels(Color color)
         {
-            throw new NotImplementedException();
+            int x;
+            int y;
+            for (x = 0; x < _provider.Size.Width; ++x)
+            {
+                for (y = 0; y < _provider.Size.Height; ++y)
+                {
+                    var readColor = _provider.GetPixel(x, y);
+                    if (readColor == color)
+                        yield return new Point(x, y);
+                }
+            }
         }
     }
 }
