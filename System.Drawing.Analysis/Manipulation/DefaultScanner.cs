@@ -4,7 +4,7 @@ namespace System.Drawing.Analysis.Manipulation
 {
     public class DefaultScanner : IPixelScanner
     {
-        // TODO: Take account of the view
+        // TODO: Take the view into account
         public Rectangle View { get; set; }
 
         private readonly IGetPixelProvider _provider;
@@ -22,7 +22,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public IEnumerable<Point> FindPixels(Color color)
         {
-            // TODO: Take account of the view
+            // TODO: Take the view into account
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
             {
@@ -38,7 +38,7 @@ namespace System.Drawing.Analysis.Manipulation
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
         public Point First(Color color)
         {
-            // TODO: Take account of the view
+            // TODO: Take the view into account
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
@@ -49,7 +49,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public Point? FirstOrDefault(Color color)
         {
-            // TODO: Take account of the view
+            // TODO: Take the view into account
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
@@ -60,7 +60,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public bool All(Color color)
         {
-            // TODO: Take account of the view
+            // TODO: Take the view into account
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
@@ -71,7 +71,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public bool Any(Color color)
         {
-            // TODO: Take account of the view
+            // TODO: Take the view into account
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
@@ -82,7 +82,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public void ForEach(Action<int, int, Color> action)
         {
-            // TODO: Take account of the view
+            // TODO: Take the view into account
             if(action == null)
                 throw new ArgumentNullException("action");
 
