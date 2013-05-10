@@ -3,7 +3,7 @@
 namespace System.Drawing.Analysis.Manipulation
 {
     // TODO: Maybe add a Pixel-Struct which contains coordinates + color
-    public interface IPixelScanner
+    public interface IPixelScanner // Maybe inherit from IEnumerable<Point> or something similar?
     {
         Rectangle View { get; set; }
 
@@ -11,11 +11,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         Point First(Color color);
         Point? FirstOrDefault(Color color);
-
-
+        
         bool All(Color color);
         bool Any(Color color);
-
-        // TODO: Implement
     }
 }
