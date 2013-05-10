@@ -21,9 +21,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         public IEnumerable<Point> FindPixels(Color color)
         {
-            int x;
             int y;
-            for (x = 0; x < _provider.Size.Width; ++x)
+            for (int x = 0; x < _provider.Size.Width; ++x)
             {
                 for (y = 0; y < _provider.Size.Height; ++y)
                 {
@@ -37,9 +36,8 @@ namespace System.Drawing.Analysis.Manipulation
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
         public Point First(Color color)
         {
-            int x;
             int y;
-            for (x = 0; x < _provider.Size.Width; ++x)
+            for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
                     if (_provider.GetPixel(x, y) == color)
                         return new Point(x, y);
@@ -48,9 +46,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         public Point FirstOrDefault(Color color)
         {
-            int x;
             int y;
-            for (x = 0; x < _provider.Size.Width; ++x)
+            for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
                     if (_provider.GetPixel(x, y) == color)
                         return new Point(x, y);

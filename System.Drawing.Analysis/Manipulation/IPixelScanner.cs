@@ -2,6 +2,7 @@
 
 namespace System.Drawing.Analysis.Manipulation
 {
+    // TODO: Maybe add a Pixel-Struct which contains coordinates + color
     public interface IPixelScanner
     {
         Rectangle View { get; set; }
