@@ -7,23 +7,22 @@ namespace System.Drawing.Analysis
         private readonly Bitmap _bitmap;
         public Bitmap Bitmap { get { return _bitmap; } }
 
-        private bool _disposeBitmapOnFinalize = true;
-        public bool DisposeBitmapOnFinalize
-        {
-            get { return _disposeBitmapOnFinalize; }
-            set { _disposeBitmapOnFinalize = value; }
-        }
-
         public Size Size { get; private set; }
+
+        public bool DisposeBitmapOnFinalize { get; set; }
 
         #region Ctors
 
         public SlowBitmapPixelProvider(Bitmap bitmap)
+            : this(bitmap, true)
+        { }
+        public SlowBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
             if (bitmap == null)
                 throw new ArgumentNullException("bitmap");
             _bitmap = bitmap;
             Size = _bitmap.Size;
+            DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
         }
 
         #endregion
@@ -39,14 +38,13 @@ namespace System.Drawing.Analysis
             return FromScreen(rectangle, CopyPixelOperation.SourceCopy);
         }
 
-        private static readonly Color CopyFromScreenFixColor = Color.FromArgb();
+        private static readonly Color CopyFromScreenFixColor = Color.FromArgb(0xFF, 0xD, 0xB, 0xC);
         public static SlowBitmapPixelProvider FromScreen(Rectangle rectangle, CopyPixelOperation operation)
         {
-            
             if (rectangle.Width < 1)
-                throw new InvalidDataException("The width must not be 0 or less.");
+                throw new ArgumentException("The width must not be 0 or less.");
             if (rectangle.Height < 1)
-                throw new InvalidDataException("The height must not be 0 or less.");
+                throw new ArgumentException("The height must not be 0 or less.");
 
             var bmp = new Bitmap(rectangle.Width, rectangle.Height);
 
@@ -55,6 +53,7 @@ namespace System.Drawing.Analysis
                 g.Clear(CopyFromScreenFixColor); // Fixes transparency bug
                 g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
             }
+            return new SlowBitmapPixelProvider(bmp) { DisposeBitmapOnFinalize = true};
         }
 
 
@@ -114,7 +113,14 @@ namespace System.Drawing.Analysis
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
+            {
+                if(disposing)
+                {
+                    if (DisposeBitmapOnFinalize && _bitmap != null)
+                        _bitmap.Dispose();
+                }
                 _disposed = true;
+            }
         }
 
         /// <summary>Disposes the current object instance.</summary>

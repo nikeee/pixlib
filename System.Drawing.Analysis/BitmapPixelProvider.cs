@@ -9,6 +9,13 @@ namespace System.Drawing.Analysis
         
         public Size Size { get; private set; }
 
+        private bool _disposeBitmapOnFinalize = true;
+        public bool DisposeBitmapOnFinalize
+        {
+            get { return _disposeBitmapOnFinalize; }
+            set { _disposeBitmapOnFinalize = value; }
+        }
+
         #region Ctors
 
         public BitmapPixelProvider(Bitmap bitmap)
@@ -51,6 +58,43 @@ namespace System.Drawing.Analysis
         public static explicit operator BitmapPixelProvider(Bitmap bitmap)
         {
             return new BitmapPixelProvider(bitmap);
+        }
+
+        #endregion
+
+        #region IDisposable support
+
+        /// <summary>
+        /// Checks if the current instance has been disposed. Id so, an <see cref="T:System.ObjectDisposedException">ObjectDisposedException</see> will be thrown.
+        /// </summary>
+        protected void CheckDisposed()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException("BitmapPixelProvider");
+        }
+
+        private bool _disposed;
+
+        /// <summary>Disposes the current object instance.</summary>
+        /// <param name="disposing">Determines wheter managed resources should be disposed, too.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    if (_disposeBitmapOnFinalize && _bitmap != null)
+                        _bitmap.Dispose();
+                }
+                _disposed = true;
+            }
+        }
+
+        /// <summary>Disposes the current object instance.</summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         #endregion
