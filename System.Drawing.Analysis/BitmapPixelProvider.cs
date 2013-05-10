@@ -2,6 +2,8 @@ namespace System.Drawing.Analysis
 {
     public class BitmapPixelProvider : IPixelProvider
     {
+        // TODO: Implement using LockBits and unsafe pointers
+
         public Color GetPixel(int x, int y)
         {
             throw new NotImplementedException();
