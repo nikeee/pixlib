@@ -74,5 +74,16 @@ namespace System.Drawing.Analysis.Manipulation
                         return true;
             return false;
         }
+
+        public void ForEach(Action<int, int, Color> action)
+        {
+            if(action == null)
+                throw new ArgumentNullException("action");
+
+            int y;
+            for (int x = 0; x < _provider.Size.Width; ++x)
+                for (y = 0; y < _provider.Size.Height; ++y)
+                    action(x, y, _provider.GetPixel(x, y));
+        }
     }
 }

@@ -43,5 +43,10 @@ namespace System.Drawing.Analysis.Manipulation
         {
             throw new NotImplementedException();
         }
+
+        public void ForEach(Action<int, int, Color> action)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
