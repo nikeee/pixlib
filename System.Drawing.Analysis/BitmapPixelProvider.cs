@@ -1,6 +1,6 @@
 namespace System.Drawing.Analysis
 {
-    class BitmapPixelProvider : IPixelProvider
+    public class BitmapPixelProvider : IPixelProvider
     {
         
     }
