@@ -29,7 +29,6 @@ namespace System.Drawing.Analysis
 
         #region static inits
 
-        private static readonly Color CopyFromScreenFixColor = Color.FromArgb(0xFF, 0xD, 0xB, 0xC);
 
         public static BitmapPixelProvider FromScreen()
         {
@@ -52,7 +51,7 @@ namespace System.Drawing.Analysis
             {
                 using (var g = Graphics.FromImage(bmp))
                 {
-                    g.Clear(CopyFromScreenFixColor); // Fixes transparency bug
+                    g.Clear(GdiConstants.CopyFromScreenBugFixColor);
                     g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
                     return new BitmapPixelProvider(bmp.Clone() as Bitmap, true);
                 }

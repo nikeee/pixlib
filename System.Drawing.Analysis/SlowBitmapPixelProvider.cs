@@ -28,9 +28,7 @@ namespace System.Drawing.Analysis
         #endregion
 
         #region static inits
-
-        private static readonly Color CopyFromScreenFixColor = Color.FromArgb(0xFF, 0xD, 0xB, 0xC);
-
+        
         public static SlowBitmapPixelProvider FromScreen()
         {
             return FromScreen(Environment.VirtualScreen);
@@ -52,7 +50,7 @@ namespace System.Drawing.Analysis
             {
                 using (var g = Graphics.FromImage(bmp))
                 {
-                    g.Clear(CopyFromScreenFixColor); // Fixes transparency bug
+                    g.Clear(GdiConstants.CopyFromScreenBugFixColor);
                     g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
                     return new SlowBitmapPixelProvider(bmp.Clone() as Bitmap, true);
                 }
