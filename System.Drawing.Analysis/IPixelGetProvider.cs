@@ -9,19 +9,4 @@ namespace System.Drawing.Analysis
     {
 
     }
-
-    public interface ISetPixelProvider
-    {
-
-    }
-
-    public interface IPixelProvider
-    {
-        
-    }
-
-    class BitmapPixelProvider : IPixelProvider
-    {
-        
-    }
 }

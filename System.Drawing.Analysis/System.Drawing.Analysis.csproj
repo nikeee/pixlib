@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitmapPixelProvider.cs" />
     <Compile Include="IPixelGetProvider.cs" />
+    <Compile Include="IPixelProvider.cs" />
+    <Compile Include="ISetPixelProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
