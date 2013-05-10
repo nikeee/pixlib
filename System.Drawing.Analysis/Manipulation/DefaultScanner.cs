@@ -44,14 +44,14 @@ namespace System.Drawing.Analysis.Manipulation
             throw new InvalidOperationException();
         }
 
-        public Point FirstOrDefault(Color color)
+        public Point? FirstOrDefault(Color color)
         {
             int y;
             for (int x = 0; x < _provider.Size.Width; ++x)
                 for (y = 0; y < _provider.Size.Height; ++y)
                     if (_provider.GetPixel(x, y) == color)
                         return new Point(x, y);
-            return default(Point);
+            return default(Point?);
         }
     }
 }
