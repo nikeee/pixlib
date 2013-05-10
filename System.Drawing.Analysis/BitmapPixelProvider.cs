@@ -4,6 +4,18 @@ namespace System.Drawing.Analysis
     {
         // TODO: Implement using LockBits and unsafe pointers
 
+        private readonly Bitmap _bitmap;
+        public Bitmap Bitmap { get { return _bitmap; } }
+
+        public BitmapPixelProvider(Bitmap bitmap)
+        {
+            if (bitmap == null)
+                throw new ArgumentNullException("bitmap");
+            _bitmap = bitmap;
+
+            throw new NotImplementedException();
+        }
+
         public Color GetPixel(int x, int y)
         {
             throw new NotImplementedException();
@@ -23,5 +35,14 @@ namespace System.Drawing.Analysis
         {
             throw new NotImplementedException();
         }
+
+        #region explicits
+
+        public static explicit operator BitmapPixelProvider(Bitmap bitmap)
+        {
+            return new BitmapPixelProvider(bitmap);
+        }
+
+        #endregion
     }
 }

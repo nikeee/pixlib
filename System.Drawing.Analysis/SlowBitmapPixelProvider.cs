@@ -7,7 +7,7 @@ namespace System.Drawing.Analysis
 
         public SlowBitmapPixelProvider(Bitmap bitmap)
         {
-            if(bitmap == null)
+            if (bitmap == null)
                 throw new ArgumentNullException("bitmap");
             _bitmap = bitmap;
         }
@@ -33,14 +33,14 @@ namespace System.Drawing.Analysis
         }
 
 
-#region explicits
+        #region explicits
 
         public static explicit operator SlowBitmapPixelProvider(Bitmap bitmap)
         {
             return new SlowBitmapPixelProvider(bitmap);
         }
 
-#endregion
+        #endregion
 
     }
 }
