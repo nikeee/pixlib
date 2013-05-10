@@ -30,7 +30,7 @@ namespace System.Drawing.Analysis
             throw new NotImplementedException();
         }
 
-        public void SetPixel(Point p, Color color)
+        public void SetPixel(Point point, Color color)
         {
             throw new NotImplementedException();
         }

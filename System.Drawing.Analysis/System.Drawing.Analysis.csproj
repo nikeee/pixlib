@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitmapPixelProvider.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IPixelGetProvider.cs" />
     <Compile Include="IPixelProvider.cs" />
     <Compile Include="ISetPixelProvider.cs" />
