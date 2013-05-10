@@ -33,5 +33,28 @@ namespace System.Drawing.Analysis.Manipulation
                 }
             }
         }
+
+        //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
+        public Point FirstOrDefault(Color color)
+        {
+            int x;
+            int y;
+            for (x = 0; x < _provider.Size.Width; ++x)
+                for (y = 0; y < _provider.Size.Height; ++y)
+                    if (_provider.GetPixel(x, y) == color)
+                        return new Point(x, y);
+            throw new InvalidOperationException();
+        }
+
+        public Point FirstOrDefault(Color color)
+        {
+            int x;
+            int y;
+            for (x = 0; x < _provider.Size.Width; ++x)
+                for (y = 0; y < _provider.Size.Height; ++y)
+                    if (_provider.GetPixel(x, y) == color)
+                        return new Point(x, y);
+            return default(Point);
+        }
     }
 }
