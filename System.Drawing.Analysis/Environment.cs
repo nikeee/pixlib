@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace System.Drawing.Analysis
+﻿namespace System.Drawing.Analysis
 {
     public static class Environment
     {
@@ -20,14 +15,13 @@ namespace System.Drawing.Analysis
                             NativeMethods.GetSystemMetrics(NativeTypes.SystemMetrics.CYVIRTUALSCREEN)
                         );
                 }
-
-                var s = PrimaryMonitorSize;
+                Size s = PrimaryMonitorSize;
                 return new Rectangle(0, 0, s.Width, s.Height);
             }
         }
 
 
-        private static bool _multiMonitorSupportInitialized = false;
+        private static bool _multiMonitorSupportInitialized;
         private static bool _isMultiMonitorSupported;
         public static bool IsMultiMonitorSupported
         {

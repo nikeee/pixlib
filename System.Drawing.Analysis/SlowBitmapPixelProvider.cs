@@ -25,9 +25,8 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
+        #region Static Inits
 
-        #region static inits
-        
         public static SlowBitmapPixelProvider FromScreen()
         {
             return FromScreen(Environment.VirtualScreen);
@@ -57,6 +56,7 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
+        #region GetPixel
 
         public Color GetPixel(int x, int y)
         {
@@ -68,6 +68,9 @@ namespace System.Drawing.Analysis
             return GetPixel(point.X, point.Y);
         }
 
+        #endregion
+        #region SetPixel
+
         public void SetPixel(int x, int y, Color color)
         {
             _bitmap.SetPixel(x, y, color);
@@ -77,6 +80,8 @@ namespace System.Drawing.Analysis
         {
             SetPixel(point.X, point.Y, color);
         }
+
+        #endregion
 
         public Color SwapColor(int x, int y, Color color)
         {
@@ -93,7 +98,6 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
-
         #region IDisposable support
 
         ///// <summary>

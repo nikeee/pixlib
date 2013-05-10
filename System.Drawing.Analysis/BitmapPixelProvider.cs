@@ -27,8 +27,7 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
-
-        #region static inits
+        #region Static Inits
         
         public static BitmapPixelProvider FromScreen()
         {
@@ -59,6 +58,7 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
+        #region GetPixel
 
         public Color GetPixel(int x, int y)
         {
@@ -70,6 +70,9 @@ namespace System.Drawing.Analysis
             throw new NotImplementedException();
         }
 
+        #endregion
+        #region SetPixel
+
         public void SetPixel(int x, int y, Color color)
         {
             throw new NotImplementedException();
@@ -79,6 +82,8 @@ namespace System.Drawing.Analysis
         {
             throw new NotImplementedException();
         }
+        
+        #endregion
 
         public Color SwapColor(int x, int y, Color color)
         {
@@ -93,7 +98,6 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
-
         #region IDisposable support
 
         ///// <summary>
