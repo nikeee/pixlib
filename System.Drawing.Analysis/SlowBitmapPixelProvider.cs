@@ -25,23 +25,22 @@ namespace System.Drawing.Analysis
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
         }
 
-        private SlowBitmapPixelProvider()
-        { }
-
         #endregion
 
         #region static inits
+
+        private static readonly Color CopyFromScreenFixColor = Color.FromArgb(0xFF, 0xD, 0xB, 0xC);
 
         public static SlowBitmapPixelProvider FromScreen()
         {
             return FromScreen(Environment.VirtualScreen);
         }
+
         public static SlowBitmapPixelProvider FromScreen(Rectangle rectangle)
         {
             return FromScreen(rectangle, CopyPixelOperation.SourceCopy);
         }
 
-        private static readonly Color CopyFromScreenFixColor = Color.FromArgb(0xFF, 0xD, 0xB, 0xC);
         public static SlowBitmapPixelProvider FromScreen(Rectangle rectangle, CopyPixelOperation operation)
         {
             if (rectangle.Width < 1)
@@ -55,11 +54,10 @@ namespace System.Drawing.Analysis
                 {
                     g.Clear(CopyFromScreenFixColor); // Fixes transparency bug
                     g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
+                    return new SlowBitmapPixelProvider(bmp.Clone() as Bitmap, true);
                 }
-                return new SlowBitmapPixelProvider(bmp.Clone() as Bitmap, true);
             }
         }
-
 
         #endregion
 

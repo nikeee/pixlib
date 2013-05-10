@@ -27,6 +27,40 @@ namespace System.Drawing.Analysis
 
         #endregion
 
+        #region static inits
+
+        private static readonly Color CopyFromScreenFixColor = Color.FromArgb(0xFF, 0xD, 0xB, 0xC);
+
+        public static BitmapPixelProvider FromScreen()
+        {
+            return FromScreen(Environment.VirtualScreen);
+        }
+
+        public static BitmapPixelProvider FromScreen(Rectangle rectangle)
+        {
+            return FromScreen(rectangle, CopyPixelOperation.SourceCopy);
+        }
+
+        public static BitmapPixelProvider FromScreen(Rectangle rectangle, CopyPixelOperation operation)
+        {
+            if (rectangle.Width < 1)
+                throw new ArgumentException("The width must not be 0 or less.");
+            if (rectangle.Height < 1)
+                throw new ArgumentException("The height must not be 0 or less.");
+
+            using (var bmp = new Bitmap(rectangle.Width, rectangle.Height))
+            {
+                using (var g = Graphics.FromImage(bmp))
+                {
+                    g.Clear(CopyFromScreenFixColor); // Fixes transparency bug
+                    g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
+                    return new BitmapPixelProvider(bmp.Clone() as Bitmap, true);
+                }
+            }
+        }
+
+        #endregion
+
         public Color GetPixel(int x, int y)
         {
             throw new NotImplementedException();
