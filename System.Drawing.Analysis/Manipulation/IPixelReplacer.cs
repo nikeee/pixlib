@@ -1,6 +1,6 @@
 namespace System.Drawing.Analysis.Manipulation
 {
-    interface IPixelReplacer : IPixelScanner
+    public interface IPixelReplacer : IPixelScanner
     {
 
     }

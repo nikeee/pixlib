@@ -9,17 +9,17 @@ namespace System.Drawing.Analysis
             throw new NotImplementedException();
         }
 
-        public Color GetPixel(Point p)
+        public Color GetPixel(Point point)
         {
             throw new NotImplementedException();
         }
 
-        public void SetPixel(int x, int y, Color c)
+        public void SetPixel(int x, int y, Color color)
         {
             throw new NotImplementedException();
         }
 
-        public void SetPixel(Point p, Color c)
+        public void SetPixel(Point p, Color color)
         {
             throw new NotImplementedException();
         }
