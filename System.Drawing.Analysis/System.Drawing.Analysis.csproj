@@ -53,6 +53,7 @@
     <Compile Include="Manipulation\IPixelReplacer.cs" />
     <Compile Include="Manipulation\IPixelScanner.cs" />
     <Compile Include="Manipulation\RectangleScanner.cs" />
+    <Compile Include="SlowBitmapPixelProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Overview.cd" />

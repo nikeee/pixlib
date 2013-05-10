@@ -1,6 +1,6 @@
 namespace System.Drawing.Analysis
 {
-    public class BitmapPixelProvider : IPixelProvider
+    public class SlowBitmapPixelProvider : IPixelProvider
     {
         public Color GetPixel(int x, int y)
         {

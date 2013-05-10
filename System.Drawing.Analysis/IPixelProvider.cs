@@ -1,6 +1,6 @@
 namespace System.Drawing.Analysis
 {
-    public interface IPixelProvider
+    public interface IPixelProvider : IGetPixelProvider, ISetPixelProvider
     {
         
     }
