@@ -25,6 +25,9 @@ namespace System.Drawing.Analysis
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
         }
 
+        private SlowBitmapPixelProvider()
+        { }
+
         #endregion
 
         #region static inits
@@ -46,14 +49,15 @@ namespace System.Drawing.Analysis
             if (rectangle.Height < 1)
                 throw new ArgumentException("The height must not be 0 or less.");
 
-            var bmp = new Bitmap(rectangle.Width, rectangle.Height);
-
-            using (var g = Graphics.FromImage(bmp))
+            using (var bmp = new Bitmap(rectangle.Width, rectangle.Height))
             {
-                g.Clear(CopyFromScreenFixColor); // Fixes transparency bug
-                g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
+                using (var g = Graphics.FromImage(bmp))
+                {
+                    g.Clear(CopyFromScreenFixColor); // Fixes transparency bug
+                    g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
+                }
+                return new SlowBitmapPixelProvider(bmp.Clone() as Bitmap, true);
             }
-            return new SlowBitmapPixelProvider(bmp) { DisposeBitmapOnFinalize = true };
         }
 
 
