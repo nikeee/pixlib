@@ -6,7 +6,14 @@ namespace System.Drawing.Analysis
     {
         private readonly Bitmap _bitmap;
         public Bitmap Bitmap { get { return _bitmap; } }
-        
+
+        private bool _disposeBitmapOnFinalize = true;
+        public bool DisposeBitmapOnFinalize
+        {
+            get { return _disposeBitmapOnFinalize; }
+            set { _disposeBitmapOnFinalize = value; }
+        }
+
         public Size Size { get; private set; }
 
         #region Ctors
@@ -29,6 +36,13 @@ namespace System.Drawing.Analysis
         }
         public static SlowBitmapPixelProvider FromScreen(Rectangle rectangle)
         {
+            return FromScreen(rectangle, CopyPixelOperation.SourceCopy);
+        }
+
+        private static readonly Color CopyFromScreenFixColor = Color.FromArgb();
+        public static SlowBitmapPixelProvider FromScreen(Rectangle rectangle, CopyPixelOperation operation)
+        {
+            
             if (rectangle.Width < 1)
                 throw new InvalidDataException("The width must not be 0 or less.");
             if (rectangle.Height < 1)
@@ -36,8 +50,13 @@ namespace System.Drawing.Analysis
 
             var bmp = new Bitmap(rectangle.Width, rectangle.Height);
 
-            throw new NotImplementedException();
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.Clear(CopyFromScreenFixColor); // Fixes transparency bug
+                g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
+            }
         }
+
 
         #endregion
 
@@ -77,5 +96,34 @@ namespace System.Drawing.Analysis
 
         #endregion
 
+        #region IDisposable support
+
+        /// <summary>
+        /// Checks if the current instance has been disposed. Id so, an <see cref="T:System.ObjectDisposedException">ObjectDisposedException</see> will be thrown.
+        /// </summary>
+        protected void CheckDisposed()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException("SlowBitmapPixelProvider");
+        }
+
+        private bool _disposed;
+
+        /// <summary>Disposes the current object instance.</summary>
+        /// <param name="disposing">Determines wheter managed resources should be disposed, too.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+                _disposed = true;
+        }
+
+        /// <summary>Disposes the current object instance.</summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }
