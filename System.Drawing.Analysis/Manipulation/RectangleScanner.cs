@@ -24,7 +24,7 @@ namespace System.Drawing.Analysis.Manipulation
             throw new NotImplementedException();
         }
 
-        public Point FirstOrDefault(Color color)
+        public Point First(Color color)
         {
             throw new NotImplementedException();
         }

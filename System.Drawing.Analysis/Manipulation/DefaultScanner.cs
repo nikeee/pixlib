@@ -35,7 +35,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
-        public Point FirstOrDefault(Color color)
+        public Point First(Color color)
         {
             int x;
             int y;
