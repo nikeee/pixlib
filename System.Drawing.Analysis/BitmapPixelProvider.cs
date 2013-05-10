@@ -64,14 +64,14 @@ namespace System.Drawing.Analysis
 
         #region IDisposable support
 
-        /// <summary>
-        /// Checks if the current instance has been disposed. Id so, an <see cref="T:System.ObjectDisposedException">ObjectDisposedException</see> will be thrown.
-        /// </summary>
-        protected void CheckDisposed()
-        {
-            if (_disposed)
-                throw new ObjectDisposedException("BitmapPixelProvider");
-        }
+        ///// <summary>
+        ///// Checks if the current instance has been disposed. Id so, an <see cref="T:System.ObjectDisposedException">ObjectDisposedException</see> will be thrown.
+        ///// </summary>
+        //protected void CheckDisposed()
+        //{
+        //    if (_disposed)
+        //        throw new ObjectDisposedException("BitmapPixelProvider");
+        //}
 
         private bool _disposed;
 
@@ -79,15 +79,15 @@ namespace System.Drawing.Analysis
         /// <param name="disposing">Determines wheter managed resources should be disposed, too.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (_disposed)
+                return;
+
+            if (disposing)
             {
-                if (disposing)
-                {
-                    if (_disposeBitmapOnFinalize && _bitmap != null)
-                        _bitmap.Dispose();
-                }
-                _disposed = true;
+                if (_disposeBitmapOnFinalize && _bitmap != null)
+                    _bitmap.Dispose();
             }
+            _disposed = true;
         }
 
         /// <summary>Disposes the current object instance.</summary>

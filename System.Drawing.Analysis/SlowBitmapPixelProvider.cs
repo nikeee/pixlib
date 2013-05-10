@@ -53,7 +53,7 @@ namespace System.Drawing.Analysis
                 g.Clear(CopyFromScreenFixColor); // Fixes transparency bug
                 g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
             }
-            return new SlowBitmapPixelProvider(bmp) { DisposeBitmapOnFinalize = true};
+            return new SlowBitmapPixelProvider(bmp) { DisposeBitmapOnFinalize = true };
         }
 
 
@@ -97,14 +97,14 @@ namespace System.Drawing.Analysis
 
         #region IDisposable support
 
-        /// <summary>
-        /// Checks if the current instance has been disposed. Id so, an <see cref="T:System.ObjectDisposedException">ObjectDisposedException</see> will be thrown.
-        /// </summary>
-        protected void CheckDisposed()
-        {
-            if (_disposed)
-                throw new ObjectDisposedException("SlowBitmapPixelProvider");
-        }
+        ///// <summary>
+        ///// Checks if the current instance has been disposed. Id so, an <see cref="T:System.ObjectDisposedException">ObjectDisposedException</see> will be thrown.
+        ///// </summary>
+        //protected void CheckDisposed()
+        //{
+        //    if (_disposed)
+        //        throw new ObjectDisposedException("SlowBitmapPixelProvider");
+        //}
 
         private bool _disposed;
 
@@ -112,15 +112,15 @@ namespace System.Drawing.Analysis
         /// <param name="disposing">Determines wheter managed resources should be disposed, too.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (_disposed)
+                return;
+
+            if (disposing)
             {
-                if(disposing)
-                {
-                    if (DisposeBitmapOnFinalize && _bitmap != null)
-                        _bitmap.Dispose();
-                }
-                _disposed = true;
+                if (DisposeBitmapOnFinalize && _bitmap != null)
+                    _bitmap.Dispose();
             }
+            _disposed = true;
         }
 
         /// <summary>Disposes the current object instance.</summary>
