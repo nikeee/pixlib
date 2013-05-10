@@ -55,6 +55,7 @@
     <Compile Include="Scanning\RectangleScanner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Overview.cd" />
     <None Include="System.Drawing.Analysis.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
