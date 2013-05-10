@@ -6,14 +6,20 @@ namespace System.Drawing.Analysis
 
         private readonly Bitmap _bitmap;
         public Bitmap Bitmap { get { return _bitmap; } }
+        
+        public Size Size { get; private set; }
+
+        #region Ctors
 
         public BitmapPixelProvider(Bitmap bitmap)
         {
             if (bitmap == null)
                 throw new ArgumentNullException("bitmap");
             _bitmap = bitmap;
-            throw new NotImplementedException();
+            Size = _bitmap.Size;
         }
+
+        #endregion
 
         public Color GetPixel(int x, int y)
         {
