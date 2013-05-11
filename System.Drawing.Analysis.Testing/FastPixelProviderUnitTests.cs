@@ -1,27 +1,24 @@
-﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Drawing;
-using System.Drawing.Analysis;
 
 namespace System.Drawing.Analysis.Testing
 {
     [TestClass]
-    public class SlowPixelProviderTests
+    public class FastPixelProviderTests
     {
-
         [TestMethod]
         public void GetPixel()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
-            using (var slow = new SlowBitmapPixelProvider(testBitmap, true))
+            using (var testBitmapUnlocked = TestingHelper.GetTestBitmap())
+            using (var fast = new FastBitmapPixelProvider(testBitmap, true))
             {
 
                 for (int x = 0; x < testBitmap.Width; ++x)
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        var expected = testBitmap.GetPixel(x, y);
-                        var actual = slow.GetPixel(x, y);
+                        var expected = testBitmapUnlocked.GetPixel(x, y);
+                        var actual = fast.GetPixel(x, y);
                         Assert.AreEqual(expected, actual);
                     }
                 }
