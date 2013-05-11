@@ -4,14 +4,55 @@ using System.Drawing.Imaging;
 
 namespace System.Drawing.Analysis
 {
-    public class FastBitmapPixelProvider : IPixelProvider
+    public abstract class BitmapPixelProvider : IDisposable
     {
-        private readonly Bitmap _bitmap;
-        public Bitmap Bitmap { get { return _bitmap; } }
-        
-        public Size Size { get; private set; }
+        //public Bitmap Bitmap { get { return InternalBitmap; } }
 
         public bool DisposeBitmapOnFinalize { get; set; }
+
+        protected readonly Bitmap InternalBitmap;
+        protected BitmapPixelProvider(Bitmap bitmap)
+        {
+            if (bitmap == null)
+                throw new ArgumentNullException("bitmap");
+            InternalBitmap = bitmap;
+        }
+
+        #region IDisposable support
+
+        private bool _disposed;
+
+        /// <summary>Disposes the current object instance.</summary>
+        /// <param name="disposing">Determines wheter managed resources should be disposed, too.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                if (InternalBitmap != null)
+                {
+                    if (DisposeBitmapOnFinalize)
+                        InternalBitmap.Dispose();
+                }
+            }
+            _disposed = true;
+        }
+
+        /// <summary>Disposes the current object instance.</summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
+    }
+    public class FastBitmapPixelProvider : BitmapPixelProvider, IPixelProvider
+    {
+        public Size Size { get; private set; }
+
 
         private readonly Rectangle _bitmapDimensions;
         private BitmapData _bitmapData;
@@ -23,15 +64,12 @@ namespace System.Drawing.Analysis
         { }
 
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
+            : base(bitmap)
         {
-            if (bitmap == null)
-                throw new ArgumentNullException("bitmap");
-
-            _bitmap = bitmap;
-            Size = _bitmap.Size;
+            Size = InternalBitmap.Size;
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
 
-            _bitmapDimensions = new Rectangle(Point.Empty, _bitmap.Size);
+            _bitmapDimensions = new Rectangle(Point.Empty, InternalBitmap.Size);
             Lock();
         }
 
@@ -40,14 +78,14 @@ namespace System.Drawing.Analysis
         {
             if (_isLocked)
                 throw new InvalidOperationException();
-            _bitmapData = _bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            _bitmapData = InternalBitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             _isLocked = true;
         }
         private void Unlock()
         {
             if (!_isLocked)
                 throw new InvalidOperationException();
-            _bitmap.UnlockBits(_bitmapData);
+            InternalBitmap.UnlockBits(_bitmapData);
             _isLocked = false;
         }
 
@@ -142,28 +180,15 @@ namespace System.Drawing.Analysis
 
         /// <summary>Disposes the current object instance.</summary>
         /// <param name="disposing">Determines wheter managed resources should be disposed, too.</param>
-        protected virtual void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (_disposed)
                 return;
-
             if (disposing)
-            {
-                if (_bitmap != null)
-                {
+                if (InternalBitmap != null)
                     Unlock(); // Unlock Bitmap on Dispose
-                    if (DisposeBitmapOnFinalize)
-                        _bitmap.Dispose();
-                }
-            }
             _disposed = true;
-        }
-
-        /// <summary>Disposes the current object instance.</summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            base.Dispose(disposing);
         }
 
         #endregion
