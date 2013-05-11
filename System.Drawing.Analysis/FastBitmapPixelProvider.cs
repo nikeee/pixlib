@@ -1,4 +1,5 @@
 using System.Drawing.Imaging;
+using System.Security;
 
 namespace System.Drawing.Analysis
 {
@@ -6,6 +7,8 @@ namespace System.Drawing.Analysis
     {
         private readonly Rectangle _bitmapDimensions;
         private BitmapData _bitmapData;
+
+        private IntPtr _scan0;
 
         private const int PixelSize = 4;
 
@@ -31,6 +34,7 @@ namespace System.Drawing.Analysis
             if (_isLocked)
                 throw new InvalidOperationException();
             _bitmapData = Bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            _scan0 = _bitmapData.Scan0;
             _isLocked = true;
         }
         private void Unlock()
@@ -78,11 +82,9 @@ namespace System.Drawing.Analysis
         private unsafe Color GetPixelInternal(int x, int y)
         {
             int index = ((y * Size.Width) + x) * PixelSize;
-            byte* i = (byte*)_bitmapData.Scan0;
-            return Color.FromArgb(i[index + 3], i[index + 2], i[index + 1], i[index]);
+            return Color.FromArgb(((byte*)_scan0)[index + 3], ((byte*)_scan0)[index + 2], ((byte*)_scan0)[index + 1], ((byte*)_scan0)[index]);
         }
 
-        // TODO: Testing
         public Color GetPixel(int x, int y)
         {
             if (x >= Size.Width || y >= Size.Height)
@@ -90,7 +92,6 @@ namespace System.Drawing.Analysis
             return GetPixelInternal(x, y);
         }
 
-        // TODO: Testing
         public Color GetPixel(Point point)
         {
             return GetPixel(point.X, point.Y);
@@ -100,11 +101,13 @@ namespace System.Drawing.Analysis
         #region SetPixel
 
         // TODO: Testing
-        private unsafe void SetPixelInternal(int x, int y, int argb)
+        private unsafe void SetPixelInternal(int x, int y, Color color)
         {
             var index = ((y * Size.Width) + x) * PixelSize;
-            var i = (int*)_bitmapData.Scan0;
-            i[index] = argb;
+            ((byte*)_scan0)[index + 3] = color.A;
+            ((byte*)_scan0)[index + 2] = color.R;
+            ((byte*)_scan0)[index + 1] = color.G;
+            ((byte*)_scan0)[index] = color.B;
         }
 
         // TODO: Testing
@@ -112,7 +115,7 @@ namespace System.Drawing.Analysis
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
-            SetPixelInternal(x, y, color.ToArgb());
+            SetPixelInternal(x, y, color);
         }
 
         // TODO: Testing
