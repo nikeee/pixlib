@@ -9,6 +9,8 @@ namespace System.Drawing.Analysis
         private readonly Rectangle _bitmapDimensions;
         private BitmapData _bitmapData;
 
+        private const int PixelSize = 4;
+
         #region Ctors
         
         public FastBitmapPixelProvider(Bitmap bitmap)
@@ -21,6 +23,9 @@ namespace System.Drawing.Analysis
             _bitmapDimensions = new Rectangle(Point.Empty, InternalBitmap.Size);
             Lock();
         }
+
+        #endregion
+        #region Lock/Unlock
 
         private bool _isLocked;
         private void Lock()
@@ -72,27 +77,52 @@ namespace System.Drawing.Analysis
         #endregion
         #region GetPixel
 
-        public Color GetPixel(int x, int y)
+        // TODO: Testing
+        private unsafe int GetPixelInternal(int x, int y)
         {
-            throw new NotImplementedException();
+            var index = ((y * Size.Width) + x) * PixelSize;
+            var i = (int*) _bitmapData.Scan0;
+            return i[index];
         }
 
+        // TODO: Testing
+        public Color GetPixel(int x, int y)
+        {
+            if (x >= Size.Width || y >= Size.Height)
+                throw new IndexOutOfRangeException();
+            var argb = GetPixelInternal(x, y);
+            return Color.FromArgb(argb);
+        }
+
+        // TODO: Testing
         public Color GetPixel(Point point)
         {
-            throw new NotImplementedException();
+            return GetPixel(point.X, point.Y);
         }
 
         #endregion
         #region SetPixel
 
-        public void SetPixel(int x, int y, Color color)
+        // TODO: Testing
+        private unsafe void SetPixelInternal(int x, int y, int argb)
         {
-            throw new NotImplementedException();
+            var index = ((y * Size.Width) + x) * PixelSize;
+            var i = (int*)_bitmapData.Scan0;
+            i[index] = argb;
         }
 
+        // TODO: Testing
+        public void SetPixel(int x, int y, Color color)
+        {
+            if (x >= Size.Width || y >= Size.Height)
+                throw new IndexOutOfRangeException();
+            SetPixelInternal(x, y, color.ToArgb());
+        }
+
+        // TODO: Testing
         public void SetPixel(Point point, Color color)
         {
-            throw new NotImplementedException();
+            SetPixel(point.X, point.Y, color);
         }
         
         #endregion
@@ -100,6 +130,7 @@ namespace System.Drawing.Analysis
 
         public Color SwapColor(int x, int y, Color color)
         {
+            // TODO: Replace using pointers (faster!)
             var c = GetPixel(x, y);
             SetPixel(x, y, color);
             return c;
