@@ -4,51 +4,6 @@ using System.Drawing.Imaging;
 
 namespace System.Drawing.Analysis
 {
-    public abstract class BitmapPixelProvider : IDisposable
-    {
-        //public Bitmap Bitmap { get { return InternalBitmap; } }
-
-        public bool DisposeBitmapOnFinalize { get; set; }
-
-        protected readonly Bitmap InternalBitmap;
-        protected BitmapPixelProvider(Bitmap bitmap)
-        {
-            if (bitmap == null)
-                throw new ArgumentNullException("bitmap");
-            InternalBitmap = bitmap;
-        }
-
-        #region IDisposable support
-
-        private bool _disposed;
-
-        /// <summary>Disposes the current object instance.</summary>
-        /// <param name="disposing">Determines wheter managed resources should be disposed, too.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-                return;
-
-            if (disposing)
-            {
-                if (InternalBitmap != null)
-                {
-                    if (DisposeBitmapOnFinalize)
-                        InternalBitmap.Dispose();
-                }
-            }
-            _disposed = true;
-        }
-
-        /// <summary>Disposes the current object instance.</summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        #endregion
-    }
     public class FastBitmapPixelProvider : BitmapPixelProvider, IPixelProvider
     {
         public Size Size { get; private set; }
@@ -64,11 +19,9 @@ namespace System.Drawing.Analysis
         { }
 
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
-            : base(bitmap)
+            : base(bitmap, disposeBitmapOnFinalize)
         {
             Size = InternalBitmap.Size;
-            DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
-
             _bitmapDimensions = new Rectangle(Point.Empty, InternalBitmap.Size);
             Lock();
         }
@@ -91,7 +44,7 @@ namespace System.Drawing.Analysis
 
         #endregion
         #region Static Inits
-        
+
         public static FastBitmapPixelProvider FromScreen()
         {
             return FromScreen(Environment.VirtualScreen);

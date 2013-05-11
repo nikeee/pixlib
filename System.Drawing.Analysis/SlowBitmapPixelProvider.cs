@@ -1,13 +1,8 @@
 namespace System.Drawing.Analysis
 {
-    public class SlowBitmapPixelProvider : IPixelProvider
+    public class SlowBitmapPixelProvider : BitmapPixelProvider, IPixelProvider
     {
-        private readonly Bitmap _bitmap;
-        public Bitmap Bitmap { get { return _bitmap; } }
-
         public Size Size { get; private set; }
-
-        public bool DisposeBitmapOnFinalize { get; set; }
 
         #region Ctors
 
@@ -16,12 +11,11 @@ namespace System.Drawing.Analysis
         { }
 
         public SlowBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
+            : base(bitmap, disposeBitmapOnFinalize)
         {
             if (bitmap == null)
                 throw new ArgumentNullException("bitmap");
-            _bitmap = bitmap;
-            Size = _bitmap.Size;
-            DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
+            Size = InternalBitmap.Size;
         }
 
         #endregion
@@ -60,7 +54,7 @@ namespace System.Drawing.Analysis
 
         public Color GetPixel(int x, int y)
         {
-            return _bitmap.GetPixel(x, y);
+            return InternalBitmap.GetPixel(x, y);
         }
 
         public Color GetPixel(Point point)
@@ -73,7 +67,7 @@ namespace System.Drawing.Analysis
 
         public void SetPixel(int x, int y, Color color)
         {
-            _bitmap.SetPixel(x, y, color);
+            InternalBitmap.SetPixel(x, y, color);
         }
 
         public void SetPixel(Point point, Color color)
@@ -97,42 +91,6 @@ namespace System.Drawing.Analysis
         public static explicit operator SlowBitmapPixelProvider(Bitmap bitmap)
         {
             return new SlowBitmapPixelProvider(bitmap);
-        }
-
-        #endregion
-        #region IDisposable support
-
-        ///// <summary>
-        ///// Checks if the current instance has been disposed. Id so, an <see cref="T:System.ObjectDisposedException">ObjectDisposedException</see> will be thrown.
-        ///// </summary>
-        //protected void CheckDisposed()
-        //{
-        //    if (_disposed)
-        //        throw new ObjectDisposedException("SlowBitmapPixelProvider");
-        //}
-
-        private bool _disposed;
-
-        /// <summary>Disposes the current object instance.</summary>
-        /// <param name="disposing">Determines wheter managed resources should be disposed, too.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-                return;
-
-            if (disposing)
-            {
-                if (DisposeBitmapOnFinalize && _bitmap != null)
-                    _bitmap.Dispose();
-            }
-            _disposed = true;
-        }
-
-        /// <summary>Disposes the current object instance.</summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         #endregion
