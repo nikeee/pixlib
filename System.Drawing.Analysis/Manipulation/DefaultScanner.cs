@@ -119,13 +119,13 @@ namespace System.Drawing.Analysis.Manipulation
 
         public void ForEach(Action<int, int, Color> action)
         {
-            // TODO: Take the view into account
             if(action == null)
                 throw new ArgumentNullException("action");
 
-            int y;
-            for (int x = 0; x < _provider.Size.Width; ++x)
-                for (y = 0; y < _provider.Size.Height; ++y)
+            int targetX = _view.X + _view.Width;
+            int targetY = _view.Y + _view.Height;
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
                     action(x, y, _provider.GetPixel(x, y));
         }
     }
