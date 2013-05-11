@@ -108,12 +108,16 @@ namespace System.Drawing.Analysis
         }
         
         #endregion
+        #region IPixelProvider
 
         public Color SwapColor(int x, int y, Color color)
         {
-            throw new NotImplementedException();
+            var c = GetPixel(x, y);
+            SetPixel(x, y, color);
+            return c;
         }
 
+        #endregion
         #region explicits
 
         public static explicit operator BitmapPixelProvider(Bitmap bitmap)
