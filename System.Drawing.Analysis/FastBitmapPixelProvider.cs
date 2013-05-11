@@ -10,7 +10,7 @@ namespace System.Drawing.Analysis
         private const int PixelSize = 4;
 
         #region Ctors
-        
+
         public FastBitmapPixelProvider(Bitmap bitmap)
             : this(bitmap, true)
         { }
@@ -76,11 +76,17 @@ namespace System.Drawing.Analysis
         #region GetPixel
 
         // TODO: Testing
-        private unsafe int GetPixelInternal(int x, int y)
+        private unsafe Color GetPixelInternal(int x, int y)
         {
             var index = ((y * Size.Width) + x) * PixelSize;
-            var i = (int*) _bitmapData.Scan0;
-            return i[index];
+            var i = (byte*)_bitmapData.Scan0;
+
+            int b = i[index];
+            int g = i[index + 1];
+            int r = i[index + 2];
+            int a = i[index + 3];
+
+            return Color.FromArgb(a, r, g, b);
         }
 
         // TODO: Testing
@@ -89,7 +95,7 @@ namespace System.Drawing.Analysis
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
             var argb = GetPixelInternal(x, y);
-            return Color.FromArgb(argb);
+            return argb;//Color.FromArgb(argb);
         }
 
         // TODO: Testing
@@ -122,7 +128,7 @@ namespace System.Drawing.Analysis
         {
             SetPixel(point.X, point.Y, color);
         }
-        
+
         #endregion
         #region IPixelProvider
 
