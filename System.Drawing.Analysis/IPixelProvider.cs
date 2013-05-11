@@ -4,6 +4,6 @@ namespace System.Drawing.Analysis
     {
         // TODO: Find something that could be used in this interface
 
-        Color SwapColor(int x, int y, Color color);
+        Color SwapPixel(int x, int y, Color color);
     }
 }

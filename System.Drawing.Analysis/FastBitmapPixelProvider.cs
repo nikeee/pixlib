@@ -126,13 +126,28 @@ namespace System.Drawing.Analysis
 
         #endregion
         #region IPixelProvider
-
-        public Color SwapColor(int x, int y, Color color)
+        
+        // TODO: Testing
+        private unsafe Color SwapPixelInternal(int x, int y, Color color)
         {
-            // TODO: Replace using pointers (faster!)
-            var c = GetPixel(x, y);
-            SetPixel(x, y, color);
-            return c;
+            // TODO: Enhance
+            var index = ((y * Size.Width) + x) * PixelSize;
+            int a = ((byte*)_scan0)[index + 3];
+            ((byte*)_scan0)[index + 3] = color.A;
+            int r = ((byte*)_scan0)[index + 2];
+            ((byte*)_scan0)[index + 2] = color.R;
+            int g = ((byte*)_scan0)[index + 1];
+            ((byte*)_scan0)[index + 1] = color.G;
+            int b = ((byte*)_scan0)[index];
+            ((byte*)_scan0)[index] = color.B;
+            return Color.FromArgb(a, r, g, b);
+        }
+
+        public Color SwapPixel(int x, int y, Color color)
+        {
+            if (x >= Size.Width || y >= Size.Height)
+                throw new InvalidOperationException();
+            return SwapPixelInternal(x,y, color);
         }
 
         #endregion
