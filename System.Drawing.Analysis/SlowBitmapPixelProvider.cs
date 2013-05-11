@@ -2,8 +2,6 @@ namespace System.Drawing.Analysis
 {
     public class SlowBitmapPixelProvider : BitmapPixelProvider, IPixelProvider
     {
-        public Size Size { get; private set; }
-
         #region Ctors
 
         public SlowBitmapPixelProvider(Bitmap bitmap)
@@ -12,11 +10,7 @@ namespace System.Drawing.Analysis
 
         public SlowBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
-        {
-            if (bitmap == null)
-                throw new ArgumentNullException("bitmap");
-            Size = InternalBitmap.Size;
-        }
+        { }
 
         #endregion
         #region Static Inits

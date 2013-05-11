@@ -6,9 +6,6 @@ namespace System.Drawing.Analysis
 {
     public class FastBitmapPixelProvider : BitmapPixelProvider, IPixelProvider
     {
-        public Size Size { get; private set; }
-
-
         private readonly Rectangle _bitmapDimensions;
         private BitmapData _bitmapData;
 
@@ -21,7 +18,6 @@ namespace System.Drawing.Analysis
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
         {
-            Size = InternalBitmap.Size;
             _bitmapDimensions = new Rectangle(Point.Empty, InternalBitmap.Size);
             Lock();
         }

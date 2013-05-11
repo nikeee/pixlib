@@ -6,6 +6,7 @@ namespace System.Drawing.Analysis
         public Bitmap Bitmap { get { return InternalBitmap; } }
 
         public bool DisposeBitmapOnFinalize { get; set; }
+        public Size Size { get; private set; }
 
         protected BitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
@@ -13,6 +14,7 @@ namespace System.Drawing.Analysis
                 throw new ArgumentNullException("bitmap");
             InternalBitmap = bitmap;
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
+            Size = bitmap.Size;
         }
 
         #region IDisposable support
