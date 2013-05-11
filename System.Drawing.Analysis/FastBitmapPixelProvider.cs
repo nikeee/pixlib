@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 
 namespace System.Drawing.Analysis
 {
-    public class BitmapPixelProvider : IPixelProvider
+    public class FastBitmapPixelProvider : IPixelProvider
     {
         private readonly Bitmap _bitmap;
         public Bitmap Bitmap { get { return _bitmap; } }
@@ -18,14 +18,15 @@ namespace System.Drawing.Analysis
 
         #region Ctors
         
-        public BitmapPixelProvider(Bitmap bitmap)
+        public FastBitmapPixelProvider(Bitmap bitmap)
             : this(bitmap, true)
         { }
 
-        public BitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
+        public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
             if (bitmap == null)
                 throw new ArgumentNullException("bitmap");
+
             _bitmap = bitmap;
             Size = _bitmap.Size;
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
@@ -53,17 +54,17 @@ namespace System.Drawing.Analysis
         #endregion
         #region Static Inits
         
-        public static BitmapPixelProvider FromScreen()
+        public static FastBitmapPixelProvider FromScreen()
         {
             return FromScreen(Environment.VirtualScreen);
         }
 
-        public static BitmapPixelProvider FromScreen(Rectangle rectangle)
+        public static FastBitmapPixelProvider FromScreen(Rectangle rectangle)
         {
             return FromScreen(rectangle, CopyPixelOperation.SourceCopy);
         }
 
-        public static BitmapPixelProvider FromScreen(Rectangle rectangle, CopyPixelOperation operation)
+        public static FastBitmapPixelProvider FromScreen(Rectangle rectangle, CopyPixelOperation operation)
         {
             if (rectangle.Width < 1)
                 throw new ArgumentException("The width must not be 0 or less.");
@@ -76,7 +77,7 @@ namespace System.Drawing.Analysis
                 {
                     g.Clear(GdiConstants.CopyFromScreenBugFixColor);
                     g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
-                    return new BitmapPixelProvider(bmp.Clone() as Bitmap, true);
+                    return new FastBitmapPixelProvider(bmp.Clone() as Bitmap, true);
                 }
             }
         }
@@ -120,9 +121,9 @@ namespace System.Drawing.Analysis
         #endregion
         #region explicits
 
-        public static explicit operator BitmapPixelProvider(Bitmap bitmap)
+        public static explicit operator FastBitmapPixelProvider(Bitmap bitmap)
         {
-            return new BitmapPixelProvider(bitmap);
+            return new FastBitmapPixelProvider(bitmap);
         }
 
         #endregion
@@ -148,9 +149,12 @@ namespace System.Drawing.Analysis
 
             if (disposing)
             {
-                Unlock();
-                if (DisposeBitmapOnFinalize && _bitmap != null)
-                    _bitmap.Dispose();
+                if (_bitmap != null)
+                {
+                    Unlock(); // Unlock Bitmap on Dispose
+                    if (DisposeBitmapOnFinalize)
+                        _bitmap.Dispose();
+                }
             }
             _disposed = true;
         }
