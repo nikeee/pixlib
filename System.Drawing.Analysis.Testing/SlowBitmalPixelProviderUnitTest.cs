@@ -8,16 +8,17 @@ namespace System.Drawing.Analysis.Testing
     [TestClass]
     public class SlowBitmapPixelProviderUnitTest
     {
+        private const string RelativeTestImagePath = "..\\..\\Resources\\testImage.png";
+
         [TestMethod]
         public void TestSlowBitmapPixelProvider()
         {
-            var testBitmap = new Bitmap("..\\");
+            var testBitmap = new Bitmap(RelativeTestImagePath);
 
             using(var slow = new SlowBitmapPixelProvider(testBitmap, true))
             {
                 
             }
-
         }
     }
 }
