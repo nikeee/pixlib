@@ -37,6 +37,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         public IEnumerable<Point> FindPixels(Color color)
         {
+            // TODO: Unit testing
             int targetX = _view.X + _view.Width;
             int targetY = _view.Y + _view.Height;
 
@@ -54,45 +55,65 @@ namespace System.Drawing.Analysis.Manipulation
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
         public Point First(Color color)
         {
-            // TODO: Take the view into account
-            int y;
-            for (int x = 0; x < _provider.Size.Width; ++x)
-                for (y = 0; y < _provider.Size.Height; ++y)
+            int targetX = _view.X + _view.Width;
+            int targetY = _view.Y + _view.Height;
+
+            for (int x = _view.X; x < targetX; ++x)
+            {
+                for (int y = _view.Y; y < targetY; ++y)
+                {
                     if (_provider.GetPixel(x, y) == color)
                         return new Point(x, y);
+                }
+            }
             throw new InvalidOperationException();
         }
 
         public Point? FirstOrDefault(Color color)
         {
-            // TODO: Take the view into account
-            int y;
-            for (int x = 0; x < _provider.Size.Width; ++x)
-                for (y = 0; y < _provider.Size.Height; ++y)
+            int targetX = _view.X + _view.Width;
+            int targetY = _view.Y + _view.Height;
+
+            for (int x = _view.X; x < targetX; ++x)
+            {
+                for (int y = _view.Y; y < targetY; ++y)
+                {
                     if (_provider.GetPixel(x, y) == color)
                         return new Point(x, y);
+                }
+            }
             return default(Point?);
         }
 
         public bool All(Color color)
         {
-            // TODO: Take the view into account
-            int y;
-            for (int x = 0; x < _provider.Size.Width; ++x)
-                for (y = 0; y < _provider.Size.Height; ++y)
+            int targetX = _view.X + _view.Width;
+            int targetY = _view.Y + _view.Height;
+
+            for (int x = _view.X; x < targetX; ++x)
+            {
+                for (int y = _view.Y; y < targetY; ++y)
+                {
                     if (_provider.GetPixel(x, y) != color)
                         return false;
+                }
+            }
             return true;
         }
 
         public bool Any(Color color)
         {
-            // TODO: Take the view into account
-            int y;
-            for (int x = 0; x < _provider.Size.Width; ++x)
-                for (y = 0; y < _provider.Size.Height; ++y)
+            int targetX = _view.X + _view.Width;
+            int targetY = _view.Y + _view.Height;
+
+            for (int x = _view.X; x < targetX; ++x)
+            {
+                for (int y = _view.Y; y < targetY; ++y)
+                {
                     if (_provider.GetPixel(x, y) == color)
                         return true;
+                }
+            }
             return false;
         }
 
