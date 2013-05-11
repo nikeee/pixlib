@@ -20,7 +20,7 @@ namespace System.Drawing.Analysis
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
         {
-            _bitmapDimensions = new Rectangle(Point.Empty, GetBitmap().Size);
+            _bitmapDimensions = new Rectangle(Point.Empty, Bitmap.Size);
             Lock();
         }
 
@@ -32,14 +32,14 @@ namespace System.Drawing.Analysis
         {
             if (_isLocked)
                 throw new InvalidOperationException();
-            _bitmapData = GetBitmap().LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            _bitmapData = Bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             _isLocked = true;
         }
         private void Unlock()
         {
             if (!_isLocked)
                 throw new InvalidOperationException();
-            GetBitmap().UnlockBits(_bitmapData);
+            Bitmap.UnlockBits(_bitmapData);
             _isLocked = false;
         }
 
@@ -165,7 +165,7 @@ namespace System.Drawing.Analysis
             if (_disposed)
                 return;
             if (disposing)
-                if (GetBitmap() != null)
+                if (Bitmap != null)
                     Unlock(); // Unlock Bitmap on Dispose
             _disposed = true;
             base.Dispose(disposing);
