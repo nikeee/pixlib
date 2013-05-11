@@ -11,13 +11,13 @@ namespace System.Drawing.Analysis.Manipulation
             set
             {
                 if (value.X < 0 || value.Y < 0)
-                    throw new IndexOutOfRangeException();
+                    throw new InvalidOperationException();
                 if (value.Width <= 0 || value.Height <= 0)
-                    throw new IndexOutOfRangeException();
+                    throw new InvalidOperationException();
                 if (value.X + value.Width > _provider.Size.Width)
-                    throw new IndexOutOfRangeException();
+                    throw new InvalidOperationException();
                 if (value.Y + value.Height > _provider.Size.Height)
-                    throw new IndexOutOfRangeException();
+                    throw new InvalidOperationException();
                 _view = value;
             }
         }

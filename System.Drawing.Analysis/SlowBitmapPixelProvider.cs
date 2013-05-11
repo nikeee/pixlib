@@ -48,7 +48,7 @@ namespace System.Drawing.Analysis
 
         public Color GetPixel(int x, int y)
         {
-            return InternalBitmap.GetPixel(x, y);
+            return GetBitmap().GetPixel(x, y);
         }
 
         public Color GetPixel(Point point)
@@ -61,7 +61,7 @@ namespace System.Drawing.Analysis
 
         public void SetPixel(int x, int y, Color color)
         {
-            InternalBitmap.SetPixel(x, y, color);
+            GetBitmap().SetPixel(x, y, color);
         }
 
         public void SetPixel(Point point, Color color)

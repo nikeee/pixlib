@@ -2,8 +2,8 @@ namespace System.Drawing.Analysis
 {
     public abstract class BitmapPixelProvider : IDisposable
     {
-        protected readonly Bitmap InternalBitmap;
-        public Bitmap Bitmap { get { return InternalBitmap; } }
+        private Bitmap _internalBitmap;
+        public Bitmap Bitmap { get { return _internalBitmap; } }
 
         public bool DisposeBitmapOnFinalize { get; set; }
         public Size Size { get; private set; }
@@ -12,9 +12,14 @@ namespace System.Drawing.Analysis
         {
             if (bitmap == null)
                 throw new ArgumentNullException("bitmap");
-            InternalBitmap = bitmap;
+            _internalBitmap = bitmap;
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
             Size = bitmap.Size;
+        }
+
+        protected Bitmap GetBitmap()
+        {
+            return _internalBitmap;
         }
 
         #region IDisposable support
@@ -30,10 +35,10 @@ namespace System.Drawing.Analysis
 
             if (disposing)
             {
-                if (InternalBitmap != null)
+                if (_internalBitmap != null)
                 {
                     if (DisposeBitmapOnFinalize)
-                        InternalBitmap.Dispose();
+                        _internalBitmap.Dispose();
                 }
             }
             _disposed = true;

@@ -20,7 +20,7 @@ namespace System.Drawing.Analysis
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
         {
-            _bitmapDimensions = new Rectangle(Point.Empty, InternalBitmap.Size);
+            _bitmapDimensions = new Rectangle(Point.Empty, GetBitmap().Size);
             Lock();
         }
 
@@ -32,14 +32,14 @@ namespace System.Drawing.Analysis
         {
             if (_isLocked)
                 throw new InvalidOperationException();
-            _bitmapData = InternalBitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            _bitmapData = GetBitmap().LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             _isLocked = true;
         }
         private void Unlock()
         {
             if (!_isLocked)
                 throw new InvalidOperationException();
-            InternalBitmap.UnlockBits(_bitmapData);
+            GetBitmap().UnlockBits(_bitmapData);
             _isLocked = false;
         }
 
@@ -89,7 +89,7 @@ namespace System.Drawing.Analysis
         public Color GetPixel(int x, int y)
         {
             if (x >= Size.Width || y >= Size.Height)
-                throw new IndexOutOfRangeException();
+                throw new InvalidOperationException();
             var argb = GetPixelInternal(x, y);
             return Color.FromArgb(argb);
         }
@@ -115,7 +115,7 @@ namespace System.Drawing.Analysis
         public void SetPixel(int x, int y, Color color)
         {
             if (x >= Size.Width || y >= Size.Height)
-                throw new IndexOutOfRangeException();
+                throw new InvalidOperationException();
             SetPixelInternal(x, y, color.ToArgb());
         }
 
@@ -165,7 +165,7 @@ namespace System.Drawing.Analysis
             if (_disposed)
                 return;
             if (disposing)
-                if (InternalBitmap != null)
+                if (GetBitmap() != null)
                     Unlock(); // Unlock Bitmap on Dispose
             _disposed = true;
             base.Dispose(disposing);
