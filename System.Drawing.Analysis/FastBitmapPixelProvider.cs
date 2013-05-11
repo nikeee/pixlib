@@ -1,5 +1,3 @@
-// TODO: Implement using LockBits and unsafe pointers
-
 using System.Drawing.Imaging;
 
 namespace System.Drawing.Analysis
