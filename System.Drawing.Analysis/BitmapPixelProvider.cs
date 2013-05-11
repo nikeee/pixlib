@@ -1,5 +1,7 @@
 // TODO: Implement using LockBits and unsafe pointers
 
+using System.Drawing.Imaging;
+
 namespace System.Drawing.Analysis
 {
     public class BitmapPixelProvider : IPixelProvider
@@ -10,6 +12,9 @@ namespace System.Drawing.Analysis
         public Size Size { get; private set; }
 
         public bool DisposeBitmapOnFinalize { get; set; }
+
+        private readonly Rectangle _bitmapDimensions;
+        private BitmapData _bitmapData;
 
         #region Ctors
         
@@ -24,6 +29,25 @@ namespace System.Drawing.Analysis
             _bitmap = bitmap;
             Size = _bitmap.Size;
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
+
+            _bitmapDimensions = new Rectangle(Point.Empty, _bitmap.Size);
+            Lock();
+        }
+
+        private bool _isLocked;
+        private void Lock()
+        {
+            if (_isLocked)
+                throw new InvalidOperationException();
+            _bitmapData = _bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            _isLocked = true;
+        }
+        private void Unlock()
+        {
+            if (!_isLocked)
+                throw new InvalidOperationException();
+            _bitmap.UnlockBits(_bitmapData);
+            _isLocked = false;
         }
 
         #endregion
@@ -120,6 +144,7 @@ namespace System.Drawing.Analysis
 
             if (disposing)
             {
+                Unlock();
                 if (DisposeBitmapOnFinalize && _bitmap != null)
                     _bitmap.Dispose();
             }
