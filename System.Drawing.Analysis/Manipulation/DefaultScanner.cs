@@ -4,8 +4,23 @@ namespace System.Drawing.Analysis.Manipulation
 {
     public class DefaultScanner : IPixelScanner
     {
-        // TODO: Take the view into account
-        public Rectangle View { get; set; }
+        private Rectangle _view;
+        public Rectangle View
+        {
+            get { return _view; }
+            set
+            {
+                if (value.X < 0 || value.Y < 0)
+                    throw new IndexOutOfRangeException();
+                if (value.Width <= 0 || value.Height <= 0)
+                    throw new IndexOutOfRangeException();
+                if (value.X + value.Width > _provider.Size.Width)
+                    throw new IndexOutOfRangeException();
+                if (value.Y + value.Height > _provider.Size.Height)
+                    throw new IndexOutOfRangeException();
+                _view = value;
+            }
+        }
 
         private readonly IGetPixelProvider _provider;
 
@@ -22,11 +37,12 @@ namespace System.Drawing.Analysis.Manipulation
 
         public IEnumerable<Point> FindPixels(Color color)
         {
-            // TODO: Take the view into account
-            int y;
-            for (int x = 0; x < _provider.Size.Width; ++x)
+            int targetX = _view.X + _view.Width;
+            int targetY = _view.Y + _view.Height;
+
+            for (int x = _view.X; x < targetX; ++x)
             {
-                for (y = 0; y < _provider.Size.Height; ++y)
+                for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
                     if (readColor == color)
