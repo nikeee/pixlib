@@ -79,7 +79,7 @@ namespace System.Drawing.Analysis
         #endregion
         #region GetPixel
 
-        private unsafe Color GetPixelInternal(int x, int y)
+        internal unsafe Color GetPixelInternal(int x, int y)
         {
             int index = ((y * Size.Width) + x) * PixelSize;
             return Color.FromArgb(((byte*)_scan0)[index + 3], ((byte*)_scan0)[index + 2], ((byte*)_scan0)[index + 1], ((byte*)_scan0)[index]);
@@ -101,7 +101,7 @@ namespace System.Drawing.Analysis
         #region SetPixel
 
         // TODO: Testing
-        private unsafe void SetPixelInternal(int x, int y, Color color)
+        internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
             var index = ((y * Size.Width) + x) * PixelSize;
             ((byte*)_scan0)[index + 3] = color.A;
