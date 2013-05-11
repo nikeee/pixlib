@@ -10,7 +10,7 @@ namespace System.Drawing.Analysis.Testing
     {
 
         [TestMethod]
-        public void GetPixel()
+        public void GetPixelSlow()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
             using (var slow = new SlowBitmapPixelProvider(testBitmap, true))
@@ -27,8 +27,9 @@ namespace System.Drawing.Analysis.Testing
                 }
             }
         }
+
         [TestMethod]
-        public void GetPixel2()
+        public void GetPixelSlow2()
         {
             var testBitmap = TestingHelper.GetTestBitmap2();
             using (var slow = new SlowBitmapPixelProvider(testBitmap, true))

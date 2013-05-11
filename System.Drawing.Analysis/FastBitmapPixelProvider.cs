@@ -75,18 +75,11 @@ namespace System.Drawing.Analysis
         #endregion
         #region GetPixel
 
-        // TODO: Testing
         private unsafe Color GetPixelInternal(int x, int y)
         {
-            var index = ((y * Size.Width) + x) * PixelSize;
-            var i = (byte*)_bitmapData.Scan0;
-
-            int b = i[index];
-            int g = i[index + 1];
-            int r = i[index + 2];
-            int a = i[index + 3];
-
-            return Color.FromArgb(a, r, g, b);
+            int index = ((y * Size.Width) + x) * PixelSize;
+            byte* i = (byte*)_bitmapData.Scan0;
+            return Color.FromArgb(i[index + 3], i[index + 2], i[index + 1], i[index]);
         }
 
         // TODO: Testing
@@ -94,8 +87,7 @@ namespace System.Drawing.Analysis
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
-            var argb = GetPixelInternal(x, y);
-            return argb;//Color.FromArgb(argb);
+            return GetPixelInternal(x, y);
         }
 
         // TODO: Testing

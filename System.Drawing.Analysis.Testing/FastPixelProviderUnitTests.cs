@@ -6,7 +6,7 @@ namespace System.Drawing.Analysis.Testing
     public class FastPixelProviderTests
     {
         [TestMethod]
-        public void GetPixel()
+        public void GetPixelFast()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
             using (var testBitmapUnlocked = TestingHelper.GetTestBitmap())
@@ -27,7 +27,7 @@ namespace System.Drawing.Analysis.Testing
         }
 
         [TestMethod]
-        public void GetPixel2()
+        public void GetPixelFast2()
         {
             var testBitmap = TestingHelper.GetTestBitmap2();
             using (var testBitmapUnlocked = TestingHelper.GetTestBitmap2())
