@@ -12,6 +12,8 @@ namespace System.Drawing.Analysis
         public readonly byte G;
         public readonly byte B;
 
+        #region Ctors
+
         public ColorTolerance(byte all)
         {
             A = R = G = B = all;
@@ -24,6 +26,9 @@ namespace System.Drawing.Analysis
             B = b;
         }
 
+        #endregion
+        #region Min/MaxToleranceValues
+
         public ColorTolerance GetMinimumValuesFromColor(Color color)
         {
             return new ColorTolerance(
@@ -33,6 +38,7 @@ namespace System.Drawing.Analysis
                     (byte)(color.B < B ? 0 : (color.B - B))
                 );
         }
+
         public ColorTolerance GetMaximumValuesFromColor(Color color)
         {
             return new ColorTolerance(
@@ -42,5 +48,15 @@ namespace System.Drawing.Analysis
                     (byte)((color.B + B > 255) ? 255 : (color.B + B))
                 );
         }
+
+        #endregion
+        #region explicits
+
+        public static explicit operator ColorTolerance(byte value)
+        {
+            return new ColorTolerance(value);
+        }
+
+        #endregion
     }
 }
