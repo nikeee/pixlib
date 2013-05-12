@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Drawing;
-using System.Drawing.Analysis;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace System.Drawing.Analysis.Testing
 {
