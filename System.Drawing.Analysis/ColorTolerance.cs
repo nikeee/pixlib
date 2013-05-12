@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -12,19 +13,31 @@ namespace System.Drawing.Analysis
         public readonly byte G;
         public readonly byte B;
 
+        public readonly bool IgnoreAlpha;
+
         #region Ctors
 
         public ColorTolerance(byte all)
+            : this(all, false)
+        { }
+
+        public ColorTolerance(byte all, bool ignoreAlpha)
         {
             A = R = G = B = all;
+            IgnoreAlpha = ignoreAlpha;
         }
 
         public ColorTolerance(byte a, byte r, byte g, byte b)
+            : this(a, r, g, b, false)
+        { }
+
+        public ColorTolerance(byte a, byte r, byte g, byte b, bool ignoreAlpha)
         {
             A = a;
             R = r;
             G = g;
             B = b;
+            IgnoreAlpha = ignoreAlpha;
         }
 
         #endregion
@@ -56,6 +69,13 @@ namespace System.Drawing.Analysis
         public static explicit operator ColorTolerance(byte value)
         {
             return new ColorTolerance(value);
+        }
+
+        public static explicit operator ColorTolerance(int value)
+        {
+            if (value < 0 || value > 255)
+                throw new InvalidCastException();
+            return new ColorTolerance((byte)value);
         }
 
         #endregion

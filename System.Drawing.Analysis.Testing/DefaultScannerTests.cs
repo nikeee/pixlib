@@ -107,7 +107,7 @@ namespace System.Drawing.Analysis.Testing
                 Assert.AreEqual(18, counter); // There are exactly 18 Black pixels
             }
         }
-
+        
         [TestMethod]
         [TestCategory("Scanner")]
         [TestCategory("DefaultScanner")]
@@ -136,6 +136,29 @@ namespace System.Drawing.Analysis.Testing
                                               return false;
                                           });
                 Assert.AreEqual(trues, count);
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Scanner")]
+        [TestCategory("DefaultScanner")]
+        public void TestSimpleTolerance()
+        {
+            var testBitmap = TestingHelper.GetToleranceBitmap();
+            using (var provider = new SlowBitmapPixelProvider(testBitmap, false))
+            {
+                var scanner = new DefaultScanner(provider);
+                bool actual = scanner.Any(Color.FromArgb(255, 100, 100, 100), new ColorTolerance(60, true));
+                Assert.AreEqual(true, actual);
+
+                actual = scanner.Any(Color.FromArgb(255, 100, 100, 100), new ColorTolerance(60, false));
+                Assert.AreEqual(true, actual);
+
+                actual = scanner.Any(Color.FromArgb(255, 100, 100, 100), new ColorTolerance(30, true));
+                Assert.AreEqual(false, actual);
+
+                actual = scanner.Any(Color.FromArgb(255, 100, 100, 100), new ColorTolerance(30, false));
+                Assert.AreEqual(false, actual);
             }
         }
     }

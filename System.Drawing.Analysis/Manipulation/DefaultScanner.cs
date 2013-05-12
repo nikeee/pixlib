@@ -132,7 +132,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(ref minValues, ref maxValues))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(ref minValues, ref maxValues, tolerance.IgnoreAlpha))
                         return true;
             return false;
         }

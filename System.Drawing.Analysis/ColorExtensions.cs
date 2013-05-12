@@ -18,9 +18,9 @@ namespace System.Drawing.Analysis
 
         // May enhance?
 
-        public static bool ValuesFitTolerance(this Color color, ref ColorTolerance minValues, ref ColorTolerance maxValues)
+        public static bool ValuesFitTolerance(this Color color, ref ColorTolerance minValues, ref ColorTolerance maxValues, bool ignoreAlpha)
         {
-            return (minValues.A <= color.A && color.A <= maxValues.A)
+            return (ignoreAlpha || (minValues.A <= color.A && color.A <= maxValues.A))
                 && (minValues.R <= color.R && color.R <= maxValues.R)
                 && (minValues.G <= color.G && color.G <= maxValues.G)
                 && (minValues.B <= color.B && color.B <= maxValues.B);
