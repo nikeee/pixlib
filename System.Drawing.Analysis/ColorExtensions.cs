@@ -25,16 +25,16 @@ namespace System.Drawing.Analysis
 
         // May enhance?
 
-        public static bool ValuesFitTolerance(this Color color, ref ColorTolerance minValues, ref ColorTolerance maxValues, bool ignoreAlpha)
+        public static bool ValuesFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, bool ignoreAlpha)
         {
             return (ignoreAlpha || (minValues.A <= color.A && color.A <= maxValues.A))
                 && (minValues.R <= color.R && color.R <= maxValues.R)
                 && (minValues.G <= color.G && color.G <= maxValues.G)
                 && (minValues.B <= color.B && color.B <= maxValues.B);
         }
-        public static bool ValuesNotFitTolerance(this Color color, ref ColorTolerance minValues, ref ColorTolerance maxValues, bool ignoreAlpha)
+        public static bool ValuesNotFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, bool ignoreAlpha)
         {
-            return !color.ValuesFitTolerance(ref minValues, ref maxValues, ignoreAlpha);
+            return !color.ValuesFitTolerance(minValues, maxValues, ignoreAlpha);
             // TODO: Enhance performance
             // Check this:
             return (ignoreAlpha || (minValues.A > color.A || color.A > maxValues.A))
