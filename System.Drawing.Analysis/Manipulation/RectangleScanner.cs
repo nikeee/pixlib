@@ -15,6 +15,7 @@ namespace System.Drawing.Analysis.Manipulation
             if (provider == null)
                 throw new ArgumentNullException("provider");
             _provider = provider;
+            throw new NotImplementedException();
         }
 
         #endregion

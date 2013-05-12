@@ -34,7 +34,8 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         #endregion
-
+        #region Helpers
+        
         private int GetTargetX()
         {
             return _view.X + _view.Width;
@@ -43,6 +44,8 @@ namespace System.Drawing.Analysis.Manipulation
         {
             return _view.Y + _view.Height;
         }
+
+        #endregion
 
         public IEnumerable<Point> FindPixels(Color color)
         {
@@ -68,13 +71,10 @@ namespace System.Drawing.Analysis.Manipulation
             int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
-            {
                 for (int y = _view.Y; y < targetY; ++y)
-                {
                     if (_provider.GetPixel(x, y) == color)
                         return new Point(x, y);
-                }
-            }
+
             throw new InvalidOperationException();
         }
 
@@ -84,13 +84,10 @@ namespace System.Drawing.Analysis.Manipulation
             int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
-            {
                 for (int y = _view.Y; y < targetY; ++y)
-                {
                     if (_provider.GetPixel(x, y) == color)
                         return new Point(x, y);
-                }
-            }
+
             return default(Point?);
         }
 
@@ -100,13 +97,9 @@ namespace System.Drawing.Analysis.Manipulation
             int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
-            {
                 for (int y = _view.Y; y < targetY; ++y)
-                {
                     if (_provider.GetPixel(x, y) != color)
                         return false;
-                }
-            }
             return true;
         }
 
@@ -116,13 +109,9 @@ namespace System.Drawing.Analysis.Manipulation
             int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
-            {
                 for (int y = _view.Y; y < targetY; ++y)
-                {
                     if (_provider.GetPixel(x, y) == color)
                         return true;
-                }
-            }
             return false;
         }
 
@@ -147,8 +136,8 @@ namespace System.Drawing.Analysis.Manipulation
             int targetY = GetTargetY();
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if(condition(x, y, _provider.GetPixel(x, y)))
-                        yield return new Point(x,y);
+                    if (condition(x, y, _provider.GetPixel(x, y)))
+                        yield return new Point(x, y); // Braces? Ha, no.
         }
     }
 }
