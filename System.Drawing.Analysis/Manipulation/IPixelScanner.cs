@@ -10,6 +10,7 @@ namespace System.Drawing.Analysis.Manipulation
         Rectangle View { get; set; }
 
         IEnumerable<Pixel> FindPixels(Color color);
+        IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance);
 
         Pixel First(Color color);
         Pixel? FirstOrDefault(Color color);

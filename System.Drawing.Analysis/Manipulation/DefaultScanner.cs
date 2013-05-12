@@ -65,6 +65,26 @@ namespace System.Drawing.Analysis.Manipulation
             }
         }
 
+        public IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance)
+        {
+            // TODO: Unit testing
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
+
+            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
+            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+
+            for (int x = _view.X; x < targetX; ++x)
+            {
+                for (int y = _view.Y; y < targetY; ++y)
+                {
+                    var readColor = _provider.GetPixel(x, y);
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(ref minValues, ref maxValues, tolerance.IgnoreAlpha))
+                        yield return new Pixel(x, y, readColor);
+                }
+            }
+        }
+
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
         public Pixel First(Color color)
         {

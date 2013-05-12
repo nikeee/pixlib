@@ -25,6 +25,11 @@ namespace System.Drawing.Analysis.Manipulation
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance)
+        {
+            throw new NotImplementedException();
+        }
+
         public Pixel First(Color color)
         {
             throw new NotImplementedException();
