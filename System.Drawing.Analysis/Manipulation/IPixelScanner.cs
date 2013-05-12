@@ -20,6 +20,10 @@ namespace System.Drawing.Analysis.Manipulation
 
         void ForEach(Action<int, int, Color> action);
 
+        int Count();
+        int Count(Color color);
+        int Count(Func<int, int, Color, bool> condition);
+
         IEnumerable<Pixel> Where(Func<int, int, Color, bool> condition);
     }
 }

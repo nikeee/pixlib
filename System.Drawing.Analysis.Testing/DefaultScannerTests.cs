@@ -1,4 +1,5 @@
 using System.Drawing.Analysis.Manipulation;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace System.Drawing.Analysis.Testing
@@ -15,7 +16,6 @@ namespace System.Drawing.Analysis.Testing
             using (var provider = new SlowBitmapPixelProvider(testBitmap))
             {
                 var scanner = new DefaultScanner(provider);
-
             }
         }
 
@@ -54,7 +54,7 @@ namespace System.Drawing.Analysis.Testing
                 Assert.AreEqual(expected, actual);
             }
         }
-
+        
         [TestMethod]
         [TestCategory("Scanner")]
         [TestCategory("DefaultScanner")]
@@ -74,6 +74,68 @@ namespace System.Drawing.Analysis.Testing
                 int expected = scanner.View.Width * scanner.View.Height;
                 int actual = counter;
                 Assert.AreEqual(expected, actual);
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Scanner")]
+        [TestCategory("DefaultScanner")]
+        public void TestSimpleFindPixels()
+        {
+            var testBitmap = TestingHelper.GetTestBitmap();
+            using (var provider = new SlowBitmapPixelProvider(testBitmap, false))
+            {
+                var scanner = new DefaultScanner(provider);
+
+                var iterator = scanner.FindPixels(Color.White);
+                int counter = 0;
+                foreach (var pixel in iterator)
+                {
+                    Assert.AreEqual(4, pixel.X);
+                    Assert.AreEqual(8, pixel.Y);
+                    ++counter;
+                }
+                Assert.AreEqual(1, counter);
+            }
+
+            using (var provider = new SlowBitmapPixelProvider(testBitmap))
+            {
+                var scanner = new DefaultScanner(provider);
+
+                var iterator = scanner.FindPixels(Color.Black);
+                int counter = iterator.Count();
+                Assert.AreEqual(18, counter); // There are exactly 18 Black pixels
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Scanner")]
+        [TestCategory("DefaultScanner")]
+        public void TestSimpleCount()
+        {
+            var testBitmap = TestingHelper.GetTestBitmap();
+            using (var provider = new SlowBitmapPixelProvider(testBitmap, false))
+            {
+                var scanner = new DefaultScanner(provider);
+
+                int count = scanner.Count();
+                Assert.AreEqual(testBitmap.Width*testBitmap.Height, count);
+
+                count = scanner.Count(Color.Black);
+                Assert.AreEqual(18, count); // There are exactly 18 Black pixels
+
+                int trues = 0;
+
+                count = scanner.Count((x, y, c) =>
+                                          {
+                                              if(TestingHelper.GetRandomBool())
+                                              {
+                                                  ++trues;
+                                                  return true;
+                                              }
+                                              return false;
+                                          });
+                Assert.AreEqual(trues, count);
             }
         }
     }

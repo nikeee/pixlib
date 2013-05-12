@@ -50,6 +50,21 @@ namespace System.Drawing.Analysis.Manipulation
             throw new NotImplementedException();
         }
 
+        public int Count()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count(Color color)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count(Func<int, int, Color, bool> condition)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Pixel> Where(Func<int, int, Color, bool> condition)
         {
             throw new NotImplementedException();

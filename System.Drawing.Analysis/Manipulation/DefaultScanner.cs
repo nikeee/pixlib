@@ -137,6 +137,40 @@ namespace System.Drawing.Analysis.Manipulation
                     action(x, y, _provider.GetPixel(x, y));
         }
 
+        public int Count()
+        {
+            return _view.Width*_view.Height;
+        }
+
+        public int Count(Color color)
+        {
+            int counter = 0;
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
+
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                    if (color.ValuesEqual(_provider.GetPixel(x, y)))
+                        ++counter;
+            return counter;
+        }
+
+        public int Count(Func<int, int, Color, bool> condition)
+        {
+            if (condition == null)
+                throw new ArgumentNullException("condition");
+
+            int counter = 0;
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
+
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                    if (condition(x, y, _provider.GetPixel(x, y)))
+                        ++counter;
+            return counter;
+        }
+
         public IEnumerable<Pixel> Where(Func<int, int, Color, bool> condition)
         {
             if (condition == null)
