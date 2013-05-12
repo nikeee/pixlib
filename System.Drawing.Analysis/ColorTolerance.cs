@@ -81,14 +81,18 @@ namespace System.Drawing.Analysis
         #endregion
         #region ==-operator
 
-        public static bool operator ==(ColorTolerance a, ColorTolerance b)
+        public static bool operator ==(ColorTolerance tolerance1, ColorTolerance tolerance2)
         {
             // In case of refactoring to class, take care of this!
-            return (a.A == b.A) && (a.R == b.R) && (a.G == b.G) && (a.B == b.B) && (a.IgnoreAlpha == b.IgnoreAlpha);
+            return (tolerance1.A == tolerance2.A)
+                && (tolerance1.R == tolerance2.R)
+                && (tolerance1.G == tolerance2.G)
+                && (tolerance1.B == tolerance2.B)
+                && (tolerance1.IgnoreAlpha == tolerance2.IgnoreAlpha);
         }
-        public static bool operator !=(ColorTolerance a, ColorTolerance b)
+        public static bool operator !=(ColorTolerance tolerance1, ColorTolerance tolerance2)
         {
-            return !(a == b);
+            return !(tolerance1 == tolerance2);
         }
 
 

@@ -25,5 +25,32 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         #endregion
+        #region equals
+
+        public override bool Equals(object obj)
+        {
+            var p = (Pixel)obj;
+            return (p.X == X) && (p.Y == Y) && (p.Color.ValuesEqual(Color));
+        }
+        public override int GetHashCode()
+        {
+            return X ^ Y ^ Color.GetHashCode();
+        }
+
+        #endregion
+        #region ==-operator
+
+        public static bool operator ==(Pixel pixel1, Pixel pixel2)
+        {
+            // In case of refactoring to class, take care of this!
+            return (pixel1.X == pixel2.X) && (pixel1.Y == pixel2.Y) && (pixel1.Color.ValuesEqual(pixel2.Color));
+        }
+        public static bool operator !=(Pixel pixel1, Pixel pixel2)
+        {
+            return !(pixel1 == pixel2);
+        }
+
+
+        #endregion
     }
 }
