@@ -10,16 +10,16 @@ namespace System.Drawing.Analysis.Manipulation
     {
         Rectangle View { get; set; }
 
-        IEnumerable<Point> FindPixels(Color color);
+        IEnumerable<Pixel> FindPixels(Color color);
 
-        Point First(Color color);
-        Point? FirstOrDefault(Color color);
+        Pixel First(Color color);
+        Pixel? FirstOrDefault(Color color);
 
         bool All(Color color);
         bool Any(Color color);
 
         void ForEach(Action<int, int, Color> action);
 
-        IEnumerable<Point> Where(Func<int, int, Color, bool> condition);
+        IEnumerable<Pixel> Where(Func<int, int, Color, bool> condition);
     }
 }

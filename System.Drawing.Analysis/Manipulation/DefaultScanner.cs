@@ -47,7 +47,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         #endregion
 
-        public IEnumerable<Point> FindPixels(Color color)
+        public IEnumerable<Pixel> FindPixels(Color color)
         {
             // TODO: Unit testing
             int targetX = GetTargetX();
@@ -59,36 +59,42 @@ namespace System.Drawing.Analysis.Manipulation
                 {
                     var readColor = _provider.GetPixel(x, y);
                     if (readColor == color)
-                        yield return new Point(x, y);
+                        yield return new Pixel(x, y, readColor);
                 }
             }
         }
 
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
-        public Point First(Color color)
+        public Pixel First(Color color)
         {
             int targetX = GetTargetX();
             int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y) == color)
-                        return new Point(x, y);
+                {
+                    var readColor = _provider.GetPixel(x, y);
+                    if (readColor == color)
+                        return new Pixel(x, y, readColor);
+                }
 
             throw new InvalidOperationException();
         }
 
-        public Point? FirstOrDefault(Color color)
+        public Pixel? FirstOrDefault(Color color)
         {
             int targetX = GetTargetX();
             int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y) == color)
-                        return new Point(x, y);
+                {
+                    var readColor = _provider.GetPixel(x, y);
+                    if (readColor == color)
+                        return new Pixel(x, y, readColor);
+                }
 
-            return default(Point?);
+            return default(Pixel?);
         }
 
         public bool All(Color color)
@@ -127,7 +133,7 @@ namespace System.Drawing.Analysis.Manipulation
                     action(x, y, _provider.GetPixel(x, y));
         }
 
-        public IEnumerable<Point> Where(Func<int, int, Color, bool> condition)
+        public IEnumerable<Pixel> Where(Func<int, int, Color, bool> condition)
         {
             if (condition == null)
                 throw new ArgumentNullException("condition");
@@ -136,8 +142,11 @@ namespace System.Drawing.Analysis.Manipulation
             int targetY = GetTargetY();
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (condition(x, y, _provider.GetPixel(x, y)))
-                        yield return new Point(x, y); // Braces? Ha, no.
+                {
+                    var color = _provider.GetPixel(x, y);
+                    if (condition(x, y, color))
+                        yield return new Pixel(x, y, color);
+                }
         }
     }
 }

@@ -20,17 +20,17 @@ namespace System.Drawing.Analysis.Manipulation
 
         #endregion
 
-        public IEnumerable<Point> FindPixels(Color color)
+        public IEnumerable<Pixel> FindPixels(Color color)
         {
             throw new NotImplementedException();
         }
 
-        public Point First(Color color)
+        public Pixel First(Color color)
         {
             throw new NotImplementedException();
         }
 
-        public Point? FirstOrDefault(Color color)
+        public Pixel? FirstOrDefault(Color color)
         {
             throw new NotImplementedException();
         }
@@ -50,7 +50,7 @@ namespace System.Drawing.Analysis.Manipulation
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Point> Where(Func<int, int, Color, bool> condition)
+        public IEnumerable<Pixel> Where(Func<int, int, Color, bool> condition)
         {
             throw new NotImplementedException();
         }
