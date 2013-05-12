@@ -48,5 +48,10 @@ namespace System.Drawing.Analysis.Manipulation
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Point> Where(Func<int, int, Color, bool> condition)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace System.Drawing.Analysis.Testing
     {
         private const string TestImageExtension = ".bmp";
         private const string RelativeResourcesPath = "..\\..\\Resources\\";
+
         private const string RelativeTestImagePath = RelativeResourcesPath + "testImage" + TestImageExtension;
         private const string RelativeTestImage2Path = RelativeResourcesPath + "testImage2" + TestImageExtension;
 
@@ -13,6 +14,7 @@ namespace System.Drawing.Analysis.Testing
         {
             return new Bitmap(RelativeTestImagePath);
         }
+
         public static Bitmap GetTestBitmap2()
         {
             return new Bitmap(RelativeTestImage2Path);
@@ -20,7 +22,10 @@ namespace System.Drawing.Analysis.Testing
 
         public static Color GetRandomColor()
         {
-            return Color.FromArgb((byte)255, (byte)Random.Next(0, 255), (byte)Random.Next(0, 255), (byte)Random.Next(0, 255));
+            var buffer = new byte[4];
+            Random.NextBytes(buffer);
+            buffer[0] = 255;
+            return Color.FromArgb(buffer[0], buffer[1], buffer[2], buffer[3]);
         }
     }
 }

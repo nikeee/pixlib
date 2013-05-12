@@ -5,7 +5,6 @@ namespace System.Drawing.Analysis.Testing
     [TestClass]
     public class SlowPixelProviderTests
     {
-
         [TestMethod]
         public void GetPixelSlow()
         {

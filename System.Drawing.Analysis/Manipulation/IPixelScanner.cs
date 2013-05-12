@@ -19,5 +19,7 @@ namespace System.Drawing.Analysis.Manipulation
         bool Any(Color color);
 
         void ForEach(Action<int, int, Color> action);
+
+        IEnumerable<Point> Where(Func<int, int, Color, bool> condition);
     }
 }

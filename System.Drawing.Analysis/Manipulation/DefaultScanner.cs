@@ -35,11 +35,20 @@ namespace System.Drawing.Analysis.Manipulation
 
         #endregion
 
+        private int GetTargetX()
+        {
+            return _view.X + _view.Width;
+        }
+        private int GetTargetY()
+        {
+            return _view.Y + _view.Height;
+        }
+
         public IEnumerable<Point> FindPixels(Color color)
         {
             // TODO: Unit testing
-            int targetX = _view.X + _view.Width;
-            int targetY = _view.Y + _view.Height;
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
             {
@@ -55,8 +64,8 @@ namespace System.Drawing.Analysis.Manipulation
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
         public Point First(Color color)
         {
-            int targetX = _view.X + _view.Width;
-            int targetY = _view.Y + _view.Height;
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
             {
@@ -71,8 +80,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         public Point? FirstOrDefault(Color color)
         {
-            int targetX = _view.X + _view.Width;
-            int targetY = _view.Y + _view.Height;
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
             {
@@ -87,8 +96,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         public bool All(Color color)
         {
-            int targetX = _view.X + _view.Width;
-            int targetY = _view.Y + _view.Height;
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
             {
@@ -103,8 +112,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         public bool Any(Color color)
         {
-            int targetX = _view.X + _view.Width;
-            int targetY = _view.Y + _view.Height;
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
 
             for (int x = _view.X; x < targetX; ++x)
             {
@@ -119,14 +128,27 @@ namespace System.Drawing.Analysis.Manipulation
 
         public void ForEach(Action<int, int, Color> action)
         {
-            if(action == null)
+            if (action == null)
                 throw new ArgumentNullException("action");
 
-            int targetX = _view.X + _view.Width;
-            int targetY = _view.Y + _view.Height;
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
                     action(x, y, _provider.GetPixel(x, y));
+        }
+
+        public IEnumerable<Point> Where(Func<int, int, Color, bool> condition)
+        {
+            if (condition == null)
+                throw new ArgumentNullException("condition");
+
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                    if(condition(x, y, _provider.GetPixel(x, y)))
+                        yield return new Point(x,y);
         }
     }
 }
