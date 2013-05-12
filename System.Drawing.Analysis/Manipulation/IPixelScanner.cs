@@ -17,7 +17,7 @@ namespace System.Drawing.Analysis.Manipulation
         bool All(Color color);
 
         bool Any(Color color);
-        bool Any(Color color, int tolerance);
+        bool Any(Color color, byte tolerance);
 
         void ForEach(Action<int, int, Color> action);
 
