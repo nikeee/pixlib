@@ -11,6 +11,7 @@ namespace System.Drawing.Analysis.Testing
         {
             Assert.AreEqual(Windows.Forms.SystemInformation.VirtualScreen, Environment.VirtualScreen);
         }
+
         [TestMethod]
         [TestCategory("Environment")]
         public void CheckPrimaryMonitorSize()
