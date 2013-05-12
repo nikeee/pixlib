@@ -57,9 +57,11 @@ namespace System.Drawing.Analysis.Testing
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        var expected = TestingHelper.GetRandomColor();
+                        Color expected = TestingHelper.GetRandomColor();
                         slow.SetPixel(x, y, expected);
-                        var actual = slow.GetPixel(x, y);
+
+                        Color actual = slow.GetPixel(x, y);
+
                         Assert.AreEqual(expected, actual);
                     }
                 }
@@ -76,9 +78,11 @@ namespace System.Drawing.Analysis.Testing
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        var expected = TestingHelper.GetRandomColor();
+                        Color expected = TestingHelper.GetRandomColor();
                         slow.SetPixel(x, y, expected);
-                        var actual = slow.GetPixel(x, y);
+
+                        Color actual = slow.GetPixel(x, y);
+
                         Assert.AreEqual(expected, actual);
                     }
                 }

@@ -20,7 +20,7 @@ namespace System.Drawing.Analysis.Testing
 
         public static Color GetRandomColor()
         {
-            return Color.FromArgb(Random.Next());
+            return Color.FromArgb((byte)255, (byte)Random.Next(0, 255), (byte)Random.Next(0, 255), (byte)Random.Next(0, 255));
         }
     }
 }
