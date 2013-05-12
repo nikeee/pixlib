@@ -17,9 +17,9 @@ namespace System.Drawing.Analysis
 
         #region Ctors
 
-        public ColorTolerance(byte all)
-            : this(all, false)
-        { }
+        //public ColorTolerance(byte all)
+        //    : this(all, false)
+        //{ }
 
         public ColorTolerance(byte all, bool ignoreAlpha)
         {
@@ -27,9 +27,9 @@ namespace System.Drawing.Analysis
             IgnoreAlpha = ignoreAlpha;
         }
 
-        public ColorTolerance(byte a, byte r, byte g, byte b)
-            : this(a, r, g, b, false)
-        { }
+        //public ColorTolerance(byte a, byte r, byte g, byte b)
+        //    : this(a, r, g, b, false)
+        //{ }
 
         public ColorTolerance(byte a, byte r, byte g, byte b, bool ignoreAlpha)
         {
@@ -49,7 +49,8 @@ namespace System.Drawing.Analysis
                     (byte)(color.A < A ? 0 : (color.A - A)),
                     (byte)(color.R < R ? 0 : (color.R - R)),
                     (byte)(color.G < G ? 0 : (color.G - G)),
-                    (byte)(color.B < B ? 0 : (color.B - B))
+                    (byte)(color.B < B ? 0 : (color.B - B)),
+                    false
                 );
         }
 
@@ -59,25 +60,26 @@ namespace System.Drawing.Analysis
                     (byte)((color.A + A > 255) ? 255 : (color.A + A)),
                     (byte)((color.R + R > 255) ? 255 : (color.R + R)),
                     (byte)((color.G + G > 255) ? 255 : (color.G + G)),
-                    (byte)((color.B + B > 255) ? 255 : (color.B + B))
+                    (byte)((color.B + B > 255) ? 255 : (color.B + B)),
+                    false
                 );
         }
 
         #endregion
-        #region explicits
+        //#region explicits
 
-        public static explicit operator ColorTolerance(byte value)
-        {
-            return new ColorTolerance(value);
-        }
+        //public static explicit operator ColorTolerance(byte value)
+        //{
+        //    return new ColorTolerance(value);
+        //}
 
-        public static explicit operator ColorTolerance(int value)
-        {
-            if (value < 0 || value > 255)
-                throw new InvalidCastException();
-            return new ColorTolerance((byte)value);
-        }
+        //public static explicit operator ColorTolerance(int value)
+        //{
+        //    if (value < 0 || value > 255)
+        //        throw new InvalidCastException();
+        //    return new ColorTolerance((byte)value);
+        //}
 
-        #endregion
+        //#endregion
     }
 }
