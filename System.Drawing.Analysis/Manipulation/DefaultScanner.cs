@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace System.Drawing.Analysis.Manipulation
 {
@@ -31,6 +32,7 @@ namespace System.Drawing.Analysis.Manipulation
             if (provider == null)
                 throw new ArgumentNullException("provider");
             _provider = provider;
+            _view = new Rectangle(0, 0, _provider.Size.Width, _provider.Size.Height);
         }
 
         #endregion
@@ -58,7 +60,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (readColor == color)
+                    if (color.ValuesEqual(readColor))
                         yield return new Pixel(x, y, readColor);
                 }
             }
@@ -74,7 +76,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (readColor == color)
+                    if (color.ValuesEqual(readColor))
                         return new Pixel(x, y, readColor);
                 }
 
@@ -90,7 +92,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (readColor == color)
+                    if (color.ValuesEqual(readColor))
                         return new Pixel(x, y, readColor);
                 }
 
@@ -116,8 +118,10 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y) == color)
+                {
+                    if (color.ValuesEqual(_provider.GetPixel(x, y)))
                         return true;
+                }
             return false;
         }
 

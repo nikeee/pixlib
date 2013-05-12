@@ -6,6 +6,8 @@ namespace System.Drawing.Analysis.Testing
     public class FastPixelProviderTests
     {
         [TestMethod]
+        [TestCategory("PixelProvider")]
+        [TestCategory("Fast")]
         public void GetPixelFast()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
@@ -27,6 +29,8 @@ namespace System.Drawing.Analysis.Testing
         }
 
         [TestMethod]
+        [TestCategory("PixelProvider")]
+        [TestCategory("Fast")]
         public void GetPixelFast2()
         {
             var testBitmap = TestingHelper.GetTestBitmap2();
@@ -48,6 +52,8 @@ namespace System.Drawing.Analysis.Testing
         }
 
         [TestMethod]
+        [TestCategory("PixelProvider")]
+        [TestCategory("Fast")]
         public void SetPixelFast()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
@@ -74,6 +80,8 @@ namespace System.Drawing.Analysis.Testing
         }
 
         [TestMethod]
+        [TestCategory("PixelProvider")]
+        [TestCategory("Fast")]
         public void SetPixelFast2()
         {
             var testBitmap = TestingHelper.GetTestBitmap2();

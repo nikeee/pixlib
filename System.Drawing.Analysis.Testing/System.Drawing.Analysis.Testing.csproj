@@ -54,6 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DefaultScannerTests.cs" />
     <Compile Include="FastPixelProviderUnitTests.cs" />
     <Compile Include="SlowBitmalPixelProviderUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,6 +6,8 @@ namespace System.Drawing.Analysis.Testing
     public class SlowPixelProviderTests
     {
         [TestMethod]
+        [TestCategory("PixelProvider")]
+        [TestCategory("Slow")]
         public void GetPixelSlow()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
@@ -25,6 +27,8 @@ namespace System.Drawing.Analysis.Testing
         }
 
         [TestMethod]
+        [TestCategory("PixelProvider")]
+        [TestCategory("Slow")]
         public void GetPixelSlow2()
         {
             var testBitmap = TestingHelper.GetTestBitmap2();
@@ -44,6 +48,8 @@ namespace System.Drawing.Analysis.Testing
         }
 
         [TestMethod]
+        [TestCategory("PixelProvider")]
+        [TestCategory("Slow")]
         public void SetPixelSlow()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
@@ -65,6 +71,8 @@ namespace System.Drawing.Analysis.Testing
         }
 
         [TestMethod]
+        [TestCategory("PixelProvider")]
+        [TestCategory("Slow")]
         public void SetPixelSlow2()
         {
             var testBitmap = TestingHelper.GetTestBitmap2();
