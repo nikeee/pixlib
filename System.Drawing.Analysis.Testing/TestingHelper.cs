@@ -4,8 +4,8 @@ namespace System.Drawing.Analysis.Testing
     {
         private const string TestImageExtension = ".bmp";
         private const string RelativeResourcesPath = "..\\..\\Resources\\";
-        private const string RelativeTestImagePath = RelativeResourcesPath + "testImage" + RelativeResourcesPath;
-        private const string RelativeTestImage2Path = RelativeResourcesPath + "testImage2" + RelativeResourcesPath;
+        private const string RelativeTestImagePath = RelativeResourcesPath + "testImage" + TestImageExtension;
+        private const string RelativeTestImage2Path = RelativeResourcesPath + "testImage2" + TestImageExtension;
 
         private static readonly Random Random = new Random();
 
