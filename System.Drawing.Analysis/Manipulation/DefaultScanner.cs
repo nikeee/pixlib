@@ -118,10 +118,31 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                {
                     if (color.ValuesEqual(_provider.GetPixel(x, y)))
                         return true;
-                }
+            return false;
+        }
+
+        public bool Any(Color color, int tolerance)
+        {
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
+            byte[] minValues = new[] {
+                                       (byte)((color.A - tolerance < 0) ? 0 : (color.A - tolerance)),
+                                       (byte)((color.R - tolerance < 0) ? 0 : (color.R - tolerance)),
+                                       (byte)((color.G - tolerance < 0) ? 0 : (color.G - tolerance)),
+                                       (byte)((color.B - tolerance < 0) ? 0 : (color.B - tolerance))
+                                   };
+            byte[] maxValues = new[] {
+                                       (byte)((color.A + tolerance > 255) ? 255 : (color.A + tolerance)),
+                                       (byte)((color.R + tolerance > 255) ? 255 : (color.R + tolerance)),
+                                       (byte)((color.G + tolerance > 255) ? 255 : (color.G + tolerance)),
+                                       (byte)((color.B + tolerance > 255) ? 255 : (color.B + tolerance))
+                                   };
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                    if (color.ToleranceValuesEqual(_provider.GetPixel(x, y), minValues, maxValues))
+                        return true;
             return false;
         }
 

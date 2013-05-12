@@ -45,6 +45,11 @@ namespace System.Drawing.Analysis.Manipulation
             throw new NotImplementedException();
         }
 
+        public bool Any(Color color, int tolerance)
+        {
+            throw new NotImplementedException();
+        }
+
         public void ForEach(Action<int, int, Color> action)
         {
             throw new NotImplementedException();
