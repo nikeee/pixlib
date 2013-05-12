@@ -2,11 +2,12 @@ namespace System.Drawing.Analysis.Testing
 {
     internal static class TestingHelper
     {
+        private const string TestImageExtension = ".bmp";
         private const string RelativeResourcesPath = "..\\..\\Resources\\";
-        private const string RelativeTestImagePath = RelativeResourcesPath + "testImage.png";
-        private const string RelativeTestImage2Path = RelativeResourcesPath + "testImage2.png";
+        private const string RelativeTestImagePath = RelativeResourcesPath + "testImage" + RelativeResourcesPath;
+        private const string RelativeTestImage2Path = RelativeResourcesPath + "testImage2" + RelativeResourcesPath;
 
-        private static Random _random = new Random();
+        private static readonly Random Random = new Random();
 
         public static Bitmap GetTestBitmap()
         {
@@ -19,7 +20,7 @@ namespace System.Drawing.Analysis.Testing
 
         public static Color GetRandomColor()
         {
-            return Color.FromArgb(_random.Next());
+            return Color.FromArgb(Random.Next());
         }
     }
 }

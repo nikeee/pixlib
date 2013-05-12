@@ -66,8 +66,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\testImage.png" />
-    <Content Include="Resources\testImage2.png" />
+    <Content Include="Resources\testImage.bmp" />
+    <Content Include="Resources\testImage2.bmp" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
