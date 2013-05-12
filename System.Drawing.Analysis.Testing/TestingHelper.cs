@@ -7,6 +7,7 @@ namespace System.Drawing.Analysis.Testing
 
         private const string RelativeTestImagePath = RelativeResourcesPath + "testImage" + TestImageExtension;
         private const string RelativeTestImage2Path = RelativeResourcesPath + "testImage2" + TestImageExtension;
+        private const string RelativeTolerancePath = RelativeResourcesPath + "tolreanceTest" + TestImageExtension;
 
         private static readonly Random Random = new Random();
 
@@ -18,6 +19,10 @@ namespace System.Drawing.Analysis.Testing
         public static Bitmap GetTestBitmap2()
         {
             return new Bitmap(RelativeTestImage2Path);
+        }
+        public static Bitmap GetToleranceBitmap()
+        {
+            return new Bitmap(RelativeTolerancePath);
         }
 
         public static Color GetRandomColor()

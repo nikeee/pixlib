@@ -18,6 +18,7 @@ namespace System.Drawing.Analysis
         {
             A = R = G = B = all;
         }
+
         public ColorTolerance(byte a, byte r, byte g, byte b)
         {
             A = a;
