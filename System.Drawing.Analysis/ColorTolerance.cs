@@ -66,6 +66,33 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
+        #region equals
+
+        public override bool Equals(object obj)
+        {
+            var ct = (ColorTolerance)obj;
+            return (ct.A == A) && (ct.R == R) && (ct.G == G) && (ct.B == B) && (ct.IgnoreAlpha == IgnoreAlpha);
+        }
+        public override int GetHashCode()
+        {
+            return A ^ R ^ G ^ B ^ (IgnoreAlpha ? 1 : 0);
+        }
+
+        #endregion
+        #region ==-operator
+
+        public static bool operator ==(ColorTolerance a, ColorTolerance b)
+        {
+            // In case of refactoring to class, take care of this!
+            return (a.A == b.A) && (a.R == b.R) && (a.G == b.G) && (a.B == b.B) && (a.IgnoreAlpha == b.IgnoreAlpha);
+        }
+        public static bool operator !=(ColorTolerance a, ColorTolerance b)
+        {
+            return !(a == b);
+        }
+
+
+        #endregion
         //#region explicits
 
         //public static explicit operator ColorTolerance(byte value)
