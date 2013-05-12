@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BitmapPixelProvider.cs" />
     <Compile Include="ColorExtensions.cs" />
+    <Compile Include="ColorTolerance.cs" />
     <Compile Include="FastBitmapPixelProvider.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="GdiConstants.cs" />

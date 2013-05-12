@@ -123,17 +123,17 @@ namespace System.Drawing.Analysis.Manipulation
             return false;
         }
 
-        public bool Any(Color color, byte tolerance)
+        public bool Any(Color color, ColorTolerance tolerance)
         {
             int targetX = GetTargetX();
             int targetY = GetTargetY();
 
-            byte[] minValues = color.GetMinimumValuesFromTolerance(tolerance);
-            byte[] maxValues = color.GetMaximumValuesFromTolerance(tolerance);
+            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
+            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (color.ToleranceValuesEqual(_provider.GetPixel(x, y), ref minValues, ref maxValues))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(ref minValues, ref maxValues))
                         return true;
             return false;
         }

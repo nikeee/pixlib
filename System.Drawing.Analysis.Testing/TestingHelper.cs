@@ -27,6 +27,7 @@ namespace System.Drawing.Analysis.Testing
             buffer[0] = 255;
             return Color.FromArgb(buffer[0], buffer[1], buffer[2], buffer[3]);
         }
+
         public static bool GetRandomBool()
         {
             return Random.Next(0, 2) == 1;

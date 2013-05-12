@@ -45,7 +45,7 @@ namespace System.Drawing.Analysis.Manipulation
             throw new NotImplementedException();
         }
 
-        public bool Any(Color color, byte tolerance)
+        public bool Any(Color color, ColorTolerance tolerance)
         {
             throw new NotImplementedException();
         }
