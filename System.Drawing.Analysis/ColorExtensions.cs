@@ -14,6 +14,13 @@ namespace System.Drawing.Analysis
                 && color1.G == color2.G
                 && color1.B == color2.B;
         }
+        public static bool ValuesNotEqual(this Color color1, Color color2)
+        {
+            return color1.A != color2.A
+                || color1.R != color2.R
+                || color1.G != color2.G
+                || color1.B != color2.B;
+        }
 
 
         // May enhance?
@@ -24,6 +31,16 @@ namespace System.Drawing.Analysis
                 && (minValues.R <= color.R && color.R <= maxValues.R)
                 && (minValues.G <= color.G && color.G <= maxValues.G)
                 && (minValues.B <= color.B && color.B <= maxValues.B);
+        }
+        public static bool ValuesNotFitTolerance(this Color color, ref ColorTolerance minValues, ref ColorTolerance maxValues, bool ignoreAlpha)
+        {
+            return !color.ValuesFitTolerance(ref minValues, ref maxValues, ignoreAlpha);
+            // TODO: Enhance performance
+            // Check this:
+            return (ignoreAlpha || (minValues.A > color.A || color.A > maxValues.A))
+               || (minValues.R > color.R || color.R > maxValues.R)
+               || (minValues.G > color.G || color.G > maxValues.G)
+               || (minValues.B > color.B || color.B > maxValues.B);
         }
     }
 }

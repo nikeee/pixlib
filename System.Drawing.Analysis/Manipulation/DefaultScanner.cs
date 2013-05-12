@@ -64,7 +64,6 @@ namespace System.Drawing.Analysis.Manipulation
                 }
             }
         }
-
         public IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance)
         {
             // TODO: Unit testing
@@ -101,6 +100,24 @@ namespace System.Drawing.Analysis.Manipulation
 
             throw new InvalidOperationException();
         }
+        public Pixel First(Color color, ColorTolerance tolerance)
+        {
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
+
+            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
+            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                {
+                    var readColor = _provider.GetPixel(x, y);
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(ref minValues, ref maxValues, tolerance.IgnoreAlpha))
+                        return new Pixel(x, y, readColor);
+                }
+
+            throw new InvalidOperationException();
+        }
 
         public Pixel? FirstOrDefault(Color color)
         {
@@ -117,6 +134,24 @@ namespace System.Drawing.Analysis.Manipulation
 
             return default(Pixel?);
         }
+        public Pixel? FirstOrDefault(Color color, ColorTolerance tolerance)
+        {
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
+
+            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
+            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                {
+                    var readColor = _provider.GetPixel(x, y);
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(ref minValues, ref maxValues, tolerance.IgnoreAlpha))
+                        return new Pixel(x, y, readColor);
+                }
+
+            return default(Pixel?);
+        }
 
         public bool All(Color color)
         {
@@ -125,7 +160,21 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y) != color)
+                    if (color.ValuesNotEqual(_provider.GetPixel(x, y)))
+                        return false;
+            return true;
+        }
+        public bool All(Color color, ColorTolerance tolerance)
+        {
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
+
+            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
+            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                    if (_provider.GetPixel(x, y).ValuesNotFitTolerance(ref minValues, ref maxValues, tolerance.IgnoreAlpha)) // FitNot (!)
                         return false;
             return true;
         }
@@ -141,7 +190,6 @@ namespace System.Drawing.Analysis.Manipulation
                         return true;
             return false;
         }
-
         public bool Any(Color color, ColorTolerance tolerance)
         {
             int targetX = GetTargetX();
@@ -173,7 +221,6 @@ namespace System.Drawing.Analysis.Manipulation
         {
             return _view.Width*_view.Height;
         }
-
         public int Count(Color color)
         {
             int counter = 0;
@@ -186,7 +233,21 @@ namespace System.Drawing.Analysis.Manipulation
                         ++counter;
             return counter;
         }
+        public int Count(Color color, ColorTolerance tolerance)
+        {
+            int counter = 0;
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
 
+            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
+            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(ref minValues, ref maxValues, tolerance.IgnoreAlpha))
+                        ++counter;
+            return counter;
+        }
         public int Count(Func<int, int, Color, bool> condition)
         {
             if (condition == null)

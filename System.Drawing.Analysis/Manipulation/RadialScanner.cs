@@ -35,12 +35,27 @@ namespace System.Drawing.Analysis.Manipulation
             throw new NotImplementedException();
         }
 
+        public Pixel First(Color color, ColorTolerance tolerance)
+        {
+            throw new NotImplementedException();
+        }
+
         public Pixel? FirstOrDefault(Color color)
         {
             throw new NotImplementedException();
         }
 
+        public Pixel? FirstOrDefault(Color color, ColorTolerance tolerance)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool All(Color color)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool All(Color color, ColorTolerance tolerance)
         {
             throw new NotImplementedException();
         }
@@ -66,6 +81,11 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         public int Count(Color color)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count(Color color, ColorTolerance tolerance)
         {
             throw new NotImplementedException();
         }
