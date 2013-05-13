@@ -127,19 +127,21 @@ namespace System.Drawing.Analysis
         #endregion
         #region IPixelProvider
         
-        // TODO: Testing
         private unsafe Color SwapPixelInternal(int x, int y, Color color)
         {
-            // TODO: Enhance
-            var index = ((y * Size.Width) + x) * PixelSize;
-            int a = ((byte*)_scan0)[index + 3];
-            ((byte*)_scan0)[index + 3] = color.A;
-            int r = ((byte*)_scan0)[index + 2];
-            ((byte*)_scan0)[index + 2] = color.R;
-            int g = ((byte*)_scan0)[index + 1];
-            ((byte*)_scan0)[index + 1] = color.G;
-            int b = ((byte*)_scan0)[index];
-            ((byte*)_scan0)[index] = color.B;
+            var index = (((y * Size.Width) + x) * PixelSize) + 3;
+            byte* p = ((byte*)_scan0);
+
+            int a = p[index--];
+            int r = p[index--];
+            int g = p[index--];
+            int b = p[index--];
+
+            p[index++] = color.B;
+            p[index++] = color.G;
+            p[index++] = color.R;
+            p[index++] = color.A;
+
             return Color.FromArgb(a, r, g, b);
         }
 

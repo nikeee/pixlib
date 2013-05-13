@@ -106,5 +106,33 @@ namespace System.Drawing.Analysis.Testing
                 }
             }
         }
+
+        [TestMethod]
+        [TestCategory("PixelProvider")]
+        [TestCategory("Fast")]
+        public void SwapPixelFast()
+        {
+            var testBitmap = TestingHelper.GetTestBitmap();
+            using (var testBitmapUnlocked = TestingHelper.GetTestBitmap())
+            {
+                using (var slow = new SlowBitmapPixelProvider(testBitmapUnlocked, true))
+                {
+                    using (var fast = new FastBitmapPixelProvider(testBitmap, true))
+                    {
+                        for (int x = 0; x < testBitmap.Width; ++x)
+                        {
+                            for (int y = 0; y < testBitmap.Height; ++y)
+                            {
+                                Color c = TestingHelper.GetRandomColor();
+
+                                var expected = fast.GetPixel(x, y);
+                                var actual = fast.SwapPixel(x, y, c);
+                                Assert.AreEqual(expected, actual);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
