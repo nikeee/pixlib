@@ -2,6 +2,7 @@ using System.Runtime;
 
 namespace System.Drawing.Analysis.Manipulation
 {
+    [Serializable]
     public struct Pixel
     {
         private int _x;

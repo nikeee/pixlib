@@ -6,6 +6,7 @@ using System.Text;
 
 namespace System.Drawing.Analysis
 {
+    [Serializable]
     public struct ColorTolerance
     {
         private readonly int _a;
