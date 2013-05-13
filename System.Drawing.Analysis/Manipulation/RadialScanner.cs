@@ -2,6 +2,12 @@ using System.Collections.Generic;
 
 namespace System.Drawing.Analysis.Manipulation
 {
+    public enum RadialScanDirection
+    {
+        Clockwise,
+        Counterclockwise
+    }
+
     public class RadialScanner : IPixelScanner
     {
         private Rectangle _view;
@@ -21,6 +27,8 @@ namespace System.Drawing.Analysis.Manipulation
                 _view = value;
             }
         }
+
+        public RadialScanDirection ScanDirection { get; private set; }
 
         private readonly IGetPixelProvider _provider;
 
