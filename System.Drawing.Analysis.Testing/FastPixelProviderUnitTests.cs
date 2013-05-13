@@ -113,23 +113,17 @@ namespace System.Drawing.Analysis.Testing
         public void SwapPixelFast()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
-            using (var testBitmapUnlocked = TestingHelper.GetTestBitmap())
+            using (var fast = new FastBitmapPixelProvider(testBitmap, true))
             {
-                using (var slow = new SlowBitmapPixelProvider(testBitmapUnlocked, true))
+                for (int x = 0; x < testBitmap.Width; ++x)
                 {
-                    using (var fast = new FastBitmapPixelProvider(testBitmap, true))
+                    for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        for (int x = 0; x < testBitmap.Width; ++x)
-                        {
-                            for (int y = 0; y < testBitmap.Height; ++y)
-                            {
-                                Color c = TestingHelper.GetRandomColor();
+                        Color c = TestingHelper.GetRandomColor();
 
-                                var expected = fast.GetPixel(x, y);
-                                var actual = fast.SwapPixel(x, y, c);
-                                Assert.AreEqual(expected, actual);
-                            }
-                        }
+                        var expected = fast.GetPixel(x, y);
+                        var actual = fast.SwapPixel(x, y, c);
+                        Assert.AreEqual(expected, actual);
                     }
                 }
             }
