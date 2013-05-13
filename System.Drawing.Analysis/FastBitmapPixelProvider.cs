@@ -81,8 +81,14 @@ namespace System.Drawing.Analysis
 
         internal unsafe Color GetPixelInternal(int x, int y)
         {
-            int index = ((y * Size.Width) + x) * PixelSize;
-            return Color.FromArgb(((byte*)_scan0)[index + 3], ((byte*)_scan0)[index + 2], ((byte*)_scan0)[index + 1], ((byte*)_scan0)[index]);
+            int index = (((y * Size.Width) + x) * PixelSize) + 3;
+            byte* p = (byte*)_scan0;
+            return Color.FromArgb(
+                    p[index--],
+                    p[index--],
+                    p[index--],
+                    p[index]
+                );
         }
 
         public Color GetPixel(int x, int y)
@@ -103,11 +109,12 @@ namespace System.Drawing.Analysis
         // TODO: Testing
         internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
-            var index = ((y * Size.Width) + x) * PixelSize;
-            ((byte*)_scan0)[index + 3] = color.A;
-            ((byte*)_scan0)[index + 2] = color.R;
-            ((byte*)_scan0)[index + 1] = color.G;
-            ((byte*)_scan0)[index] = color.B;
+            var index = (((y * Size.Width) + x) * PixelSize) + 3;
+            byte* p = (byte*)_scan0;
+            p[index--] = color.A;
+            p[index--] = color.R;
+            p[index--] = color.G;
+            p[index] = color.B;
         }
 
         // TODO: Testing
@@ -135,7 +142,7 @@ namespace System.Drawing.Analysis
             int a = p[index--];
             int r = p[index--];
             int g = p[index--];
-            int b = p[index--];
+            int b = p[index];
 
             p[index++] = color.B;
             p[index++] = color.G;
