@@ -34,9 +34,7 @@ namespace System.Drawing.Analysis
         }
         public static bool ValuesNotFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, bool ignoreAlpha)
         {
-            return !color.ValuesFitTolerance(minValues, maxValues, ignoreAlpha);
-            // TODO: Enhance performance
-            // Check this:
+            //return !color.ValuesFitTolerance(minValues, maxValues, ignoreAlpha);
             return (ignoreAlpha || (minValues.A > color.A || color.A > maxValues.A))
                || (minValues.R > color.R || color.R > maxValues.R)
                || (minValues.G > color.G || color.G > maxValues.G)
