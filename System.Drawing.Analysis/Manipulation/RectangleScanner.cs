@@ -60,6 +60,11 @@ namespace System.Drawing.Analysis.Manipulation
             throw new NotImplementedException();
         }
 
+        public Color Average()
+        {
+            throw new NotImplementedException();
+        }
+
         public Pixel First(Color color)
         {
             throw new NotImplementedException();

@@ -48,6 +48,32 @@ namespace System.Drawing.Analysis.Manipulation
 
         #endregion
 
+        public Color Average()
+        {
+            uint avgA = 0;
+            uint avgR = 0;
+            uint avgG = 0;
+            uint avgB = 0;
+
+            int targetX = GetTargetX();
+            int targetY = GetTargetY();
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                {
+                    var color = _provider.GetPixel(x, y);
+                    avgA += (uint)color.A;
+                    avgR += (uint)color.R;
+                    avgG += (uint)color.G;
+                    avgB += (uint)color.B;
+                }
+            uint pixelCount = (uint)Count();
+            avgA /= pixelCount;
+            avgR /= pixelCount;
+            avgG /= pixelCount;
+            avgB /= pixelCount;
+            return Color.FromArgb((byte)avgA, (byte)avgR, (byte)avgG, (byte)avgB);
+        }
+
         public IEnumerable<Pixel> FindPixels(Color color)
         {
             // TODO: Unit testing

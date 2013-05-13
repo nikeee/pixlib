@@ -11,6 +11,8 @@ namespace System.Drawing.Analysis.Manipulation
         IEnumerable<Pixel> FindPixels(Color color);
         IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance);
 
+        Color Average();
+
         Pixel First(Color color);
         Pixel First(Color color, ColorTolerance tolerance);
 

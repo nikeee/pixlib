@@ -44,6 +44,11 @@ namespace System.Drawing.Analysis.Manipulation
 
         #endregion
 
+        public Color Average()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Pixel> FindPixels(Color color)
         {
             throw new NotImplementedException();
