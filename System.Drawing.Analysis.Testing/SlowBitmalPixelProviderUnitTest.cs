@@ -84,7 +84,7 @@ namespace System.Drawing.Analysis.Testing
                     {
                         Color expected = TestingHelper.GetRandomColor();
                         slow.SetPixel(x, y, expected);
-
+                        
                         Color actual = slow.GetPixel(x, y);
 
                         Assert.AreEqual(expected, actual);

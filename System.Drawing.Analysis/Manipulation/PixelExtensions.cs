@@ -7,7 +7,7 @@ namespace System.Drawing.Analysis.Manipulation
 {
     public static class PixelExtensions
     {
-        public static IEnumerable<Pixel> SetColorTo(this IEnumerable<Pixel> source, Color color, ISetPixelProvider provider)
+        public static IEnumerable<Pixel> SetColor(this IEnumerable<Pixel> source, Color color, ISetPixelProvider provider)
         {
             if (provider == null)
                 throw new ArgumentNullException("provider");
