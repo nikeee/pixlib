@@ -28,7 +28,7 @@ namespace System.Drawing.Analysis.Testing
             using (var provider = new SlowBitmapPixelProvider(testBitmap))
             {
                 var scanner = new DefaultScanner(provider);
-
+                
                 bool actual = scanner.Any(Color.White);
                 Assert.AreEqual(true, actual);
 
