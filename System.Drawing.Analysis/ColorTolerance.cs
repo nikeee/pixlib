@@ -8,12 +8,20 @@ namespace System.Drawing.Analysis
 {
     public struct ColorTolerance
     {
-        public readonly byte A;
-        public readonly byte R;
-        public readonly byte G;
-        public readonly byte B;
+        private readonly int _a;
+        public int A { get { return _a; } }
+                                          
+        private readonly int _r;          
+        public int R { get { return _r; } }
+                                          
+        private readonly int _g;          
+        public int G { get { return _g; } }
+                                          
+        private readonly int _b;          
+        public int B { get { return _b; } }
 
-        public readonly bool IgnoreAlpha;
+        private readonly bool _ignoreAlpha;
+        public bool IgnoreAlpha { get { return _ignoreAlpha; } }
 
         #region Ctors
 
@@ -23,8 +31,8 @@ namespace System.Drawing.Analysis
 
         public ColorTolerance(byte all, bool ignoreAlpha)
         {
-            A = R = G = B = all;
-            IgnoreAlpha = ignoreAlpha;
+            _a = _r = _g = _b = all;
+            _ignoreAlpha = ignoreAlpha;
         }
 
         //public ColorTolerance(byte a, byte r, byte g, byte b)
@@ -33,11 +41,11 @@ namespace System.Drawing.Analysis
 
         public ColorTolerance(byte a, byte r, byte g, byte b, bool ignoreAlpha)
         {
-            A = a;
-            R = r;
-            G = g;
-            B = b;
-            IgnoreAlpha = ignoreAlpha;
+            _a = a;
+            _r = r;
+            _g = g;
+            _b = b;
+            _ignoreAlpha = ignoreAlpha;
         }
 
         #endregion

@@ -1,11 +1,17 @@
+using System.Runtime;
+
 namespace System.Drawing.Analysis.Manipulation
 {
     public struct Pixel
     {
-        public int X;
-        public int Y;
+        private int _x;
+        public int X { get { return _x; } set { _x = value; } }
 
-        public Color Color;
+        private int _y;
+        public int Y { get { return _y; } set { _y = value; } }
+
+        private Color _color;
+        public Color Color { get { return _color; } set { _color = value; } }
 
         #region ctors
 
@@ -19,9 +25,9 @@ namespace System.Drawing.Analysis.Manipulation
 
         public Pixel(int x, int y, Color color)
         {
-            X = x;
-            Y = y;
-            Color = color;
+            _x = x;
+            _y = y;
+            _color = color;
         }
 
         #endregion
