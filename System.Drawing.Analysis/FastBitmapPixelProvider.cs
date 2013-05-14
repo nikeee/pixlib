@@ -45,6 +45,10 @@ namespace System.Drawing.Analysis
             if (!_isLocked)
                 throw new InvalidOperationException();
             Bitmap.UnlockBits(_bitmapData);
+            unsafe
+            {
+                _scan0 = null;
+            }
             _isLocked = false;
         }
 
