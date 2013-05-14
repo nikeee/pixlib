@@ -8,6 +8,7 @@ namespace System.Drawing.Analysis
         private readonly Rectangle _bitmapDimensions;
         private BitmapData _bitmapData;
 
+        [SecurityCritical]
         private unsafe byte* _scan0;
 
         private const int PixelSize = 4;

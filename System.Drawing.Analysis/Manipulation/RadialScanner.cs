@@ -35,10 +35,15 @@ namespace System.Drawing.Analysis.Manipulation
         #region Ctors
 
         public RadialScanner(IGetPixelProvider provider)
+            : this(provider, RadialScanDirection.Clockwise)
+        { }
+
+        public RadialScanner(IGetPixelProvider provider, RadialScanDirection scanDirection)
         {
             if (provider == null)
                 throw new ArgumentNullException("provider");
             _provider = provider;
+            ScanDirection = scanDirection;
             throw new NotImplementedException();
         }
 
