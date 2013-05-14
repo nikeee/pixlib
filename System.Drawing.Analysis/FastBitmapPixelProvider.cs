@@ -81,7 +81,7 @@ namespace System.Drawing.Analysis
 
         internal unsafe Color GetPixelInternal(int x, int y)
         {
-            int index = (((y * Size.Width) + x) * PixelSize) + 3;
+            int index = PixelSize * Size.Width * y + PixelSize * x + 3;
             byte* p = (byte*)_scan0;
             return Color.FromArgb(
                     p[index],
@@ -109,7 +109,7 @@ namespace System.Drawing.Analysis
         // TODO: Testing
         internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
-            int index = (((y * Size.Width) + x) * PixelSize) + 3;
+            int index = PixelSize * Size.Width * y + PixelSize * x + 3;
             byte* p = (byte*)_scan0;
             p[index] = color.A;
             p[--index] = color.R;
@@ -136,7 +136,7 @@ namespace System.Drawing.Analysis
         
         private unsafe Color SwapPixelInternal(int x, int y, Color color)
         {
-            int index = (((y * Size.Width) + x) * PixelSize) + 3;
+            int index = PixelSize * Size.Width * y + PixelSize * x + 3;
             byte* p = ((byte*)_scan0);
 
             int a = p[index];
