@@ -81,13 +81,13 @@ namespace System.Drawing.Analysis
 
         internal unsafe Color GetPixelInternal(int x, int y)
         {
-            int index = (((y * Size.Width) + x) * PixelSize) + 3;
+            int index = (((y * Size.Width) + x) * PixelSize) + 4;
             byte* p = (byte*)_scan0;
             return Color.FromArgb(
-                    p[index--],
-                    p[index--],
-                    p[index--],
-                    p[index]
+                    p[--index],
+                    p[--index],
+                    p[--index],
+                    p[--index]
                 );
         }
 
@@ -109,12 +109,12 @@ namespace System.Drawing.Analysis
         // TODO: Testing
         internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
-            var index = (((y * Size.Width) + x) * PixelSize) + 3;
+            int index = (((y * Size.Width) + x) * PixelSize) + 4;
             byte* p = (byte*)_scan0;
-            p[index--] = color.A;
-            p[index--] = color.R;
-            p[index--] = color.G;
-            p[index] = color.B;
+            p[--index] = color.A;
+            p[--index] = color.R;
+            p[--index] = color.G;
+            p[--index] = color.B;
         }
 
         // TODO: Testing
@@ -136,18 +136,18 @@ namespace System.Drawing.Analysis
         
         private unsafe Color SwapPixelInternal(int x, int y, Color color)
         {
-            var index = (((y * Size.Width) + x) * PixelSize) + 3;
+            int index = (((y * Size.Width) + x) * PixelSize) + 4;
             byte* p = ((byte*)_scan0);
 
-            int a = p[index--];
-            int r = p[index--];
-            int g = p[index--];
-            int b = p[index];
+            int a = p[--index];
+            int r = p[--index];
+            int g = p[--index];
+            int b = p[--index];
 
-            p[index++] = color.B;
-            p[index++] = color.G;
-            p[index++] = color.R;
-            p[index++] = color.A;
+            p[index] = color.B;
+            p[++index] = color.G;
+            p[++index] = color.R;
+            p[++index] = color.A;
 
             return Color.FromArgb(a, r, g, b);
         }
