@@ -8,7 +8,7 @@ namespace System.Drawing.Analysis
         private readonly Rectangle _bitmapDimensions;
         private BitmapData _bitmapData;
 
-        private IntPtr _scan0;
+        private unsafe byte* _scan0;
 
         private const int PixelSize = 4;
 
@@ -34,7 +34,10 @@ namespace System.Drawing.Analysis
             if (_isLocked)
                 throw new InvalidOperationException();
             _bitmapData = Bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-            _scan0 = _bitmapData.Scan0;
+            unsafe
+            {
+                _scan0 = (byte*) _bitmapData.Scan0.ToPointer();
+            }
             _isLocked = true;
         }
         private void Unlock()
@@ -82,12 +85,11 @@ namespace System.Drawing.Analysis
         internal unsafe Color GetPixelInternal(int x, int y)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
-            byte* p = (byte*)_scan0.ToPointer();
             return Color.FromArgb(
-                    p[index],
-                    p[--index],
-                    p[--index],
-                    p[--index]
+                    _scan0[index],
+                    _scan0[--index],
+                    _scan0[--index],
+                    _scan0[--index]
                 );
         }
 
@@ -110,11 +112,10 @@ namespace System.Drawing.Analysis
         internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
-            byte* p = (byte*)_scan0.ToPointer();
-            p[index] = color.A;
-            p[--index] = color.R;
-            p[--index] = color.G;
-            p[--index] = color.B;
+            _scan0[index] = color.A;
+            _scan0[--index] = color.R;
+            _scan0[--index] = color.G;
+            _scan0[--index] = color.B;
         }
 
         // TODO: Testing
@@ -137,17 +138,16 @@ namespace System.Drawing.Analysis
         private unsafe Color SwapPixelInternal(int x, int y, Color color)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
-            byte* p = (byte*)_scan0.ToPointer();
 
-            int a = p[index];
-            int r = p[--index];
-            int g = p[--index];
-            int b = p[--index];
+            int a = _scan0[index];
+            int r = _scan0[--index];
+            int g = _scan0[--index];
+            int b = _scan0[--index];
 
-            p[index] = color.B;
-            p[++index] = color.G;
-            p[++index] = color.R;
-            p[++index] = color.A;
+            _scan0[index] = color.B;
+            _scan0[++index] = color.G;
+            _scan0[++index] = color.R;
+            _scan0[++index] = color.A;
 
             return Color.FromArgb(a, r, g, b);
         }
