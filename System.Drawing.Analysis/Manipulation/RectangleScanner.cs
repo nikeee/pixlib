@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 
 namespace System.Drawing.Analysis.Manipulation
 {
