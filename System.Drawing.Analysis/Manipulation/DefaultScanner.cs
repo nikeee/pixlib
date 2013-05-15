@@ -61,12 +61,12 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var color = _provider.GetPixel(x, y);
-                    avgA += (uint)color.A;
-                    avgR += (uint)color.R;
-                    avgG += (uint)color.G;
-                    avgB += (uint)color.B;
+                    avgA += color.A;
+                    avgR += color.R;
+                    avgG += color.G;
+                    avgB += color.B;
                 }
-            uint pixelCount = (uint)Count();
+            var pixelCount = (uint)Count();
             avgA /= pixelCount;
             avgR /= pixelCount;
             avgG /= pixelCount;

@@ -1,7 +1,11 @@
+// ReSharper disable InconsistentNaming
+// ReSharper disable EnumUnderlyingTypeIsInt
+
 namespace System.Drawing.Analysis
 {
     internal static class NativeTypes
     {
+
         /// <summary>
         /// Flags used with the Windows API (User32.dll):GetSystemMetrics(SystemMetric smIndex)
         ///   
@@ -550,3 +554,6 @@ namespace System.Drawing.Analysis
 
     }
 }
+
+// ReSharper restore EnumUnderlyingTypeIsInt
+// ReSharper restore InconsistentNaming

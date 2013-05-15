@@ -1,5 +1,3 @@
-using System.Runtime;
-
 namespace System.Drawing.Analysis.Manipulation
 {
     [Serializable]
