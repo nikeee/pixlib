@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace System.Drawing.Analysis
+﻿namespace System.Drawing.Analysis
 {
     [Serializable]
     public struct ColorTolerance
@@ -26,19 +20,11 @@ namespace System.Drawing.Analysis
 
         #region Ctors
 
-        //public ColorTolerance(byte all)
-        //    : this(all, false)
-        //{ }
-
         public ColorTolerance(byte all, bool ignoreAlpha)
         {
             _a = _r = _g = _b = all;
             _ignoreAlpha = ignoreAlpha;
         }
-
-        //public ColorTolerance(byte a, byte r, byte g, byte b)
-        //    : this(a, r, g, b, false)
-        //{ }
 
         public ColorTolerance(byte a, byte r, byte g, byte b, bool ignoreAlpha)
         {
@@ -106,20 +92,5 @@ namespace System.Drawing.Analysis
 
 
         #endregion
-        //#region explicits
-
-        //public static explicit operator ColorTolerance(byte value)
-        //{
-        //    return new ColorTolerance(value);
-        //}
-
-        //public static explicit operator ColorTolerance(int value)
-        //{
-        //    if (value < 0 || value > 255)
-        //        throw new InvalidCastException();
-        //    return new ColorTolerance((byte)value);
-        //}
-
-        //#endregion
     }
 }

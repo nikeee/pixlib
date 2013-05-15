@@ -40,7 +40,10 @@
         {
             get
             {
-                return new Size(NativeMethods.GetSystemMetrics(NativeTypes.SystemMetrics.CXSCREEN), NativeMethods.GetSystemMetrics(NativeTypes.SystemMetrics.CYSCREEN));
+                return new Size(
+                        NativeMethods.GetSystemMetrics(NativeTypes.SystemMetrics.CXSCREEN),
+                        NativeMethods.GetSystemMetrics(NativeTypes.SystemMetrics.CYSCREEN)
+                    );
             }
         }
     }
