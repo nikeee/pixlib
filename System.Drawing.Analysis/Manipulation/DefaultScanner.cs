@@ -200,6 +200,11 @@ namespace System.Drawing.Analysis.Manipulation
                         return false;
             return true;
         }
+
+        /// <summary>Determines whether all pixels of the provider are the same color respecting a given tolerance.</summary>
+        /// <param name="color">The color.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         public bool All(Color color, ColorTolerance tolerance)
         {
             int targetX = GetTargetX;

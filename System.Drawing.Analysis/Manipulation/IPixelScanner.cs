@@ -6,6 +6,7 @@ namespace System.Drawing.Analysis.Manipulation
     // May provide async operations as well
     public interface IPixelScanner
     {
+        /// <summary>Gets or sets the area in which the <see cref="T:IPixelScanner"/> instance operates.</summary>
         Rectangle View { get; set; }
 
         IEnumerable<Pixel> FindPixels(Color color);
@@ -39,18 +40,48 @@ namespace System.Drawing.Analysis.Manipulation
         /// <param name="color">The color.</param>
         /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         bool All(Color color);
+
+        /// <summary>Determines whether all pixels of the provider are the same color respecting a given tolerance.</summary>
+        /// <param name="color">The color.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         bool All(Color color, ColorTolerance tolerance);
 
+        /// <summary>Determines whether any pixel of the provider has this color.</summary>
+        /// <param name="color">The color.</param>
+        /// <returns>true if any pixel has this color; otherwise, false.</returns>
         bool Any(Color color);
+
+        /// <summary>Determines whether any pixel of the provider has this color respecting a given tolerance.</summary>
+        /// <param name="color">The color.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>true if any pixel is this color respecting a given tolerance; otherwise, false.</returns>
         bool Any(Color color, ColorTolerance tolerance);
         
+        /// <summary>Returns the number of pixels in the current view.</summary>
+        /// <returns>The number of pixels in the current view.</returns>
         int Count();
+
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</summary>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</returns>
         int Count(Color color);
+
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</summary>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</returns>
         int Count(Color color, ColorTolerance tolerance);
+
+        /// <summary>Returns the number of pixels in the current view satisfying a condition.</summary>
+        /// <param name="condition">A function to test each pixel for a condition.</param>
+        /// <returns>A number of pixels in the current view satisfying a condition.</returns>
         int Count(Func<int, int, Color, bool> condition);
 
+        /// <summary>Performs the specified action on each pixel in the current view.</summary>
+        /// <param name="action">The <see cref="T:Action<T>"/> delegate to perform on each pixel.</param>
         void ForEach(Action<int, int, Color> action);
 
+        /// <summary>Filters the pixels in the current view based on a predicate.</summary>
+        /// <param name="condition">A function to test pixel for a condition.</param>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable<T>"/> that contains <see cref="T:Pixel"/>s from the input sequence that satisfy the condition.</returns>
         IEnumerable<Pixel> Where(Func<int, int, Color, bool> condition);
     }
 }
