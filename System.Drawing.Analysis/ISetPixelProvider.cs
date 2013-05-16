@@ -2,6 +2,7 @@ namespace System.Drawing.Analysis
 {
     public interface ISetPixelProvider
     {
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         bool SupportsSetPixelThreading { get; }
 
         /// <summary> Gets the width and height, in pixels, of this provider.</summary>

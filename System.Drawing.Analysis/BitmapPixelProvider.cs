@@ -53,6 +53,7 @@ namespace System.Drawing.Analysis
 
         #endregion
 
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public abstract bool SupportsGetPixelThreading { get; }
 
         /// <summary>Gets the color of the specified pixel in the provider.</summary>
@@ -66,6 +67,7 @@ namespace System.Drawing.Analysis
         /// <returns>A Color structure that represents the color of the specified pixel.</returns>
         public abstract Color GetPixel(Point point);
 
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public abstract bool SupportsSetPixelThreading { get; }
 
         /// <summary>Sets the color of the specified pixel in this provider.</summary>

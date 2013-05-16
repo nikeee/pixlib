@@ -2,6 +2,7 @@
 {
     public interface IGetPixelProvider
     {
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         bool SupportsGetPixelThreading { get; }
 
         /// <summary> Gets the width and height, in pixels, of this provider.</summary>

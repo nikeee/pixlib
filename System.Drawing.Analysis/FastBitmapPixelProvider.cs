@@ -101,6 +101,7 @@ namespace System.Drawing.Analysis
         #endregion
         #region GetPixel
 
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsGetPixelThreading { get { return true; } }
 
         internal unsafe Color GetPixelInternal(int x, int y)
@@ -136,6 +137,7 @@ namespace System.Drawing.Analysis
         #endregion
         #region SetPixel
 
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsSetPixelThreading { get { return true; } }
 
         internal unsafe void SetPixelInternal(int x, int y, Color color)
