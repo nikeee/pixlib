@@ -7,6 +7,8 @@
 
         #region Ctors
 
+        /// <summary>Creates a new instance of <see cref="T:DefaultReplacer"/> using a given <see cref="T:IPixelProvider"/>.</summary>
+        /// <param name="provider">The <see cref="T:IPixelProvider"/>.</param>
         public DefaultReplacer(IPixelProvider provider)
             : base(provider)
         {
@@ -15,6 +17,8 @@
 
         #endregion
 
+        /// <summary>Clears the current view using a specific <see cref="T:System.Drawing.Color"/>.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
         public void Clear(Color color)
         {
             // TODO: Unit testing
