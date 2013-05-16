@@ -9,10 +9,18 @@ namespace System.Drawing.Analysis.Manipulation
         /// <summary>Gets or sets the area in which the <see cref="T:IPixelScanner"/> instance operates.</summary>
         Rectangle View { get; set; }
 
+        /// <summary>Filters the pixels matching a color.</summary>
+        /// <param name="color">The color.</param>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable<T>"/> that contains <see cref="T:Pixel"/>s which matched the given color.</returns>
         IEnumerable<Pixel> FindPixels(Color color);
+
+        /// <summary>Filters the pixels matching a color respecting a given tolerance.</summary>
+        /// <param name="color">The color.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable<T>"/> that contains <see cref="T:Pixel"/>s which matched the given color and tolerance.</returns>
         IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance);
 
-        /// <summary>Computes the average color in the given view.</summary>
+        /// <summary>Computes the average color in the current view.</summary>
         /// <returns>The average color.</returns>
         Color Average();
 
@@ -21,7 +29,7 @@ namespace System.Drawing.Analysis.Manipulation
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         Pixel First(Color color);
 
-        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color taking care of a given tolerance.</summary>
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color respecting a given tolerance.</summary>
         /// <param name="color">The color to find.</param>
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         Pixel First(Color color, ColorTolerance tolerance);
@@ -31,7 +39,7 @@ namespace System.Drawing.Analysis.Manipulation
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:Pixel"/>.</returns>
         Pixel? FirstOrDefault(Color color);
 
-        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color taking care of a given tolerance.</summary>
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color respecting a given tolerance.</summary>
         /// <param name="color">The color to find.</param>
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:Pixel"/>.</returns>
         Pixel? FirstOrDefault(Color color, ColorTolerance tolerance);
