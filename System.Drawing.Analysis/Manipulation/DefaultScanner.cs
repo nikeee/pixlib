@@ -73,7 +73,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>Filters the pixels matching a color.</summary>
         /// <param name="color">The color.</param>
-        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable<T>"/> that contains <see cref="T:Pixel"/>s which matched the given color.</returns>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:Pixel"/>s which matched the given color.</returns>
         public IEnumerable<Pixel> FindPixels(Color color)
         {
             // TODO: Unit testing
@@ -94,7 +94,7 @@ namespace System.Drawing.Analysis.Manipulation
         /// <summary>Filters the pixels matching a color respecting a given tolerance.</summary>
         /// <param name="color">The color.</param>
         /// <param name="tolerance">The tolerance.</param>
-        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable<T>"/> that contains <see cref="T:Pixel"/>s which matched the given color and tolerance.</returns>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:Pixel"/>s which matched the given color and tolerance.</returns>
         public IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance)
         {
             // TODO: Unit testing
@@ -136,6 +136,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color taking care of a given tolerance.</summary>
         /// <param name="color">The color to find.</param>
+        /// <param name="tolerance">The tolerance.</param>
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         public Pixel First(Color color, ColorTolerance tolerance)
         {
@@ -176,6 +177,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color taking care of a given tolerance.</summary>
         /// <param name="color">The color to find.</param>
+        /// <param name="tolerance">The tolerance.</param>
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:Pixel"/>.</returns>
         public Pixel? FirstOrDefault(Color color, ColorTolerance tolerance)
         {
@@ -283,8 +285,10 @@ namespace System.Drawing.Analysis.Manipulation
             return counter;
         }
 
-        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</summary>
-        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</returns>
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</summary>
+        /// <param name="color">The color.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</returns>
         public int Count(Color color, ColorTolerance tolerance)
         {
             int counter = 0;
@@ -299,10 +303,10 @@ namespace System.Drawing.Analysis.Manipulation
                         ++counter;
             return counter;
         }
-        
-        /// <summary>Returns the number of pixels in the current view satisfying a condition.</summary>
+
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</summary>
         /// <param name="condition">A function to test each pixel for a condition.</param>
-        /// <returns>A number of pixels in the current view satisfying a condition.</returns>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</returns>
         public int Count(Func<int, int, Color, bool> condition)
         {
             if (condition == null)
@@ -320,7 +324,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Performs the specified action on each pixel in the current view.</summary>
-        /// <param name="action">The <see cref="T:Action<T>"/> delegate to perform on each pixel.</param>
+        /// <param name="action">The <see cref="T:Action{T}"/> delegate to perform on each pixel.</param>
         public void ForEach(Action<int, int, Color> action)
         {
             if (action == null)
@@ -335,7 +339,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>Filters the pixels in the current view based on a predicate.</summary>
         /// <param name="condition">A function to test pixel for a condition.</param>
-        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable<T>"/> that contains <see cref="T:Pixel"/>s from the input sequence that satisfy the condition.</returns>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:Pixel"/>s from the input sequence that satisfy the condition.</returns>
         public IEnumerable<Pixel> Where(Func<int, int, Color, bool> condition)
         {
             if (condition == null)
