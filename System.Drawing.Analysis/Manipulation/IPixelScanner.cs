@@ -31,6 +31,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color respecting a given tolerance.</summary>
         /// <param name="color">The color to find.</param>
+        /// <param name="tolerance">The tolerance.</param>
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         Pixel First(Color color, ColorTolerance tolerance);
 
@@ -71,10 +72,13 @@ namespace System.Drawing.Analysis.Manipulation
         int Count();
 
         /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</summary>
+        /// <param name="color">The color.</param>
         /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</returns>
         int Count(Color color);
 
         /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</summary>
+        /// <param name="color">The color.</param>
+        /// <param name="tolerance">The tolerance.</param>
         /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</returns>
         int Count(Color color, ColorTolerance tolerance);
 
