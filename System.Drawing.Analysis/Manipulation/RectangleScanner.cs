@@ -12,7 +12,10 @@ namespace System.Drawing.Analysis.Manipulation
 
     public class RectangleScanner : IPixelScanner
     {
+        private readonly IGetPixelProvider _provider;
         private Rectangle _view;
+
+        /// <summary>Gets or sets the area in which the <see cref="T:IPixelScanner"/> instance operates.</summary>
         public Rectangle View
         {
             get { return _view; }
@@ -30,16 +33,21 @@ namespace System.Drawing.Analysis.Manipulation
             }
         }
 
+        /// <summary>The direction the scanner scans while performing operations.</summary>
         public RectangleScanDirection ScanDirection { get; private set; }
 
-        private readonly IGetPixelProvider _provider;
 
         #region Ctors
 
+        /// <summary>Creates a new instance of <see cref="T:RectangleScanner"/> using a given <see cref="T:IGetPixelProvider"/> scanning from top to bottom.</summary>
+        /// <param name="provider">An <see cref="T:IGetPixelProvider"/> instance</param>
         public RectangleScanner(IGetPixelProvider provider)
             : this(provider, RectangleScanDirection.TopToBottom)
         { }
 
+        /// <summary>Creates a new instance of <see cref="T:RectangleScanner"/> using a given <see cref="T:IGetPixelProvider"/>.</summary>
+        /// <param name="provider">An <see cref="T:IGetPixelProvider"/> instance</param>
+        /// <param name="scanDirection">The <see cref="T:RectangleScanDirection"/> for the scanner to use.</param>
         public RectangleScanner(IGetPixelProvider provider, RectangleScanDirection scanDirection)
         {
             if (provider == null)

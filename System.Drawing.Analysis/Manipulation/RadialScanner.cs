@@ -10,6 +10,7 @@ namespace System.Drawing.Analysis.Manipulation
 
     public class RadialScanner : IPixelScanner
     {
+        private readonly IGetPixelProvider _provider;
         private Rectangle _view;
 
         /// <summary>Gets or sets the area in which the <see cref="T:IPixelScanner"/> instance operates.</summary>
@@ -30,16 +31,22 @@ namespace System.Drawing.Analysis.Manipulation
             }
         }
 
+        /// <summary>The direction the scanner scans while performing operations.</summary>
         public RadialScanDirection ScanDirection { get; private set; }
 
-        private readonly IGetPixelProvider _provider;
 
         #region Ctors
 
+        /// <summary>Creates a new instance of <see cref="T:RadialScanner"/> using a given <see cref="T:IGetPixelProvider"/> scanning clockwise.</summary>
+        /// <param name="provider">An <see cref="T:IGetPixelProvider"/> instance</param>
+        /// <param name="scanDirection">The <see cref="T:RadialScanDirection"/> for the scanner to use.</param>
         public RadialScanner(IGetPixelProvider provider)
             : this(provider, RadialScanDirection.Clockwise)
         { }
 
+        /// <summary>Creates a new instance of <see cref="T:RadialScanner"/> using a given <see cref="T:IGetPixelProvider"/>.</summary>
+        /// <param name="provider">An <see cref="T:IGetPixelProvider"/> instance</param>
+        /// <param name="scanDirection">The <see cref="T:RadialScanDirection"/> for the scanner to use.</param>
         public RadialScanner(IGetPixelProvider provider, RadialScanDirection scanDirection)
         {
             if (provider == null)

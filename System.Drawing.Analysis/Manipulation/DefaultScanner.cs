@@ -4,7 +4,9 @@ namespace System.Drawing.Analysis.Manipulation
 {
     public class DefaultScanner : IPixelScanner
     {
+        private readonly IGetPixelProvider _provider;
         private Rectangle _view;
+
         /// <summary>Gets or sets the area in which the <see cref="T:IPixelScanner"/> instance operates.</summary>
         public Rectangle View
         {
@@ -23,10 +25,11 @@ namespace System.Drawing.Analysis.Manipulation
             }
         }
 
-        private readonly IGetPixelProvider _provider;
 
         #region Ctors
-
+        
+        /// <summary>Creates a new instance of <see cref="T:DefaultScanner"/> using a given <see cref="T:IGetPixelProvider"/>.</summary>
+        /// <param name="provider">An <see cref="T:IGetPixelProvider"/> instance</param>
         public DefaultScanner(IGetPixelProvider provider)
         {
             if (provider == null)
@@ -38,7 +41,10 @@ namespace System.Drawing.Analysis.Manipulation
         #endregion
         #region Helpers
 
+        /// <summary>Gets the target x-coordinate for the default scanner for-loop.</summary>
         protected int GetTargetX { get { return _view.X + _view.Width; } }
+
+        /// <summary>Gets the target y-coordinate for the default scanner for-loop.</summary>
         protected int GetTargetY { get { return _view.Y + _view.Height; } }
 
         #endregion
