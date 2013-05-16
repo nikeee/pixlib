@@ -61,6 +61,7 @@ namespace System.Drawing.Analysis
         #endregion
         #region GetPixel
 
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsGetPixelThreading { get { return false; } }
 
         /// <summary>Gets the color of the specified pixel in the provider.</summary>
@@ -83,6 +84,7 @@ namespace System.Drawing.Analysis
         #endregion
         #region SetPixel
 
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsSetPixelThreading { get { return false; } }
 
         /// <summary>Sets the color of the specified pixel in this provider.</summary>
@@ -120,6 +122,10 @@ namespace System.Drawing.Analysis
         #endregion
         #region explicits
 
+        /// <summary>Explicitly creates a new instance of <see cref="T:SlowBitmapPixelProvider"/> using a <see cref="T:System.Drawing.Bitmap"/>.</summary>
+        /// <param name="bitmap">The <see cref="T:System.Drawing.Bitmap"/> to use.</param>
+        /// <returns>A new instance of <see cref="T:SlowBitmapPixelProvider"/></returns>
+        /// <remarks>Same as the constructor using only one bitmap parameter.</remarks>
         public static explicit operator SlowBitmapPixelProvider(Bitmap bitmap)
         {
             return new SlowBitmapPixelProvider(bitmap);

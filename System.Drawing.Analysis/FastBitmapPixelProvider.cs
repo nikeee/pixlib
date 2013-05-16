@@ -203,6 +203,10 @@ namespace System.Drawing.Analysis
         #endregion
         #region explicits
 
+        /// <summary>Explicitly creates a new instance of <see cref="T:FastBitmapPixelProvider"/> using a <see cref="T:System.Drawing.Bitmap"/>.</summary>
+        /// <param name="bitmap">The <see cref="T:System.Drawing.Bitmap"/> to use.</param>
+        /// <returns>A new instance of <see cref="T:FastBitmapPixelProvider"/></returns>
+        /// <remarks>Same as the constructor using only one bitmap parameter.</remarks>
         public static explicit operator FastBitmapPixelProvider(Bitmap bitmap)
         {
             return new FastBitmapPixelProvider(bitmap);
