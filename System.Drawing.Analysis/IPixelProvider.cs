@@ -1,6 +1,6 @@
 namespace System.Drawing.Analysis
 {
-    /// <summary>Represents an interface which can get and set pixel data.</summary>
+    /// <summary>Defines SwapPixel methods including Set- and GetPixel methods for all PixelProviders.</summary>
     public interface IPixelProvider : IGetPixelProvider, ISetPixelProvider, IDisposable
     {
         /// <summary>Swaps a pixel color at a specific location with the given one.</summary>

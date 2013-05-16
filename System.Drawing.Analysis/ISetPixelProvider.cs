@@ -1,5 +1,6 @@
 namespace System.Drawing.Analysis
 {
+    /// <summary>Defines SetPixel methods, size and multi threading support for all SetPixelProviders.</summary>
     public interface ISetPixelProvider
     {
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>

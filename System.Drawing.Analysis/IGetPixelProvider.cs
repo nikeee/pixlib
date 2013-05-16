@@ -1,5 +1,6 @@
 ﻿namespace System.Drawing.Analysis
 {
+    /// <summary>Defines GetPixel methods, size and multi threading support for all GetPixelProviders.</summary>
     public interface IGetPixelProvider
     {
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
