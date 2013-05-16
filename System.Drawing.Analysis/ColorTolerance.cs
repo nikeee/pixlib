@@ -1,5 +1,6 @@
 ﻿namespace System.Drawing.Analysis
 {
+    /// <summary>Represents a tolerance value that can be used when comparing colors.</summary>
     [Serializable]
     public struct ColorTolerance
     {
@@ -87,8 +88,8 @@
         #region ==-operator
 
         /// <summary>Determines whether two instances of <see cref="T:ColorTolerance"/> objects have the same values.</summary>
-        /// <param name="value">The first <see cref="T:ColorTolerance"/> instance.</param>
-        /// <param name="value">The second <see cref="T:ColorTolerance"/> instance.</param>
+        /// <param name="tolerance2">The first <see cref="T:ColorTolerance"/> instance.</param>
+        /// <param name="tolerance1">The second <see cref="T:ColorTolerance"/> instance.</param>
         /// <returns>true if the values of the given instances have the same values; otherwise, false.</returns>
         public static bool operator ==(ColorTolerance tolerance1, ColorTolerance tolerance2)
         {
@@ -104,8 +105,8 @@
         }
 
         /// <summary>Determines whether two instances of <see cref="T:ColorTolerance"/> objects do not have the same values.</summary>
-        /// <param name="value">The first <see cref="T:ColorTolerance"/> instance.</param>
-        /// <param name="value">The second <see cref="T:ColorTolerance"/> instance.</param>
+        /// <param name="tolerance1">The first <see cref="T:ColorTolerance"/> instance.</param>
+        /// <param name="tolerance2">The second <see cref="T:ColorTolerance"/> instance.</param>
         /// <returns>true if the values of the given instances do not have the same values; otherwise, false.</returns>
         public static bool operator !=(ColorTolerance tolerance1, ColorTolerance tolerance2)
         {

@@ -1,5 +1,6 @@
 ﻿namespace System.Drawing.Analysis
 {
+    /// <summary>Provides extension methods for the <see cref="T:System.Drawing.Color"/> type.</summary>
     public static class ColorExtensions
     {
         public static bool ValuesEqual(this Color color1, Color color2)
