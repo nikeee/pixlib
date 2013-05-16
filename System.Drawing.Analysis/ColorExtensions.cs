@@ -18,14 +18,14 @@
         }
 
         // May enhance?
-        public static bool ValuesFitTolerance(this Color color, ColorToleranceBorders borders, ColorTolerance tolerance)// bool ignoreA, bool ignoreR, bool ignoreG, bool ignoreB)
+        public static bool ValuesFitTolerance(this Color color, ColorToleranceBorders borders, ColorTolerance tolerance)
         {
             return (tolerance.IgnoreA || (borders.MinA <= color.A && color.A <= borders.MaxA))
                 && (tolerance.IgnoreR || (borders.MinR <= color.R && color.R <= borders.MaxR))
                 && (tolerance.IgnoreG || (borders.MinG <= color.G && color.G <= borders.MaxG))
                 && (tolerance.IgnoreB || (borders.MinB <= color.B && color.B <= borders.MaxB));
         }
-        public static bool ValuesNotFitTolerance(this Color color, ColorToleranceBorders borders, ColorTolerance tolerance)// bool ignoreA, bool ignoreR, bool ignoreG, bool ignoreB)
+        public static bool ValuesNotFitTolerance(this Color color, ColorToleranceBorders borders, ColorTolerance tolerance)
         {
             return (tolerance.IgnoreA || (borders.MinA > color.A || color.A > borders.MaxA))
                 || (tolerance.IgnoreR || (borders.MinR > color.R || color.R > borders.MaxR))

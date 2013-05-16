@@ -6,6 +6,8 @@ namespace System.Drawing.Analysis
         public Bitmap Bitmap { get { return _internalBitmap; } }
 
         public bool DisposeBitmapOnFinalize { get; set; }
+
+        /// <summary> Gets the width and height, in pixels, of this provider.</summary>
         public Size Size { get; private set; }
 
         protected BitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
@@ -16,9 +18,7 @@ namespace System.Drawing.Analysis
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
             Size = bitmap.Size;
         }
-
-
-
+        
         #region IDisposable support
 
         private bool _disposed;
@@ -50,18 +50,37 @@ namespace System.Drawing.Analysis
 
         #endregion
 
-
         public abstract bool SupportsGetPixelThreading { get; }
 
+        /// <summary>Gets the color of the specified pixel in the provider.</summary>
+        /// <param name="x">The x-coordinate of the pixel to retrieve.</param>
+        /// <param name="y">The y-coordinate of the pixel to retrieve.</param>
+        /// <returns>A Color structure that represents the color of the specified pixel.</returns>
         public abstract Color GetPixel(int x, int y);
+
+        /// <summary>Gets the color of the specified pixel in the provider.</summary>
+        /// <param name="point">The coordinates of the pixel to retrieve.</param>
+        /// <returns>A Color structure that represents the color of the specified pixel.</returns>
         public abstract Color GetPixel(Point point);
 
         public abstract bool SupportsSetPixelThreading { get; }
 
+        /// <summary>Sets the color of the specified pixel in this provider.</summary>
+        /// <param name="x">The x-coordinate of the pixel to set.</param>
+        /// <param name="y">The y-coordinate of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents the color to assign to the specified pixel.</param>
         public abstract void SetPixel(int x, int y, Color color);
+
+        /// <summary>Sets the color of the specified pixel in this provider.</summary>
+        /// <param name="point">The coordinates of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents the color to assign to the specified pixel.</param>
         public abstract void SetPixel(Point point, Color color);
 
-
+        /// <summary>Swaps a pixel color at a specific location with the given one.</summary>
+        /// <param name="x">The x-coordinate of the pixel to set.</param>
+        /// <param name="y">The y-coordinate of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents the color to assign to the specified pixel.</param>
+        /// <returns>A Color structure that represents the previous color of the specified pixel.</returns>
         public abstract Color SwapPixel(int x, int y, Color color);
     }
 }

@@ -100,6 +100,10 @@ namespace System.Drawing.Analysis
                 );
         }
 
+        /// <summary>Gets the color of the specified pixel in the provider.</summary>
+        /// <param name="x">The x-coordinate of the pixel to retrieve.</param>
+        /// <param name="y">The y-coordinate of the pixel to retrieve.</param>
+        /// <returns>A Color structure that represents the color of the specified pixel.</returns>
         public override Color GetPixel(int x, int y)
         {
             if (x >= Size.Width || y >= Size.Height)
@@ -107,6 +111,9 @@ namespace System.Drawing.Analysis
             return GetPixelInternal(x, y);
         }
 
+        /// <summary>Gets the color of the specified pixel in the provider.</summary>
+        /// <param name="point">The coordinates of the pixel to retrieve.</param>
+        /// <returns>A Color structure that represents the color of the specified pixel.</returns>
         public override Color GetPixel(Point point)
         {
             return GetPixel(point.X, point.Y);
@@ -126,6 +133,10 @@ namespace System.Drawing.Analysis
             _scan0[--index] = color.B;
         }
 
+        /// <summary>Sets the color of the specified pixel in this provider.</summary>
+        /// <param name="x">The x-coordinate of the pixel to set.</param>
+        /// <param name="y">The y-coordinate of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents the color to assign to the specified pixel.</param>
         public override void SetPixel(int x, int y, Color color)
         {
             if (x >= Size.Width || y >= Size.Height)
@@ -133,6 +144,9 @@ namespace System.Drawing.Analysis
             SetPixelInternal(x, y, color);
         }
 
+        /// <summary>Sets the color of the specified pixel in this provider.</summary>
+        /// <param name="point">The coordinates of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents the color to assign to the specified pixel.</param>
         public override void SetPixel(Point point, Color color)
         {
             SetPixel(point.X, point.Y, color);
@@ -157,7 +171,11 @@ namespace System.Drawing.Analysis
 
             return Color.FromArgb(a, r, g, b);
         }
-
+        /// <summary>Swaps a pixel color at a specific location with the given one.</summary>
+        /// <param name="x">The x-coordinate of the pixel to set.</param>
+        /// <param name="y">The y-coordinate of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents the color to assign to the specified pixel.</param>
+        /// <returns>A Color structure that represents the previous color of the specified pixel.</returns>
         public override Color SwapPixel(int x, int y, Color color)
         {
             if (x >= Size.Width || y >= Size.Height)
