@@ -17,8 +17,8 @@
         public void Clear(Color color)
         {
             // TODO: Unit testing
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             var view = View;
 

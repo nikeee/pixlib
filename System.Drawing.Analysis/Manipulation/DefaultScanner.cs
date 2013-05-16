@@ -36,15 +36,9 @@ namespace System.Drawing.Analysis.Manipulation
 
         #endregion
         #region Helpers
-        
-        protected int GetTargetX()
-        {
-            return _view.X + _view.Width;
-        }
-        protected int GetTargetY()
-        {
-            return _view.Y + _view.Height;
-        }
+
+        protected int GetTargetX { get { return _view.X + _view.Width; } }
+        protected int GetTargetY { get { return _view.Y + _view.Height; } }
 
         #endregion
 
@@ -55,8 +49,8 @@ namespace System.Drawing.Analysis.Manipulation
             uint avgG = 0;
             uint avgB = 0;
 
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
                 {
@@ -77,8 +71,8 @@ namespace System.Drawing.Analysis.Manipulation
         public IEnumerable<Pixel> FindPixels(Color color)
         {
             // TODO: Unit testing
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
             {
@@ -93,8 +87,8 @@ namespace System.Drawing.Analysis.Manipulation
         public IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance)
         {
             // TODO: Unit testing
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
             ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
@@ -113,8 +107,8 @@ namespace System.Drawing.Analysis.Manipulation
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
         public Pixel First(Color color)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -128,8 +122,8 @@ namespace System.Drawing.Analysis.Manipulation
         }
         public Pixel First(Color color, ColorTolerance tolerance)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
             ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
@@ -147,8 +141,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         public Pixel? FirstOrDefault(Color color)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -162,8 +156,8 @@ namespace System.Drawing.Analysis.Manipulation
         }
         public Pixel? FirstOrDefault(Color color, ColorTolerance tolerance)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
             ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
@@ -181,8 +175,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         public bool All(Color color)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -192,8 +186,8 @@ namespace System.Drawing.Analysis.Manipulation
         }
         public bool All(Color color, ColorTolerance tolerance)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
             ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
@@ -207,8 +201,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         public bool Any(Color color)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -218,8 +212,8 @@ namespace System.Drawing.Analysis.Manipulation
         }
         public bool Any(Color color, ColorTolerance tolerance)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
             ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
@@ -236,8 +230,8 @@ namespace System.Drawing.Analysis.Manipulation
             if (action == null)
                 throw new ArgumentNullException("action");
 
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
                     action(x, y, _provider.GetPixel(x, y));
@@ -245,13 +239,13 @@ namespace System.Drawing.Analysis.Manipulation
 
         public int Count()
         {
-            return _view.Width*_view.Height;
+            return _view.Width * _view.Height;
         }
         public int Count(Color color)
         {
             int counter = 0;
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -262,8 +256,8 @@ namespace System.Drawing.Analysis.Manipulation
         public int Count(Color color, ColorTolerance tolerance)
         {
             int counter = 0;
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
             ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
@@ -280,8 +274,8 @@ namespace System.Drawing.Analysis.Manipulation
                 throw new ArgumentNullException("condition");
 
             int counter = 0;
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -295,8 +289,8 @@ namespace System.Drawing.Analysis.Manipulation
             if (condition == null)
                 throw new ArgumentNullException("condition");
 
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
                 {
