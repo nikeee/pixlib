@@ -20,16 +20,25 @@ namespace System.Drawing.Analysis
         #endregion
         #region Static Inits
 
+        /// <summary>Creates a new <see cref="T:SlowBitmapPixelProvider"/> instance using a screenshot of the virtual screen.</summary>
+        /// <returns>A new <see cref="T:SlowBitmapPixelProvider"/> instance.</returns>
         public static SlowBitmapPixelProvider FromScreen()
         {
             return FromScreen(Environment.VirtualScreen);
         }
 
+        /// <summary>Creates a new <see cref="T:SlowBitmapPixelProvider"/> instance using a screenshot of a spefic rectangle on the screen.</summary>
+        /// <param name="rectangle">The rectangle</param>
+        /// <returns>A new <see cref="T:SlowBitmapPixelProvider"/> instance.</returns>
         public static SlowBitmapPixelProvider FromScreen(Rectangle rectangle)
         {
             return FromScreen(rectangle, CopyPixelOperation.SourceCopy);
         }
 
+        /// <summary>Creates a new <see cref="T:SlowBitmapPixelProvider"/> instance using a screenshot of a spefic rectangle on the screen.</summary>
+        /// <param name="rectangle">The rectangle</param>
+        /// <param name="operation">The <see cref="T:System.Drawing.CopyPixelOperation"/> to use.</param>
+        /// <returns>A new <see cref="T:SlowBitmapPixelProvider"/> instance.</returns>
         public static SlowBitmapPixelProvider FromScreen(Rectangle rectangle, CopyPixelOperation operation)
         {
             if (rectangle.Width < 1)
