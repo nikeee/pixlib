@@ -1,10 +1,13 @@
 namespace System.Drawing.Analysis
 {
+    /// <summary>Represents a base class implementation for all pixel providers that uses a <see cref="T:System.Drawing.Bitmap"/> object as source.</summary>
     public abstract class BitmapPixelProvider : IDisposable, IPixelProvider
     {
         private readonly Bitmap _internalBitmap;
+        /// <summary>Gets the <see cref="T:System.Drawing.Bitmap"/> the current <see cref="T:BitmapPixelProvider" /> instance uses for its pixel data.</summary>
         public Bitmap Bitmap { get { return _internalBitmap; } }
 
+        /// <summary>Gets a value indicating whether the bitmap object is getting disposed if this <see cref="T:BitmapPixelProvider" /> instance is disposed.</summary>
         public bool DisposeBitmapOnFinalize { get; set; }
 
         /// <summary> Gets the width and height, in pixels, of this provider.</summary>
@@ -12,7 +15,7 @@ namespace System.Drawing.Analysis
 
         /// <summary>Initializes a new instance of the <see cref="T:BitmapPixelProvider" /> class with the specified bitmap image.</summary>
         /// <param name="bitmap">The bitmap to use</param>
-        /// /// <param name="disposeBitmapOnFinalize">A value which indicates whether the bitmap object is getting disposed if this <see cref="T:BitmapPixelProvider" /> instance is disposed.</param>
+        /// /// <param name="disposeBitmapOnFinalize">A value indicating whether the bitmap object is getting disposed if this <see cref="T:BitmapPixelProvider" /> instance is disposed.</param>
         protected BitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
             if (bitmap == null)

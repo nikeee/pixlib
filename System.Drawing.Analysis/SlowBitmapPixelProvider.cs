@@ -1,5 +1,6 @@
 namespace System.Drawing.Analysis
 {
+    /// <summary>Represents a PixelProvider that uses the default GetPixel/SetPixel methods to retreive the pixel data.</summary>
     public class SlowBitmapPixelProvider : BitmapPixelProvider
     {
         #region Ctors
@@ -12,7 +13,7 @@ namespace System.Drawing.Analysis
 
         /// <summary>Initializes a new instance of the <see cref="T:SlowBitmapPixelProvider" /> class with the specified bitmap image.</summary>
         /// <param name="bitmap">The bitmap to use</param>
-        /// <param name="disposeBitmapOnFinalize">A value which indicates whether the bitmap object is getting disposed if this <see cref="T:SlowBitmapPixelProvider" /> instance is disposed.</param>
+        /// /// <param name="disposeBitmapOnFinalize">A value indicating whether the bitmap object is getting disposed if this <see cref="T:SlowBitmapPixelProvider" /> instance is disposed.</param>
         public SlowBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
         { }
