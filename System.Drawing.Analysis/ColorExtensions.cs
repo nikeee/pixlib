@@ -28,9 +28,9 @@
         public static bool ValuesNotFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, ColorTolerance tolerance)// bool ignoreA, bool ignoreR, bool ignoreG, bool ignoreB)
         {
             return (tolerance.IgnoreA || (minValues.A > color.A || color.A > maxValues.A))
-               || (tolerance.IgnoreR || (minValues.R > color.R || color.R > maxValues.R))
-               || (tolerance.IgnoreG || (minValues.G > color.G || color.G > maxValues.G))
-               || (tolerance.IgnoreB || (minValues.B > color.B || color.B > maxValues.B));
+                || (tolerance.IgnoreR || (minValues.R > color.R || color.R > maxValues.R))
+                || (tolerance.IgnoreG || (minValues.G > color.G || color.G > maxValues.G))
+                || (tolerance.IgnoreB || (minValues.B > color.B || color.B > maxValues.B));
         }
     }
 }
