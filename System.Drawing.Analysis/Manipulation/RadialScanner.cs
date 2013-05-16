@@ -11,6 +11,7 @@ namespace System.Drawing.Analysis.Manipulation
         CounterClockwise
     }
 
+    /// <summary>Represents the pixel scanner which scans in a radial motion.</summary>
     public class RadialScanner : IPixelScanner
     {
         private readonly IGetPixelProvider _provider;

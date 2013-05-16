@@ -15,6 +15,7 @@ namespace System.Drawing.Analysis.Manipulation
         BottomToTop
     }
 
+    /// <summary>Represents the pixel scanner which provides more customization options than the default pixel scanner.</summary>
     public class RectangleScanner : IPixelScanner
     {
         private readonly IGetPixelProvider _provider;

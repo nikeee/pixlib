@@ -34,12 +34,21 @@
 
         #region Ctors
 
+        /// <summary>Creates a new instance of a <see cref="T:ColorTolerance"/> setting every color channel to a single value.</summary>
+        /// <param name="all">The value for every color channel.</param>
+        /// <param name="ignoreAlpha">A value indicating whether to do ignore the alpha channel.</param>
         public ColorTolerance(byte all, bool ignoreAlpha)
         {
             _r = _g = _b = all;
             _a = ignoreAlpha ? -1 : all;
         }
 
+        /// <summary>Creates a new instance of a <see cref="T:ColorTolerance"/>.</summary>
+        /// <param name="a">The value for the alpha channel.</param>
+        /// <param name="r">The value for the red channel.</param>
+        /// <param name="g">The value for the green channel.</param>
+        /// <param name="b">The value for the blue channel.</param>
+        /// <param name="ignoreAlpha">A value indicating whether to do ignore the alpha channel.</param>
         public ColorTolerance(byte a, byte r, byte g, byte b, bool ignoreAlpha)
         {
             _a = ignoreAlpha ? -1 : a;
@@ -51,9 +60,12 @@
         #endregion
         #region equals
 
-        public override bool Equals(object obj)
+        /// <summary>Determines whether this instance and another specified <see cref="T:ColorTolerance"/> object have the same values.</summary>
+        /// <param name="value">The other <see cref="T:ColorTolerance"/> instance.</param>
+        /// <returns>true if the values of the <paramref name="value"/> parameter are the same as this instance; otherwise, false.</returns>
+        public override bool Equals(object value)
         {
-            var ct = (ColorTolerance)obj;
+            var ct = (ColorTolerance)value;
             return (ct.A == A)
                 && (ct.R == R)
                 && (ct.G == G)
@@ -74,6 +86,10 @@
         #endregion
         #region ==-operator
 
+        /// <summary>Determines whether two instances of <see cref="T:ColorTolerance"/> objects have the same values.</summary>
+        /// <param name="value">The first <see cref="T:ColorTolerance"/> instance.</param>
+        /// <param name="value">The second <see cref="T:ColorTolerance"/> instance.</param>
+        /// <returns>true if the values of the given instances have the same values; otherwise, false.</returns>
         public static bool operator ==(ColorTolerance tolerance1, ColorTolerance tolerance2)
         {
             // In case of refactoring to class, take care of this!
@@ -86,6 +102,11 @@
                 && (tolerance1.IgnoreG == tolerance2.IgnoreG)
                 && (tolerance1.IgnoreB == tolerance2.IgnoreB);
         }
+
+        /// <summary>Determines whether two instances of <see cref="T:ColorTolerance"/> objects do not have the same values.</summary>
+        /// <param name="value">The first <see cref="T:ColorTolerance"/> instance.</param>
+        /// <param name="value">The second <see cref="T:ColorTolerance"/> instance.</param>
+        /// <returns>true if the values of the given instances do not have the same values; otherwise, false.</returns>
         public static bool operator !=(ColorTolerance tolerance1, ColorTolerance tolerance2)
         {
             return !(tolerance1 == tolerance2);

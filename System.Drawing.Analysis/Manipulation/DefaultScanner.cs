@@ -2,6 +2,7 @@
 
 namespace System.Drawing.Analysis.Manipulation
 {
+    /// <summary>Represents the default pixel scanner.</summary>
     public class DefaultScanner : IPixelScanner
     {
         private readonly IGetPixelProvider _provider;
