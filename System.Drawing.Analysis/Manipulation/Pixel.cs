@@ -14,7 +14,7 @@ namespace System.Drawing.Analysis.Manipulation
         public int Y { get { return _y; } set { _y = value; } }
 
         private Color _color;
-        /// <summary>Gets or sets the color of the pixel.</summary>
+        /// <summary>Gets or sets The <see cref="T:System.Drawing.Color"/> of the pixel.</summary>
         public Color Color { get { return _color; } set { _color = value; } }
 
         #region ctors

@@ -8,28 +8,28 @@
         private readonly int _g;
         private readonly int _b;
 
-        /// <summary>Gets the tolerance value of the alpha channel.</summary>
+        /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the alpha channel.</summary>
         public int A { get { return _a; } }
 
-        /// <summary>Gets the tolerance value of the red channel.</summary>
+        /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the red channel.</summary>
         public int R { get { return _r; } }
                                     
-        /// <summary>Gets the tolerance value of the green channel.</summary>
+        /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the green channel.</summary>
         public int G { get { return _g; } }
 
-        /// <summary>Gets the tolerance value of the blue channel.</summary>
+        /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the blue channel.</summary>
         public int B { get { return _b; } }
 
-        /// <summary>Gets a value indicating whether the alpha channel is being ignored regarding the tolerance.</summary>
+        /// <summary>Gets a value indicating whether the alpha channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
         public bool IgnoreA { get { return _a < 0; } }
         
-        /// <summary>Gets a value indicating whether the red channel is being ignored regarding the tolerance.</summary>
+        /// <summary>Gets a value indicating whether the red channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
         public bool IgnoreR { get { return _r < 0; } }
         
-        /// <summary>Gets a value indicating whether the green channel is being ignored regarding the tolerance.</summary>
+        /// <summary>Gets a value indicating whether the green channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
         public bool IgnoreG { get { return _g < 0; } }
 
-        /// <summary>Gets a value indicating whether the blue channel is being ignored regarding the tolerance.</summary>
+        /// <summary>Gets a value indicating whether the blue channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
         public bool IgnoreB { get { return _b < 0; } }
 
         #region Ctors

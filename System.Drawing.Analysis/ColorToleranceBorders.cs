@@ -45,6 +45,9 @@ namespace System.Drawing.Analysis
         private Color _baseColor;
         private ColorTolerance _baseTolerance;
 
+        /// <summary>Creates a new instance of <see cref="T:ColorToleranceBorders"/> from a given <see cref="T:System.Drawing.Color"/> and <see cref="T:ColorTolerance"/>.</summary>
+        /// <param name="baseColor">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
         public ColorToleranceBorders(Color baseColor, ColorTolerance tolerance)
         {
             _baseColor = baseColor;

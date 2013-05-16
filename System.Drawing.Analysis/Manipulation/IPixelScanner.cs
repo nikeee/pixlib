@@ -12,13 +12,13 @@ namespace System.Drawing.Analysis.Manipulation
         Rectangle View { get; set; }
 
         /// <summary>Filters the pixels matching a color.</summary>
-        /// <param name="color">The color.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
         /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:Pixel"/>s which matched the given color.</returns>
         IEnumerable<Pixel> FindPixels(Color color);
 
         /// <summary>Filters the pixels matching a color respecting a given tolerance.</summary>
-        /// <param name="color">The color.</param>
-        /// <param name="tolerance">The tolerance.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
         /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:Pixel"/>s which matched the given color and tolerance.</returns>
         IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance);
 
@@ -27,46 +27,46 @@ namespace System.Drawing.Analysis.Manipulation
         Color Average();
 
         /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color.</summary>
-        /// <param name="color">The color to find.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/> to find.</param>
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         Pixel First(Color color);
 
         /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color respecting a given tolerance.</summary>
-        /// <param name="color">The color to find.</param>
-        /// <param name="tolerance">The tolerance.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/> to find.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         Pixel First(Color color, ColorTolerance tolerance);
 
         /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color.</summary>
-        /// <param name="color">The color to find.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/> to find.</param>
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:Pixel"/>.</returns>
         Pixel? FirstOrDefault(Color color);
 
         /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color respecting a given tolerance.</summary>
-        /// <param name="color">The color to find.</param>
-        /// <param name="tolerance">The tolerance.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/> to find.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
         /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:Pixel"/>.</returns>
         Pixel? FirstOrDefault(Color color, ColorTolerance tolerance);
 
         /// <summary>Determines whether all pixels of the provider are the same color.</summary>
-        /// <param name="color">The color.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
         /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         bool All(Color color);
 
         /// <summary>Determines whether all pixels of the provider are the same color respecting a given tolerance.</summary>
-        /// <param name="color">The color.</param>
-        /// <param name="tolerance">The tolerance.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
         /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         bool All(Color color, ColorTolerance tolerance);
 
         /// <summary>Determines whether any pixel of the provider has this color.</summary>
-        /// <param name="color">The color.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
         /// <returns>true if any pixel has this color; otherwise, false.</returns>
         bool Any(Color color);
 
         /// <summary>Determines whether any pixel of the provider has this color respecting a given tolerance.</summary>
-        /// <param name="color">The color.</param>
-        /// <param name="tolerance">The tolerance.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
         /// <returns>true if any pixel is this color respecting a given tolerance; otherwise, false.</returns>
         bool Any(Color color, ColorTolerance tolerance);
         
@@ -75,13 +75,13 @@ namespace System.Drawing.Analysis.Manipulation
         int Count();
 
         /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</summary>
-        /// <param name="color">The color.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
         /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</returns>
         int Count(Color color);
 
         /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</summary>
-        /// <param name="color">The color.</param>
-        /// <param name="tolerance">The tolerance.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
         /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</returns>
         int Count(Color color, ColorTolerance tolerance);
 

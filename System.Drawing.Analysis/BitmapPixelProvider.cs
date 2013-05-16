@@ -59,35 +59,35 @@ namespace System.Drawing.Analysis
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public abstract bool SupportsGetPixelThreading { get; }
 
-        /// <summary>Gets the color of the specified pixel in the provider.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
         /// <param name="x">The x-coordinate of the pixel to retrieve.</param>
         /// <param name="y">The y-coordinate of the pixel to retrieve.</param>
-        /// <returns>A Color structure that represents the color of the specified pixel.</returns>
+        /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
         public abstract Color GetPixel(int x, int y);
 
-        /// <summary>Gets the color of the specified pixel in the provider.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
         /// <param name="point">The coordinates of the pixel to retrieve.</param>
-        /// <returns>A Color structure that represents the color of the specified pixel.</returns>
+        /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
         public abstract Color GetPixel(Point point);
 
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public abstract bool SupportsSetPixelThreading { get; }
 
-        /// <summary>Sets the color of the specified pixel in this provider.</summary>
+        /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
         /// <param name="x">The x-coordinate of the pixel to set.</param>
         /// <param name="y">The y-coordinate of the pixel to set.</param>
-        /// <param name="color">A Color structure that represents the color to assign to the specified pixel.</param>
+        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
         public abstract void SetPixel(int x, int y, Color color);
 
-        /// <summary>Sets the color of the specified pixel in this provider.</summary>
+        /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
         /// <param name="point">The coordinates of the pixel to set.</param>
-        /// <param name="color">A Color structure that represents the color to assign to the specified pixel.</param>
+        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
         public abstract void SetPixel(Point point, Color color);
 
         /// <summary>Swaps a pixel color at a specific location with the given one.</summary>
         /// <param name="x">The x-coordinate of the pixel to set.</param>
         /// <param name="y">The y-coordinate of the pixel to set.</param>
-        /// <param name="color">A Color structure that represents the color to assign to the specified pixel.</param>
+        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
         /// <returns>A Color structure that represents the previous color of the specified pixel.</returns>
         public abstract Color SwapPixel(int x, int y, Color color);
     }
