@@ -15,10 +15,15 @@ namespace System.Drawing.Analysis
 
         #region Ctors
 
+        /// <summary>Initializes a new instance of the <see cref="T:FastBitmapPixelProvider" /> class with the specified bitmap image.</summary>
+        /// <param name="bitmap">The bitmap to use</param>
         public FastBitmapPixelProvider(Bitmap bitmap)
             : this(bitmap, true)
         { }
 
+        /// <summary>Initializes a new instance of the <see cref="T:FastBitmapPixelProvider" /> class with the specified bitmap image.</summary>
+        /// <param name="bitmap">The bitmap to use</param>
+        /// <param name="disposeBitmapOnFinalize">A value which indicates whether the bitmap object is getting disposed if this <see cref="T:FastBitmapPixelProvider" /> instance is disposed.</param>
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
         {

@@ -10,6 +10,9 @@ namespace System.Drawing.Analysis
         /// <summary> Gets the width and height, in pixels, of this provider.</summary>
         public Size Size { get; private set; }
 
+        /// <summary>Initializes a new instance of the <see cref="T:BitmapPixelProvider" /> class with the specified bitmap image.</summary>
+        /// <param name="bitmap">The bitmap to use</param>
+        /// /// <param name="disposeBitmapOnFinalize">A value which indicates whether the bitmap object is getting disposed if this <see cref="T:BitmapPixelProvider" /> instance is disposed.</param>
         protected BitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
             if (bitmap == null)
