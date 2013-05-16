@@ -4,12 +4,17 @@ namespace System.Drawing.Analysis.Manipulation
     public struct Pixel
     {
         private int _x;
+
+        /// <summary>Gets or sets the x-coordinate of the pixel.</summary>
         public int X { get { return _x; } set { _x = value; } }
 
         private int _y;
+
+        /// <summary>Gets or sets the y-coordinate of the pixel.</summary>
         public int Y { get { return _y; } set { _y = value; } }
 
         private Color _color;
+        /// <summary>Gets or sets the color of the pixel.</summary>
         public Color Color { get { return _color; } set { _color = value; } }
 
         #region ctors
@@ -37,6 +42,9 @@ namespace System.Drawing.Analysis.Manipulation
             var p = (Pixel)obj;
             return (p.X == X) && (p.Y == Y) && (p.Color.ValuesEqual(Color));
         }
+
+        /// <summary>Returns the hash code for this <see cref="T:Pixel"/>.</summary>
+        /// <returns>The hash code for this <see cref="T:Pixel"/></returns>
         public override int GetHashCode()
         {
             return X ^ Y ^ Color.GetHashCode();

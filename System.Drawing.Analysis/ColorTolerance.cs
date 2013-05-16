@@ -63,6 +63,9 @@
                 && (ct.IgnoreG == IgnoreG)
                 && (ct.IgnoreB == IgnoreB);
         }
+
+        /// <summary>Returns the hash code for this <see cref="T:ColorTolerance"/>.</summary>
+        /// <returns>The hash code for this <see cref="T:ColorTolerance"/>.</returns>
         public override int GetHashCode()
         {
             return A ^ R ^ G ^ B;
