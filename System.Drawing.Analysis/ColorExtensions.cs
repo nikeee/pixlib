@@ -18,19 +18,19 @@
         }
 
         // May enhance?
-        public static bool ValuesFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, ColorTolerance tolerance)// bool ignoreA, bool ignoreR, bool ignoreG, bool ignoreB)
+        public static bool ValuesFitTolerance(this Color color, ColorToleranceBorders borders, ColorTolerance tolerance)// bool ignoreA, bool ignoreR, bool ignoreG, bool ignoreB)
         {
-            return (tolerance.IgnoreA || (minValues.A <= color.A && color.A <= maxValues.A))
-                && (tolerance.IgnoreR || (minValues.R <= color.R && color.R <= maxValues.R))
-                && (tolerance.IgnoreG || (minValues.G <= color.G && color.G <= maxValues.G))
-                && (tolerance.IgnoreB || (minValues.B <= color.B && color.B <= maxValues.B));
+            return (tolerance.IgnoreA || (borders.MinA <= color.A && color.A <= borders.MaxA))
+                && (tolerance.IgnoreR || (borders.MinR <= color.R && color.R <= borders.MaxR))
+                && (tolerance.IgnoreG || (borders.MinG <= color.G && color.G <= borders.MaxG))
+                && (tolerance.IgnoreB || (borders.MinB <= color.B && color.B <= borders.MaxB));
         }
-        public static bool ValuesNotFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, ColorTolerance tolerance)// bool ignoreA, bool ignoreR, bool ignoreG, bool ignoreB)
+        public static bool ValuesNotFitTolerance(this Color color, ColorToleranceBorders borders, ColorTolerance tolerance)// bool ignoreA, bool ignoreR, bool ignoreG, bool ignoreB)
         {
-            return (tolerance.IgnoreA || (minValues.A > color.A || color.A > maxValues.A))
-                || (tolerance.IgnoreR || (minValues.R > color.R || color.R > maxValues.R))
-                || (tolerance.IgnoreG || (minValues.G > color.G || color.G > maxValues.G))
-                || (tolerance.IgnoreB || (minValues.B > color.B || color.B > maxValues.B));
+            return (tolerance.IgnoreA || (borders.MinA > color.A || color.A > borders.MaxA))
+                || (tolerance.IgnoreR || (borders.MinR > color.R || color.R > borders.MaxR))
+                || (tolerance.IgnoreG || (borders.MinG > color.G || color.G > borders.MaxG))
+                || (tolerance.IgnoreB || (borders.MinB > color.B || color.B > borders.MaxB));
         }
     }
 }

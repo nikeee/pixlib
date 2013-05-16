@@ -37,31 +37,6 @@
         }
 
         #endregion
-        #region Min/MaxToleranceValues
-
-        public ColorTolerance GetMinimumValuesFromColor(Color color)
-        {
-            return new ColorTolerance(
-                    (byte)(color.A < A ? 0 : (color.A - A)),
-                    (byte)(color.R < R ? 0 : (color.R - R)),
-                    (byte)(color.G < G ? 0 : (color.G - G)),
-                    (byte)(color.B < B ? 0 : (color.B - B)),
-                    false
-                );
-        }
-
-        public ColorTolerance GetMaximumValuesFromColor(Color color)
-        {
-            return new ColorTolerance(
-                    (byte)((color.A + A > 255) ? 255 : (color.A + A)),
-                    (byte)((color.R + R > 255) ? 255 : (color.R + R)),
-                    (byte)((color.G + G > 255) ? 255 : (color.G + G)),
-                    (byte)((color.B + B > 255) ? 255 : (color.B + B)),
-                    false
-                );
-        }
-
-        #endregion
         #region equals
 
         public override bool Equals(object obj)
@@ -104,4 +79,6 @@
 
         #endregion
     }
+
+
 }
