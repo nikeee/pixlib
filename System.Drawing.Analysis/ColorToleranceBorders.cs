@@ -5,6 +5,9 @@ using System.Text;
 
 namespace System.Drawing.Analysis
 {
+    /// <summary>
+    /// Defines an interval of color channel values that can be used to determine if a <see cref="T:System.Drawing.Color"/> matches another <see cref="T:System.Drawing.Color"/> with a given <see cref="T:ColorTolerance"/>.
+    /// </summary>
     [Serializable]
     public struct ColorToleranceBorders
     {

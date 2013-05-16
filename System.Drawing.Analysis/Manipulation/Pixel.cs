@@ -1,5 +1,8 @@
 namespace System.Drawing.Analysis.Manipulation
 {
+    /// <summary>
+    /// Represents a pixel.
+    /// </summary>
     [Serializable]
     public struct Pixel
     {

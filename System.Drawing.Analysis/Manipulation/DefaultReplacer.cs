@@ -1,5 +1,6 @@
 ﻿namespace System.Drawing.Analysis.Manipulation
 {
+    /// <summary>Provides basic functionality to perform replace operations on pixel data.</summary>
     public class DefaultReplacer : DefaultScanner, IPixelReplacer
     {
         private IPixelProvider _provider;
