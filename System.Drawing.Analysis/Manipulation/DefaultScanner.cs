@@ -42,6 +42,8 @@ namespace System.Drawing.Analysis.Manipulation
 
         #endregion
 
+        /// <summary>Computes the average color in the given view.</summary>
+        /// <returns>The average color.</returns>
         public Color Average()
         {
             uint avgA = 0;
@@ -104,6 +106,9 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color.</summary>
+        /// <param name="color">The color to find.</param>
+        /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         public Pixel First(Color color)
         {
             int targetX = GetTargetX;
@@ -119,6 +124,10 @@ namespace System.Drawing.Analysis.Manipulation
 
             throw new InvalidOperationException();
         }
+
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color taking care of a given tolerance.</summary>
+        /// <param name="color">The color to find.</param>
+        /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         public Pixel First(Color color, ColorTolerance tolerance)
         {
             int targetX = GetTargetX;
@@ -137,6 +146,9 @@ namespace System.Drawing.Analysis.Manipulation
             throw new InvalidOperationException();
         }
 
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color.</summary>
+        /// <param name="color">The color to find.</param>
+        /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:Pixel"/>.</returns>
         public Pixel? FirstOrDefault(Color color)
         {
             int targetX = GetTargetX;
@@ -152,6 +164,10 @@ namespace System.Drawing.Analysis.Manipulation
 
             return default(Pixel?);
         }
+
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color taking care of a given tolerance.</summary>
+        /// <param name="color">The color to find.</param>
+        /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:Pixel"/>.</returns>
         public Pixel? FirstOrDefault(Color color, ColorTolerance tolerance)
         {
             int targetX = GetTargetX;
@@ -170,6 +186,9 @@ namespace System.Drawing.Analysis.Manipulation
             return default(Pixel?);
         }
 
+        /// <summary>Determines whether all pixels of the provider are the same color.</summary>
+        /// <param name="color">The color.</param>
+        /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         public bool All(Color color)
         {
             int targetX = GetTargetX;
