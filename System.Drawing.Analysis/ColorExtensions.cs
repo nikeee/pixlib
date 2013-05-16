@@ -18,19 +18,19 @@
         }
 
         // May enhance?
-        public static bool ValuesFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, bool ignoreAlpha)
+        public static bool ValuesFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, ColorTolerance tolerance)// bool ignoreA, bool ignoreR, bool ignoreG, bool ignoreB)
         {
-            return (ignoreAlpha || (minValues.A <= color.A && color.A <= maxValues.A))
-                && (minValues.R <= color.R && color.R <= maxValues.R)
-                && (minValues.G <= color.G && color.G <= maxValues.G)
-                && (minValues.B <= color.B && color.B <= maxValues.B);
+            return (tolerance.IgnoreA || (minValues.A <= color.A && color.A <= maxValues.A))
+                && (tolerance.IgnoreR || (minValues.R <= color.R && color.R <= maxValues.R))
+                && (tolerance.IgnoreG || (minValues.G <= color.G && color.G <= maxValues.G))
+                && (tolerance.IgnoreB || (minValues.B <= color.B && color.B <= maxValues.B));
         }
-        public static bool ValuesNotFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, bool ignoreAlpha)
+        public static bool ValuesNotFitTolerance(this Color color, ColorTolerance minValues, ColorTolerance maxValues, ColorTolerance tolerance)// bool ignoreA, bool ignoreR, bool ignoreG, bool ignoreB)
         {
-            return (ignoreAlpha || (minValues.A > color.A || color.A > maxValues.A))
-               || (minValues.R > color.R || color.R > maxValues.R)
-               || (minValues.G > color.G || color.G > maxValues.G)
-               || (minValues.B > color.B || color.B > maxValues.B);
+            return (tolerance.IgnoreA || (minValues.A > color.A || color.A > maxValues.A))
+               || (tolerance.IgnoreR || (minValues.R > color.R || color.R > maxValues.R))
+               || (tolerance.IgnoreG || (minValues.G > color.G || color.G > maxValues.G))
+               || (tolerance.IgnoreB || (minValues.B > color.B || color.B > maxValues.B));
         }
     }
 }

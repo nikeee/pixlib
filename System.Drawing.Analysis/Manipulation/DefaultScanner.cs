@@ -98,7 +98,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance))
                         yield return new Pixel(x, y, readColor);
                 }
             }
@@ -132,7 +132,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance))
                         return new Pixel(x, y, readColor);
                 }
 
@@ -166,7 +166,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance))
                         return new Pixel(x, y, readColor);
                 }
 
@@ -194,7 +194,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesNotFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha)) // FitNot (!)
+                    if (_provider.GetPixel(x, y).ValuesNotFitTolerance(minValues, maxValues, tolerance)) // FitNot (!)
                         return false;
             return true;
         }
@@ -220,7 +220,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance))
                         return true;
             return false;
         }
@@ -264,7 +264,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance))
                         ++counter;
             return counter;
         }
