@@ -37,11 +37,11 @@ namespace System.Drawing.Analysis.Manipulation
         #endregion
         #region Helpers
         
-        private int GetTargetX()
+        protected int GetTargetX()
         {
             return _view.X + _view.Width;
         }
-        private int GetTargetY()
+        protected int GetTargetY()
         {
             return _view.Y + _view.Height;
         }

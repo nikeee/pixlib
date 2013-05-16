@@ -57,6 +57,7 @@
     <Compile Include="IGetPixelProvider.cs" />
     <Compile Include="IPixelProvider.cs" />
     <Compile Include="ISetPixelProvider.cs" />
+    <Compile Include="Manipulation\DefaultReplacer.cs" />
     <Compile Include="Manipulation\Pixel.cs" />
     <Compile Include="Manipulation\PixelExtensions.cs" />
     <Compile Include="Manipulation\RadialScanner.cs" />
