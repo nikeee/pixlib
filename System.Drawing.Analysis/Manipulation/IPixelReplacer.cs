@@ -2,6 +2,6 @@ namespace System.Drawing.Analysis.Manipulation
 {
     public interface IPixelReplacer : IPixelScanner
     {
-        // TODO: Implement
+        void Clear(Color color);
     }
 }
