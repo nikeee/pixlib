@@ -1,6 +1,6 @@
 namespace System.Drawing.Analysis
 {
-    public class SlowBitmapPixelProvider : BitmapPixelProvider, IPixelProvider
+    public class SlowBitmapPixelProvider : BitmapPixelProvider
     {
         #region Ctors
 
@@ -46,12 +46,14 @@ namespace System.Drawing.Analysis
         #endregion
         #region GetPixel
 
-        public Color GetPixel(int x, int y)
+        public override bool SupportsGetPixelThreading { get { return false; } }
+
+        public override Color GetPixel(int x, int y)
         {
             return Bitmap.GetPixel(x, y);
         }
 
-        public Color GetPixel(Point point)
+        public override Color GetPixel(Point point)
         {
             return GetPixel(point.X, point.Y);
         }
@@ -59,12 +61,14 @@ namespace System.Drawing.Analysis
         #endregion
         #region SetPixel
 
-        public void SetPixel(int x, int y, Color color)
+        public override bool SupportsSetPixelThreading { get { return false; } }
+
+        public override void SetPixel(int x, int y, Color color)
         {
             Bitmap.SetPixel(x, y, color);
         }
 
-        public void SetPixel(Point point, Color color)
+        public override void SetPixel(Point point, Color color)
         {
             SetPixel(point.X, point.Y, color);
         }
@@ -72,7 +76,7 @@ namespace System.Drawing.Analysis
         #endregion
         #region IPixelProvider
 
-        public Color SwapPixel(int x, int y, Color color)
+        public override Color SwapPixel(int x, int y, Color color)
         {
             var c = GetPixel(x, y);
             SetPixel(x, y, color);
@@ -112,5 +116,6 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
+
     }
 }

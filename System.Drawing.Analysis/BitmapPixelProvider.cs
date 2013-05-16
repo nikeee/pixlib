@@ -1,9 +1,9 @@
 namespace System.Drawing.Analysis
 {
-    public abstract class BitmapPixelProvider : IDisposable
+    public abstract class BitmapPixelProvider : IDisposable, IPixelProvider
     {
         private readonly Bitmap _internalBitmap;
-        public Bitmap Bitmap { get { return _internalBitmap; }}
+        public Bitmap Bitmap { get { return _internalBitmap; } }
 
         public bool DisposeBitmapOnFinalize { get; set; }
         public Size Size { get; private set; }
@@ -16,6 +16,8 @@ namespace System.Drawing.Analysis
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
             Size = bitmap.Size;
         }
+
+
 
         #region IDisposable support
 
@@ -47,5 +49,19 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
+
+
+        public abstract bool SupportsGetPixelThreading { get; }
+
+        public abstract Color GetPixel(int x, int y);
+        public abstract Color GetPixel(Point point);
+
+        public abstract bool SupportsSetPixelThreading { get; }
+
+        public abstract void SetPixel(int x, int y, Color color);
+        public abstract void SetPixel(Point point, Color color);
+
+
+        public abstract Color SwapPixel(int x, int y, Color color);
     }
 }

@@ -54,7 +54,7 @@
     <Compile Include="Environment.cs" />
     <Compile Include="GdiConstants.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="IPixelGetProvider.cs" />
+    <Compile Include="IGetPixelProvider.cs" />
     <Compile Include="IPixelProvider.cs" />
     <Compile Include="ISetPixelProvider.cs" />
     <Compile Include="Manipulation\Pixel.cs" />

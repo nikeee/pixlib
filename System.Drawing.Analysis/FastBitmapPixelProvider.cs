@@ -3,7 +3,7 @@ using System.Security;
 
 namespace System.Drawing.Analysis
 {
-    public class FastBitmapPixelProvider : BitmapPixelProvider, IPixelProvider
+    public class FastBitmapPixelProvider : BitmapPixelProvider
     {
         private readonly Rectangle _bitmapDimensions;
         private BitmapData _bitmapData;
@@ -87,6 +87,8 @@ namespace System.Drawing.Analysis
         #endregion
         #region GetPixel
 
+        public override bool SupportsGetPixelThreading { get { return true; } }
+
         internal unsafe Color GetPixelInternal(int x, int y)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
@@ -98,14 +100,14 @@ namespace System.Drawing.Analysis
                 );
         }
 
-        public Color GetPixel(int x, int y)
+        public override Color GetPixel(int x, int y)
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
             return GetPixelInternal(x, y);
         }
 
-        public Color GetPixel(Point point)
+        public override Color GetPixel(Point point)
         {
             return GetPixel(point.X, point.Y);
         }
@@ -113,7 +115,8 @@ namespace System.Drawing.Analysis
         #endregion
         #region SetPixel
 
-        // TODO: Testing
+        public override bool SupportsSetPixelThreading { get { return true; } }
+
         internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
@@ -123,16 +126,14 @@ namespace System.Drawing.Analysis
             _scan0[--index] = color.B;
         }
 
-        // TODO: Testing
-        public void SetPixel(int x, int y, Color color)
+        public override void SetPixel(int x, int y, Color color)
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
             SetPixelInternal(x, y, color);
         }
 
-        // TODO: Testing
-        public void SetPixel(Point point, Color color)
+        public override void SetPixel(Point point, Color color)
         {
             SetPixel(point.X, point.Y, color);
         }
@@ -157,7 +158,7 @@ namespace System.Drawing.Analysis
             return Color.FromArgb(a, r, g, b);
         }
 
-        public Color SwapPixel(int x, int y, Color color)
+        public override Color SwapPixel(int x, int y, Color color)
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
