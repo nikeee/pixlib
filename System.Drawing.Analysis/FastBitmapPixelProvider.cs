@@ -3,7 +3,8 @@ using System.Security;
 
 namespace System.Drawing.Analysis
 {
-    public class FastBitmapPixelProvider : BitmapPixelProvider, IPixelProvider
+    /// <summary>Represents a PixelProvider that uses native pointers and LockBits to retreive the pixel data.</summary>
+    public class FastBitmapPixelProvider : BitmapPixelProvider
     {
         private readonly Rectangle _bitmapDimensions;
         private BitmapData _bitmapData;
@@ -15,10 +16,15 @@ namespace System.Drawing.Analysis
 
         #region Ctors
 
+        /// <summary>Initializes a new instance of the <see cref="T:FastBitmapPixelProvider" /> class with the specified bitmap image.</summary>
+        /// <param name="bitmap">The bitmap to use</param>
         public FastBitmapPixelProvider(Bitmap bitmap)
             : this(bitmap, true)
         { }
 
+        /// <summary>Initializes a new instance of the <see cref="T:FastBitmapPixelProvider" /> class with the specified bitmap image.</summary>
+        /// <param name="bitmap">The bitmap to use</param>
+        /// /// <param name="disposeBitmapOnFinalize">A value indicating whether the bitmap object is getting disposed if this <see cref="T:FastBitmapPixelProvider" /> instance is disposed.</param>
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
         {
@@ -56,16 +62,25 @@ namespace System.Drawing.Analysis
         #endregion
         #region Static Inits
 
+        /// <summary>Creates a new <see cref="T:FastBitmapPixelProvider"/> instance using a screenshot of the virtual screen.</summary>
+        /// <returns>A new <see cref="T:FastBitmapPixelProvider"/> instance.</returns>
         public static FastBitmapPixelProvider FromScreen()
         {
             return FromScreen(Environment.VirtualScreen);
         }
 
+        /// <summary>Creates a new <see cref="T:FastBitmapPixelProvider"/> instance using a screenshot of a spefic rectangle on the screen.</summary>
+        /// <param name="rectangle">The rectangle</param>
+        /// <returns>A new <see cref="T:FastBitmapPixelProvider"/> instance.</returns>
         public static FastBitmapPixelProvider FromScreen(Rectangle rectangle)
         {
             return FromScreen(rectangle, CopyPixelOperation.SourceCopy);
         }
 
+        /// <summary>Creates a new <see cref="T:FastBitmapPixelProvider"/> instance using a screenshot of a spefic rectangle on the screen.</summary>
+        /// <param name="rectangle">The rectangle</param>
+        /// <param name="operation">The <see cref="T:System.Drawing.CopyPixelOperation"/> to use.</param>
+        /// <returns>A new <see cref="T:FastBitmapPixelProvider"/> instance.</returns>
         public static FastBitmapPixelProvider FromScreen(Rectangle rectangle, CopyPixelOperation operation)
         {
             if (rectangle.Width < 1)
@@ -87,6 +102,9 @@ namespace System.Drawing.Analysis
         #endregion
         #region GetPixel
 
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
+        public override bool SupportsGetPixelThreading { get { return true; } }
+
         internal unsafe Color GetPixelInternal(int x, int y)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
@@ -98,14 +116,21 @@ namespace System.Drawing.Analysis
                 );
         }
 
-        public Color GetPixel(int x, int y)
+        /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
+        /// <param name="x">The x-coordinate of the pixel to retrieve.</param>
+        /// <param name="y">The y-coordinate of the pixel to retrieve.</param>
+        /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
+        public override Color GetPixel(int x, int y)
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
             return GetPixelInternal(x, y);
         }
 
-        public Color GetPixel(Point point)
+        /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
+        /// <param name="point">The coordinates of the pixel to retrieve.</param>
+        /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
+        public override Color GetPixel(Point point)
         {
             return GetPixel(point.X, point.Y);
         }
@@ -113,7 +138,9 @@ namespace System.Drawing.Analysis
         #endregion
         #region SetPixel
 
-        // TODO: Testing
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
+        public override bool SupportsSetPixelThreading { get { return true; } }
+
         internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
@@ -123,16 +150,21 @@ namespace System.Drawing.Analysis
             _scan0[--index] = color.B;
         }
 
-        // TODO: Testing
-        public void SetPixel(int x, int y, Color color)
+        /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
+        /// <param name="x">The x-coordinate of the pixel to set.</param>
+        /// <param name="y">The y-coordinate of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
+        public override void SetPixel(int x, int y, Color color)
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
             SetPixelInternal(x, y, color);
         }
 
-        // TODO: Testing
-        public void SetPixel(Point point, Color color)
+        /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
+        /// <param name="point">The coordinates of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
+        public override void SetPixel(Point point, Color color)
         {
             SetPixel(point.X, point.Y, color);
         }
@@ -156,8 +188,12 @@ namespace System.Drawing.Analysis
 
             return Color.FromArgb(a, r, g, b);
         }
-
-        public Color SwapPixel(int x, int y, Color color)
+        /// <summary>Swaps a pixel color at a specific location with the given one.</summary>
+        /// <param name="x">The x-coordinate of the pixel to set.</param>
+        /// <param name="y">The y-coordinate of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
+        /// <returns>A Color structure that represents the previous color of the specified pixel.</returns>
+        public override Color SwapPixel(int x, int y, Color color)
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
@@ -167,6 +203,10 @@ namespace System.Drawing.Analysis
         #endregion
         #region explicits
 
+        /// <summary>Explicitly creates a new instance of <see cref="T:FastBitmapPixelProvider"/> using a <see cref="T:System.Drawing.Bitmap"/>.</summary>
+        /// <param name="bitmap">The <see cref="T:System.Drawing.Bitmap"/> to use.</param>
+        /// <returns>A new instance of <see cref="T:FastBitmapPixelProvider"/></returns>
+        /// <remarks>Same as the constructor using only one bitmap parameter.</remarks>
         public static explicit operator FastBitmapPixelProvider(Bitmap bitmap)
         {
             return new FastBitmapPixelProvider(bitmap);

@@ -1,13 +1,21 @@
 namespace System.Drawing.Analysis
 {
-    public abstract class BitmapPixelProvider : IDisposable
+    /// <summary>Represents a base class implementation for all pixel providers that uses a <see cref="T:System.Drawing.Bitmap"/> object as source.</summary>
+    public abstract class BitmapPixelProvider : IDisposable, IPixelProvider
     {
         private readonly Bitmap _internalBitmap;
-        public Bitmap Bitmap { get { return _internalBitmap; }}
+        /// <summary>Gets the <see cref="T:System.Drawing.Bitmap"/> the current <see cref="T:BitmapPixelProvider" /> instance uses for its pixel data.</summary>
+        public Bitmap Bitmap { get { return _internalBitmap; } }
 
+        /// <summary>Gets a value indicating whether the bitmap object is getting disposed if this <see cref="T:BitmapPixelProvider" /> instance is disposed.</summary>
         public bool DisposeBitmapOnFinalize { get; set; }
+
+        /// <summary> Gets the width and height, in pixels, of this provider.</summary>
         public Size Size { get; private set; }
 
+        /// <summary>Initializes a new instance of the <see cref="T:BitmapPixelProvider" /> class with the specified bitmap image.</summary>
+        /// <param name="bitmap">The bitmap to use</param>
+        /// /// <param name="disposeBitmapOnFinalize">A value indicating whether the bitmap object is getting disposed if this <see cref="T:BitmapPixelProvider" /> instance is disposed.</param>
         protected BitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
             if (bitmap == null)
@@ -16,7 +24,7 @@ namespace System.Drawing.Analysis
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
             Size = bitmap.Size;
         }
-
+        
         #region IDisposable support
 
         private bool _disposed;
@@ -47,5 +55,40 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
+
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
+        public abstract bool SupportsGetPixelThreading { get; }
+
+        /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
+        /// <param name="x">The x-coordinate of the pixel to retrieve.</param>
+        /// <param name="y">The y-coordinate of the pixel to retrieve.</param>
+        /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
+        public abstract Color GetPixel(int x, int y);
+
+        /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
+        /// <param name="point">The coordinates of the pixel to retrieve.</param>
+        /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
+        public abstract Color GetPixel(Point point);
+
+        /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
+        public abstract bool SupportsSetPixelThreading { get; }
+
+        /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
+        /// <param name="x">The x-coordinate of the pixel to set.</param>
+        /// <param name="y">The y-coordinate of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
+        public abstract void SetPixel(int x, int y, Color color);
+
+        /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
+        /// <param name="point">The coordinates of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
+        public abstract void SetPixel(Point point, Color color);
+
+        /// <summary>Swaps a pixel color at a specific location with the given one.</summary>
+        /// <param name="x">The x-coordinate of the pixel to set.</param>
+        /// <param name="y">The y-coordinate of the pixel to set.</param>
+        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
+        /// <returns>A Color structure that represents the previous color of the specified pixel.</returns>
+        public abstract Color SwapPixel(int x, int y, Color color);
     }
 }

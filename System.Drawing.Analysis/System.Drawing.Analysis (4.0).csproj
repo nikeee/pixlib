@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FBC383D-D79D-4519-B841-8E0BA3ED1192}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>System.Drawing.Analysis</RootNamespace>
+    <AssemblyName>System.Drawing.Analysis</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug40\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NET40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\System.Drawing.Analysis.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release40\</OutputPath>
+    <DefineConstants>TRACE;NET40</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>System.Drawing.Analysis.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BitmapPixelProvider.cs" />
+    <Compile Include="ColorExtensions.cs" />
+    <Compile Include="ColorTolerance.cs" />
+    <Compile Include="ColorToleranceBorders.cs" />
+    <Compile Include="FastBitmapPixelProvider.cs" />
+    <Compile Include="Environment.cs" />
+    <Compile Include="GdiConstants.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IGetPixelProvider.cs" />
+    <Compile Include="IPixelProvider.cs" />
+    <Compile Include="ISetPixelProvider.cs" />
+    <Compile Include="Manipulation\DefaultReplacer.cs" />
+    <Compile Include="Manipulation\Pixel.cs" />
+    <Compile Include="Manipulation\PixelExtensions.cs" />
+    <Compile Include="Manipulation\RadialScanner.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="NativeTypes.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Manipulation\DefaultScanner.cs" />
+    <Compile Include="Manipulation\IPixelReplacer.cs" />
+    <Compile Include="Manipulation\IPixelScanner.cs" />
+    <Compile Include="Manipulation\RectangleScanner.cs" />
+    <Compile Include="SlowBitmapPixelProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Overview.cd" />
+    <None Include="System.Drawing.Analysis.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

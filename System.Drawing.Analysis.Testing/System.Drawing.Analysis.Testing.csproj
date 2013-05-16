@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>System.Drawing.Analysis.Testing</RootNamespace>
     <AssemblyName>System.Drawing.Analysis.Testing</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,15 +64,15 @@
     <Compile Include="TestingHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\System.Drawing.Analysis\System.Drawing.Analysis.csproj">
-      <Project>{5abad8f2-2a7b-448a-b975-6e0980faa789}</Project>
-      <Name>System.Drawing.Analysis</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Resources\testImage.bmp" />
     <Content Include="Resources\testImage2.bmp" />
     <Content Include="Resources\tolreanceTest.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\System.Drawing.Analysis\System.Drawing.Analysis %284.0%29.csproj">
+      <Project>{9fbc383d-d79d-4519-b841-8e0ba3ed1192}</Project>
+      <Name>System.Drawing.Analysis %284.0%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

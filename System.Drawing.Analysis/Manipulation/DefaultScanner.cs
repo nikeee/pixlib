@@ -2,9 +2,13 @@
 
 namespace System.Drawing.Analysis.Manipulation
 {
+    /// <summary>Represents the default pixel scanner.</summary>
     public class DefaultScanner : IPixelScanner
     {
+        private readonly IGetPixelProvider _provider;
         private Rectangle _view;
+
+        /// <summary>Gets or sets the area in which the <see cref="T:IPixelScanner"/> instance operates.</summary>
         public Rectangle View
         {
             get { return _view; }
@@ -22,10 +26,11 @@ namespace System.Drawing.Analysis.Manipulation
             }
         }
 
-        private readonly IGetPixelProvider _provider;
 
         #region Ctors
-
+        
+        /// <summary>Creates a new instance of <see cref="T:DefaultScanner"/> using a given <see cref="T:IGetPixelProvider"/>.</summary>
+        /// <param name="provider">An <see cref="T:IGetPixelProvider"/> instance</param>
         public DefaultScanner(IGetPixelProvider provider)
         {
             if (provider == null)
@@ -36,18 +41,17 @@ namespace System.Drawing.Analysis.Manipulation
 
         #endregion
         #region Helpers
-        
-        private int GetTargetX()
-        {
-            return _view.X + _view.Width;
-        }
-        private int GetTargetY()
-        {
-            return _view.Y + _view.Height;
-        }
+
+        /// <summary>Gets the target x-coordinate for the default scanner for-loop.</summary>
+        protected int GetTargetX { get { return _view.X + _view.Width; } }
+
+        /// <summary>Gets the target y-coordinate for the default scanner for-loop.</summary>
+        protected int GetTargetY { get { return _view.Y + _view.Height; } }
 
         #endregion
 
+        /// <summary>Computes the average color in the current view.</summary>
+        /// <returns>The average color.</returns>
         public Color Average()
         {
             uint avgA = 0;
@@ -55,8 +59,8 @@ namespace System.Drawing.Analysis.Manipulation
             uint avgG = 0;
             uint avgB = 0;
 
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
                 {
@@ -74,11 +78,14 @@ namespace System.Drawing.Analysis.Manipulation
             return Color.FromArgb((byte)avgA, (byte)avgR, (byte)avgG, (byte)avgB);
         }
 
+        /// <summary>Filters the pixels matching a color.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:Pixel"/>s which matched the given color.</returns>
         public IEnumerable<Pixel> FindPixels(Color color)
         {
             // TODO: Unit testing
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
             {
@@ -90,31 +97,38 @@ namespace System.Drawing.Analysis.Manipulation
                 }
             }
         }
+
+        /// <summary>Filters the pixels matching a color respecting a given tolerance.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:Pixel"/>s which matched the given color and tolerance.</returns>
         public IEnumerable<Pixel> FindPixels(Color color, ColorTolerance tolerance)
         {
             // TODO: Unit testing
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
-            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
-            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+            ColorToleranceBorders borders = new ColorToleranceBorders(color, tolerance);
 
             for (int x = _view.X; x < targetX; ++x)
             {
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
                         yield return new Pixel(x, y, readColor);
                 }
             }
         }
 
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/> to find.</param>
+        /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         public Pixel First(Color color)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -126,29 +140,36 @@ namespace System.Drawing.Analysis.Manipulation
 
             throw new InvalidOperationException();
         }
+
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color taking care of a given tolerance.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/> to find.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
+        /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel.</returns>
         public Pixel First(Color color, ColorTolerance tolerance)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
-            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
-            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+            ColorToleranceBorders borders = new ColorToleranceBorders(color, tolerance);
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
                         return new Pixel(x, y, readColor);
                 }
 
             throw new InvalidOperationException();
         }
 
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/> to find.</param>
+        /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:Pixel"/>.</returns>
         public Pixel? FirstOrDefault(Color color)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -160,29 +181,36 @@ namespace System.Drawing.Analysis.Manipulation
 
             return default(Pixel?);
         }
+
+        /// <summary>Gets the first <see cref="T:Pixel"/> matching a specified color taking care of a given tolerance.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/> to find.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
+        /// <returns>A <see cref="T:Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:Pixel"/>.</returns>
         public Pixel? FirstOrDefault(Color color, ColorTolerance tolerance)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
-            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
-            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+            ColorToleranceBorders borders = new ColorToleranceBorders(color, tolerance);
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
                         return new Pixel(x, y, readColor);
                 }
 
             return default(Pixel?);
         }
 
+        /// <summary>Determines whether all pixels of the provider are the same color.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         public bool All(Color color)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -190,25 +218,32 @@ namespace System.Drawing.Analysis.Manipulation
                         return false;
             return true;
         }
+
+        /// <summary>Determines whether all pixels of the provider are the same color respecting a given tolerance.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
+        /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         public bool All(Color color, ColorTolerance tolerance)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
-            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
-            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+            ColorToleranceBorders borders = new ColorToleranceBorders(color, tolerance);
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesNotFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha)) // FitNot (!)
+                    if (_provider.GetPixel(x, y).ValuesNotFitTolerance(borders, tolerance)) // FitNot (!)
                         return false;
             return true;
         }
 
+        /// <summary>Determines whether any pixel of the provider has this color.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <returns>true if any pixel has this color; otherwise, false.</returns>
         public bool Any(Color color)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -216,42 +251,39 @@ namespace System.Drawing.Analysis.Manipulation
                         return true;
             return false;
         }
+
+        /// <summary>Determines whether any pixel of the provider has this color respecting a given tolerance.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
+        /// <returns>true if any pixel is this color respecting a given tolerance; otherwise, false.</returns>
         public bool Any(Color color, ColorTolerance tolerance)
         {
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
-            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
-            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+            ColorToleranceBorders borders = new ColorToleranceBorders(color, tolerance);
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
                         return true;
             return false;
         }
 
-        public void ForEach(Action<int, int, Color> action)
-        {
-            if (action == null)
-                throw new ArgumentNullException("action");
-
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
-            for (int x = _view.X; x < targetX; ++x)
-                for (int y = _view.Y; y < targetY; ++y)
-                    action(x, y, _provider.GetPixel(x, y));
-        }
-
+        /// <summary>Returns the number of pixels in the current view.</summary>
+        /// <returns>The number of pixels in the current view.</returns>
         public int Count()
         {
-            return _view.Width*_view.Height;
+            return _view.Width * _view.Height;
         }
+
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</summary>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</returns>
         public int Count(Color color)
         {
             int counter = 0;
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -259,29 +291,37 @@ namespace System.Drawing.Analysis.Manipulation
                         ++counter;
             return counter;
         }
+
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <param name="tolerance">The <see cref="T:ColorTolerance"/>.</param>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/>.</returns>
         public int Count(Color color, ColorTolerance tolerance)
         {
             int counter = 0;
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
-            ColorTolerance minValues = tolerance.GetMinimumValuesFromColor(color);
-            ColorTolerance maxValues = tolerance.GetMaximumValuesFromColor(color);
+            ColorToleranceBorders borders = new ColorToleranceBorders(color, tolerance);
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(minValues, maxValues, tolerance.IgnoreAlpha))
+                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
                         ++counter;
             return counter;
         }
+
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</summary>
+        /// <param name="condition">A function to test each pixel for a condition.</param>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Color"/> respecting a tolerance.</returns>
         public int Count(Func<int, int, Color, bool> condition)
         {
             if (condition == null)
                 throw new ArgumentNullException("condition");
 
             int counter = 0;
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
@@ -290,13 +330,30 @@ namespace System.Drawing.Analysis.Manipulation
             return counter;
         }
 
+        /// <summary>Performs the specified action on each pixel in the current view.</summary>
+        /// <param name="action">The <see cref="T:Action{T}"/> delegate to perform on each pixel.</param>
+        public void ForEach(Action<int, int, Color> action)
+        {
+            if (action == null)
+                throw new ArgumentNullException("action");
+
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
+            for (int x = _view.X; x < targetX; ++x)
+                for (int y = _view.Y; y < targetY; ++y)
+                    action(x, y, _provider.GetPixel(x, y));
+        }
+
+        /// <summary>Filters the pixels in the current view based on a predicate.</summary>
+        /// <param name="condition">A function to test pixel for a condition.</param>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:Pixel"/>s from the input sequence that satisfy the condition.</returns>
         public IEnumerable<Pixel> Where(Func<int, int, Color, bool> condition)
         {
             if (condition == null)
                 throw new ArgumentNullException("condition");
 
-            int targetX = GetTargetX();
-            int targetY = GetTargetY();
+            int targetX = GetTargetX;
+            int targetY = GetTargetY;
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
                 {

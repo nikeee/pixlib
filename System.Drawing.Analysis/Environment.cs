@@ -1,7 +1,9 @@
 ﻿namespace System.Drawing.Analysis
 {
+    /// <summary>Provides information about the current system environment.</summary>
     public static class Environment
     {
+        /// <summary>Gets the bounds of the virtual screen.</summary>
         public static Rectangle VirtualScreen
         {
             get
@@ -23,6 +25,8 @@
 
         private static bool _multiMonitorSupportInitialized;
         private static bool _isMultiMonitorSupported;
+
+        /// <summary>Gets a value indicating whether the current system uses a multi-monitor setup.</summary>
         public static bool IsMultiMonitorSupported
         {
             get
@@ -36,6 +40,7 @@
             }
         }
 
+        /// <summary>Gets the bounds of the primary screen.</summary>
         public static Size PrimaryMonitorSize
         {
             get
