@@ -62,11 +62,11 @@
         #region equals
 
         /// <summary>Determines whether this instance and another specified <see cref="T:ColorTolerance"/> object have the same values.</summary>
-        /// <param name="value">The other <see cref="T:ColorTolerance"/> instance.</param>
-        /// <returns>true if the values of the <paramref name="value"/> parameter are the same as this instance; otherwise, false.</returns>
-        public override bool Equals(object value)
+        /// <param name="obj">The other <see cref="T:ColorTolerance"/> instance.</param>
+        /// <returns>true if the values of the <paramref name="obj"/> parameter are the same as this instance; otherwise, false.</returns>
+        public override bool Equals(object obj)
         {
-            var ct = (ColorTolerance)value;
+            var ct = (ColorTolerance)obj;
             return (ct.A == A)
                 && (ct.R == R)
                 && (ct.G == G)
@@ -88,8 +88,8 @@
         #region ==-operator
 
         /// <summary>Determines whether two instances of <see cref="T:ColorTolerance"/> objects have the same values.</summary>
-        /// <param name="tolerance2">The first <see cref="T:ColorTolerance"/> instance.</param>
-        /// <param name="tolerance1">The second <see cref="T:ColorTolerance"/> instance.</param>
+        /// <param name="tolerance1">The first <see cref="T:ColorTolerance"/> instance.</param>
+        /// <param name="tolerance2">The second <see cref="T:ColorTolerance"/> instance.</param>
         /// <returns>true if the values of the given instances have the same values; otherwise, false.</returns>
         public static bool operator ==(ColorTolerance tolerance1, ColorTolerance tolerance2)
         {

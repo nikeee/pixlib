@@ -37,6 +37,9 @@ namespace System.Drawing.Analysis.Manipulation
         #endregion
         #region equals
 
+        /// <summary>Determines whether this instance and another specified <see cref="T:Pixel"/> object have the same values.</summary>
+        /// <param name="obj">The other <see cref="T:Pixel"/> instance.</param>
+        /// <returns>true if the values of the <paramref name="obj"/> parameter are the same as this instance; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             var p = (Pixel)obj;
@@ -53,17 +56,25 @@ namespace System.Drawing.Analysis.Manipulation
         #endregion
         #region ==-operator
 
+        /// <summary>Determines whether two instances of <see cref="T:Pixel"/> objects have the same values.</summary>
+        /// <param name="pixel1">The first <see cref="T:Pixel"/> instance.</param>
+        /// <param name="pixel2">The second <see cref="T:Pixel"/> instance.</param>
+        /// <returns>true if the values of the given instances have the same values; otherwise, false.</returns>
         public static bool operator ==(Pixel pixel1, Pixel pixel2)
         {
             // In case of refactoring to class, take care of this!
             return (pixel1.X == pixel2.X) && (pixel1.Y == pixel2.Y) && (pixel1.Color.ValuesEqual(pixel2.Color));
         }
+
+        /// <summary>Determines whether two instances of <see cref="T:Pixel"/> objects do not have the same values.</summary>
+        /// <param name="pixel1">The first <see cref="T:Pixel"/> instance.</param>
+        /// <param name="pixel2">The second <see cref="T:Pixel"/> instance.</param>
+        /// <returns>true if the values of the given instances do not have the same values; otherwise, false.</returns>
         public static bool operator !=(Pixel pixel1, Pixel pixel2)
         {
             return !(pixel1 == pixel2);
         }
-
-
+        
         #endregion
     }
 }
