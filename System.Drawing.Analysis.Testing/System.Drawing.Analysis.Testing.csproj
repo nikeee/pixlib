@@ -63,9 +63,9 @@
     <Compile Include="TestingHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\System.Drawing.Analysis\System.Drawing.Analysis.csproj">
+    <ProjectReference Include="..\System.Drawing.Analysis\System.Drawing.Analysis %283.5%29.csproj">
       <Project>{5abad8f2-2a7b-448a-b975-6e0980faa789}</Project>
-      <Name>System.Drawing.Analysis</Name>
+      <Name>System.Drawing.Analysis %283.5%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
