@@ -2,9 +2,12 @@ using System.Collections.Generic;
 
 namespace System.Drawing.Analysis.Manipulation
 {
+    /// <summary>Provides scan directions for the <see cref="T:RadialScanner"/>.</summary>
     public enum RadialScanDirection
     {
+        /// <summary>Scan clockwise.</summary>
         Clockwise,
+        /// <summary>Scan counter clockwise.</summary>
         CounterClockwise
     }
 
@@ -33,13 +36,11 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>The direction the scanner scans while performing operations.</summary>
         public RadialScanDirection ScanDirection { get; private set; }
-
-
+        
         #region Ctors
 
         /// <summary>Creates a new instance of <see cref="T:RadialScanner"/> using a given <see cref="T:IGetPixelProvider"/> scanning clockwise.</summary>
         /// <param name="provider">An <see cref="T:IGetPixelProvider"/> instance</param>
-        /// <param name="scanDirection">The <see cref="T:RadialScanDirection"/> for the scanner to use.</param>
         public RadialScanner(IGetPixelProvider provider)
             : this(provider, RadialScanDirection.Clockwise)
         { }

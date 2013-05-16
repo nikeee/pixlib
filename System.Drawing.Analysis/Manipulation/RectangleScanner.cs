@@ -2,11 +2,16 @@ using System.Collections.Generic;
 
 namespace System.Drawing.Analysis.Manipulation
 {
+    /// <summary>Provides scan directions for the <see cref="T:RectangleScanner"/>.</summary>
     public enum RectangleScanDirection
     {
+        /// <summary>Scan from left to right.</summary>
         LeftToRight,
+        /// <summary>Scan from right to left.</summary>
         RightToLeft,
+        /// <summary>Scan from top to bottom.</summary>
         TopToBottom,
+        /// <summary>Scan from bottom to top.</summary>
         BottomToTop
     }
 
@@ -35,8 +40,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>The direction the scanner scans while performing operations.</summary>
         public RectangleScanDirection ScanDirection { get; private set; }
-
-
+        
         #region Ctors
 
         /// <summary>Creates a new instance of <see cref="T:RectangleScanner"/> using a given <see cref="T:IGetPixelProvider"/> scanning from top to bottom.</summary>
