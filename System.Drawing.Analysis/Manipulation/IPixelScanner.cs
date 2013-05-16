@@ -4,6 +4,8 @@ namespace System.Drawing.Analysis.Manipulation
 {
     // Maybe inherit from IEnumerable<Point> or something similar?
     // May provide async operations as well
+
+    /// <summary>Defines methods used to scan pixel data.</summary>
     public interface IPixelScanner
     {
         /// <summary>Gets or sets the area in which the <see cref="T:IPixelScanner"/> instance operates.</summary>
