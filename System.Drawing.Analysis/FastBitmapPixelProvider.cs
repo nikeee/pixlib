@@ -41,12 +41,12 @@ namespace System.Drawing.Analysis
         {
             if (_isLocked)
                 throw new InvalidOperationException();
+            _isLocked = true;
             _bitmapData = Bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             unsafe
             {
                 _scan0 = (byte*)_bitmapData.Scan0.ToPointer();
             }
-            _isLocked = true;
         }
 
         [SecurityCritical]
@@ -54,11 +54,11 @@ namespace System.Drawing.Analysis
         {
             if (!_isLocked)
                 throw new InvalidOperationException();
-            Bitmap.UnlockBits(_bitmapData);
             unsafe
             {
                 _scan0 = null;
             }
+            Bitmap.UnlockBits(_bitmapData);
             _isLocked = false;
         }
 
@@ -108,6 +108,9 @@ namespace System.Drawing.Analysis
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsGetPixelThreading { get { return true; } }
 
+#if NET45
+        [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         internal unsafe Color GetPixelInternal(int x, int y)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
@@ -146,6 +149,9 @@ namespace System.Drawing.Analysis
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsSetPixelThreading { get { return true; } }
 
+#if NET45
+        [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
