@@ -30,7 +30,7 @@ namespace System.Drawing.Analysis
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
         {
-            _bitmapDimensions = new Rectangle(Point.Empty, Bitmap.Size);
+            _bitmapDimensions = new Rectangle(0, 0, Bitmap.Size.Width, Bitmap.Size.Height);
             Lock();
         }
 
