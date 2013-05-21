@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+#if NET40
+using System.Runtime;
+#endif
 
 namespace System.Drawing.Analysis
 {
@@ -17,16 +20,40 @@ namespace System.Drawing.Analysis
         private readonly int _minB;
 
         /// <summary>Gets the minimum alpha value the the a can have to match the <see cref="T:ColorTolerance"/>.</summary>
-        public int MinA { get { return _minA; } }
+        public int MinA
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _minA; }
+        }
 
         /// <summary>Gets the minimum red value the the a can have to match the <see cref="T:ColorTolerance"/>.</summary>
-        public int MinR { get { return _minR; } }
+        public int MinR
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _minR; }
+        }
 
         /// <summary>Gets the minimum green value the the a can have to match the <see cref="T:ColorTolerance"/>.</summary>
-        public int MinG { get { return _minG; } }
+        public int MinG
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _minG; }
+        }
 
         /// <summary>Gets the minimum blue value the the a can have to match the <see cref="T:ColorTolerance"/>.</summary>
-        public int MinB { get { return _minB; } }
+        public int MinB
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _minB; }
+        }
 
         private readonly int _maxA;
         private readonly int _maxR;
@@ -34,16 +61,40 @@ namespace System.Drawing.Analysis
         private readonly int _maxB;
 
         /// <summary>Gets the maximum alpha value the the a can have to match the <see cref="T:ColorTolerance"/>.</summary>
-        public int MaxA { get { return _maxA; } }
+        public int MaxA
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _maxA; }
+        }
 
         /// <summary>Gets the maximum red value the the a can have to match the <see cref="T:ColorTolerance"/>.</summary>
-        public int MaxR { get { return _maxR; } }
+        public int MaxR
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _maxR; }
+        }
 
         /// <summary>Gets the maximum green value the the a can have to match the <see cref="T:ColorTolerance"/>.</summary>
-        public int MaxG { get { return _maxG; } }
+        public int MaxG
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _maxG; }
+        }
 
         /// <summary>Gets the maximum blue value the the a can have to match the <see cref="T:ColorTolerance"/>.</summary>
-        public int MaxB { get { return _maxB; } }
+        public int MaxB
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _maxB; }
+        }
 
         private Color _baseColor;
         private ColorTolerance _baseTolerance;
