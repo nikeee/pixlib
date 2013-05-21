@@ -36,6 +36,7 @@ namespace System.Drawing.Analysis
         #region Lock/Unlock
 
         private bool _isLocked;
+
         [SecurityCritical]
         private void Lock()
         {

@@ -168,6 +168,4 @@ namespace System.Drawing.Analysis
 
         #endregion
     }
-
-
 }
