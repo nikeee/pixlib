@@ -93,7 +93,7 @@ namespace System.Drawing.Analysis
 
         /// <summary>Copies the entire pixel data to another provider.</summary>
         /// <param name="destination">The destination pixel provider.</param>
-        public void CopyTo(ISetPixelProvider destination)
+        public virtual void CopyTo(ISetPixelProvider destination)
         {
             if (Size != destination.Size)
                 throw new InvalidOperationException("Unmatiching sizes!");
