@@ -36,6 +36,7 @@ namespace System.Drawing.Analysis
         #region Lock/Unlock
 
         private bool _isLocked;
+        [SecurityCritical]
         private void Lock()
         {
             if (_isLocked)
@@ -47,6 +48,8 @@ namespace System.Drawing.Analysis
             }
             _isLocked = true;
         }
+
+        [SecurityCritical]
         private void Unlock()
         {
             if (!_isLocked)
@@ -177,14 +180,16 @@ namespace System.Drawing.Analysis
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
 
             int a = _scan0[index];
+            _scan0[index] = color.A;
+            
             int r = _scan0[--index];
+            _scan0[index] = color.R;
+            
             int g = _scan0[--index];
-            int b = _scan0[--index];
+            _scan0[index] = color.G;
 
+            int b = _scan0[--index];
             _scan0[index] = color.B;
-            _scan0[++index] = color.G;
-            _scan0[++index] = color.R;
-            _scan0[++index] = color.A;
 
             return Color.FromArgb(a, r, g, b);
         }
