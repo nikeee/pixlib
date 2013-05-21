@@ -135,7 +135,9 @@ namespace System.Drawing.Analysis
         /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
         public override Color GetPixel(Point point)
         {
-            return GetPixel(point.X, point.Y);
+            if (point.X >= Size.Width || point.Y >= Size.Height)
+                throw new InvalidOperationException();
+            return GetPixelInternal(point.X, point.Y);
         }
 
         #endregion
@@ -169,7 +171,9 @@ namespace System.Drawing.Analysis
         /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
         public override void SetPixel(Point point, Color color)
         {
-            SetPixel(point.X, point.Y, color);
+            if (point.X >= Size.Width || point.Y >= Size.Height)
+                throw new InvalidOperationException();
+            SetPixelInternal(point.X, point.Y, color);
         }
 
         #endregion
