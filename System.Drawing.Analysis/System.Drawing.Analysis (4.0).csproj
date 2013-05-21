@@ -51,6 +51,7 @@
     <Compile Include="ColorExtensions.cs" />
     <Compile Include="ColorTolerance.cs" />
     <Compile Include="ColorToleranceBorders.cs" />
+    <Compile Include="CompileConstants.cs" />
     <Compile Include="FastBitmapPixelProvider.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="GdiConstants.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Manipulation\Pixel.cs" />
     <Compile Include="Manipulation\PixelExtensions.cs" />
     <Compile Include="Manipulation\RadialScanner.cs" />
+    <Compile Include="Manipulation\Union.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

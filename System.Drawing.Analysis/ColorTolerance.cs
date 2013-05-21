@@ -1,4 +1,8 @@
-﻿namespace System.Drawing.Analysis
+﻿#if NET40
+using System.Runtime;
+#endif
+
+namespace System.Drawing.Analysis
 {
     /// <summary>Represents a tolerance value that can be used when comparing colors.</summary>
     [Serializable]
@@ -10,28 +14,76 @@
         private readonly int _b;
 
         /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the alpha channel.</summary>
-        public int A { get { return _a; } }
+        public int A
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _a; }
+        }
 
         /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the red channel.</summary>
-        public int R { get { return _r; } }
-                                    
+        public int R
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _r; }
+        }
+
         /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the green channel.</summary>
-        public int G { get { return _g; } }
+        public int G
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _g; }
+        }
 
         /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the blue channel.</summary>
-        public int B { get { return _b; } }
+        public int B
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _b; }
+        }
 
         /// <summary>Gets a value indicating whether the alpha channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
-        public bool IgnoreA { get { return _a < 0; } }
-        
+        public bool IgnoreA
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _a < 0; }
+        }
+
         /// <summary>Gets a value indicating whether the red channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
-        public bool IgnoreR { get { return _r < 0; } }
-        
+        public bool IgnoreR
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _r < 0; }
+        }
+
         /// <summary>Gets a value indicating whether the green channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
-        public bool IgnoreG { get { return _g < 0; } }
+        public bool IgnoreG
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _g < 0; }
+        }
 
         /// <summary>Gets a value indicating whether the blue channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
-        public bool IgnoreB { get { return _b < 0; } }
+        public bool IgnoreB
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _b < 0; }
+        }
 
         #region Ctors
 
@@ -116,6 +168,4 @@
 
         #endregion
     }
-
-
 }

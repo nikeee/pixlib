@@ -68,6 +68,9 @@ namespace System.Drawing.Analysis
         /// <param name="x">The x-coordinate of the pixel to retrieve.</param>
         /// <param name="y">The y-coordinate of the pixel to retrieve.</param>
         /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
+#if NET45
+        [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         public override Color GetPixel(int x, int y)
         {
             return Bitmap.GetPixel(x, y);
@@ -76,9 +79,12 @@ namespace System.Drawing.Analysis
         /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
         /// <param name="point">The coordinates of the pixel to retrieve.</param>
         /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
+#if NET45
+        [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         public override Color GetPixel(Point point)
         {
-            return GetPixel(point.X, point.Y);
+            return Bitmap.GetPixel(point.X, point.Y);
         }
 
         #endregion
@@ -91,6 +97,9 @@ namespace System.Drawing.Analysis
         /// <param name="x">The x-coordinate of the pixel to set.</param>
         /// <param name="y">The y-coordinate of the pixel to set.</param>
         /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
+#if NET45
+        [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         public override void SetPixel(int x, int y, Color color)
         {
             Bitmap.SetPixel(x, y, color);
@@ -99,9 +108,12 @@ namespace System.Drawing.Analysis
         /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
         /// <param name="point">The coordinates of the pixel to set.</param>
         /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
+#if NET45
+        [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         public override void SetPixel(Point point, Color color)
         {
-            SetPixel(point.X, point.Y, color);
+            Bitmap.SetPixel(point.X, point.Y, color);
         }
 
         #endregion
@@ -156,6 +168,5 @@ namespace System.Drawing.Analysis
         }
 
         #endregion
-
     }
 }

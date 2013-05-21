@@ -19,5 +19,9 @@
         /// <param name="point">The coordinates of the pixel to retrieve.</param>
         /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
         Color GetPixel(Point point);
+
+        /// <summary>Copies the entire pixel data to another provider.</summary>
+        /// <param name="destination">The destination pixel provider.</param>
+        void CopyTo(ISetPixelProvider destination);
     }
 }

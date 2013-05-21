@@ -10,6 +10,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Analysis (4.
 		{5ABAD8F2-2A7B-448A-B975-6E0980FAA789} = {5ABAD8F2-2A7B-448A-B975-6E0980FAA789}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Analysis (4.5)", "System.Drawing.Analysis\System.Drawing.Analysis (4.5).csproj", "{C36B007F-EE47-4D3F-B81E-69AC44799541}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9FBC383D-D79D-4519-B841-8E0BA3ED1192} = {9FBC383D-D79D-4519-B841-8E0BA3ED1192}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +33,10 @@ Global
 		{9FBC383D-D79D-4519-B841-8E0BA3ED1192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FBC383D-D79D-4519-B841-8E0BA3ED1192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FBC383D-D79D-4519-B841-8E0BA3ED1192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C36B007F-EE47-4D3F-B81E-69AC44799541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C36B007F-EE47-4D3F-B81E-69AC44799541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C36B007F-EE47-4D3F-B81E-69AC44799541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C36B007F-EE47-4D3F-B81E-69AC44799541}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

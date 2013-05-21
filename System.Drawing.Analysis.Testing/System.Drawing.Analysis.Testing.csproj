@@ -57,7 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DefaultScannerTests.cs" />
-    <Compile Include="EnvironmentTests.cs" />
+    <Compile Include="MiscTests.cs" />
     <Compile Include="FastPixelProviderUnitTests.cs" />
     <Compile Include="SlowBitmalPixelProviderUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

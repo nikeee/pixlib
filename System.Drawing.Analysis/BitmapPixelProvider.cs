@@ -90,5 +90,23 @@ namespace System.Drawing.Analysis
         /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
         /// <returns>A Color structure that represents the previous color of the specified pixel.</returns>
         public abstract Color SwapPixel(int x, int y, Color color);
+
+        /// <summary>Copies the entire pixel data to another provider.</summary>
+        /// <param name="destination">The destination pixel provider.</param>
+        public virtual void CopyTo(ISetPixelProvider destination)
+        {
+            if (destination == null)
+                throw new ArgumentNullException("destination");
+            if (Size != destination.Size)
+                throw new InvalidOperationException("Unmatiching sizes!");
+            int x, y;
+            Color c;
+            for (y = 0; y < Size.Height; ++y)
+                for (x = 0; x < Size.Width; ++x)
+                {
+                    c = GetPixel(x, y);
+                    destination.SetPixel(x, y, c);
+                }
+        }
     }
 }

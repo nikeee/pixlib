@@ -28,7 +28,7 @@ namespace System.Drawing.Analysis.Manipulation
 
 
         #region Ctors
-        
+
         /// <summary>Creates a new instance of <see cref="T:DefaultScanner"/> using a given <see cref="T:IGetPixelProvider"/>.</summary>
         /// <param name="provider">An <see cref="T:IGetPixelProvider"/> instance</param>
         public DefaultScanner(IGetPixelProvider provider)
@@ -43,10 +43,22 @@ namespace System.Drawing.Analysis.Manipulation
         #region Helpers
 
         /// <summary>Gets the target x-coordinate for the default scanner for-loop.</summary>
-        protected int GetTargetX { get { return _view.X + _view.Width; } }
+        protected int GetTargetX
+        {
+#if NET45
+            [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+            get { return _view.X + _view.Width; }
+        }
 
         /// <summary>Gets the target y-coordinate for the default scanner for-loop.</summary>
-        protected int GetTargetY { get { return _view.Y + _view.Height; } }
+        protected int GetTargetY
+        {
+#if NET45
+            [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
+            get { return _view.Y + _view.Height; }
+        }
 
         #endregion
 

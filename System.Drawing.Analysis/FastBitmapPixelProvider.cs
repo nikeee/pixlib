@@ -1,3 +1,5 @@
+#define USEUNCHECKED
+
 using System.Drawing.Imaging;
 using System.Security;
 
@@ -28,7 +30,7 @@ namespace System.Drawing.Analysis
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
         {
-            _bitmapDimensions = new Rectangle(Point.Empty, Bitmap.Size);
+            _bitmapDimensions = new Rectangle(0, 0, Bitmap.Size.Width, Bitmap.Size.Height);
             Lock();
         }
 
@@ -36,26 +38,30 @@ namespace System.Drawing.Analysis
         #region Lock/Unlock
 
         private bool _isLocked;
+
+        [SecurityCritical]
         private void Lock()
         {
             if (_isLocked)
                 throw new InvalidOperationException();
+            _isLocked = true;
             _bitmapData = Bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             unsafe
             {
-                _scan0 = (byte*) _bitmapData.Scan0.ToPointer();
+                _scan0 = (byte*)_bitmapData.Scan0.ToPointer();
             }
-            _isLocked = true;
         }
+
+        [SecurityCritical]
         private void Unlock()
         {
             if (!_isLocked)
                 throw new InvalidOperationException();
-            Bitmap.UnlockBits(_bitmapData);
             unsafe
             {
                 _scan0 = null;
             }
+            Bitmap.UnlockBits(_bitmapData);
             _isLocked = false;
         }
 
@@ -105,15 +111,25 @@ namespace System.Drawing.Analysis
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsGetPixelThreading { get { return true; } }
 
+#if NET45
+        [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         internal unsafe Color GetPixelInternal(int x, int y)
         {
-            int index = PixelSize * Size.Width * y + PixelSize * x + 3;
-            return Color.FromArgb(
-                    _scan0[index],
-                    _scan0[--index],
-                    _scan0[--index],
-                    _scan0[--index]
-                );
+#if USEUNCHECKED
+            unchecked
+            {
+#endif
+                int index = PixelSize * Size.Width * y + PixelSize * x + 3;
+                return Color.FromArgb(
+                        _scan0[index],
+                        _scan0[--index],
+                        _scan0[--index],
+                        _scan0[--index]
+                    );
+#if USEUNCHECKED
+            }
+#endif
         }
 
         /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
@@ -132,7 +148,9 @@ namespace System.Drawing.Analysis
         /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
         public override Color GetPixel(Point point)
         {
-            return GetPixel(point.X, point.Y);
+            if (point.X >= Size.Width || point.Y >= Size.Height)
+                throw new InvalidOperationException();
+            return GetPixelInternal(point.X, point.Y);
         }
 
         #endregion
@@ -141,13 +159,23 @@ namespace System.Drawing.Analysis
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsSetPixelThreading { get { return true; } }
 
+#if NET45
+        [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+#endif
         internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
-            int index = PixelSize * Size.Width * y + PixelSize * x + 3;
-            _scan0[index] = color.A;
-            _scan0[--index] = color.R;
-            _scan0[--index] = color.G;
-            _scan0[--index] = color.B;
+#if USEUNCHECKED
+            unchecked
+            {
+#endif
+                int index = PixelSize * Size.Width * y + PixelSize * x + 3;
+                _scan0[index] = color.A;
+                _scan0[--index] = color.R;
+                _scan0[--index] = color.G;
+                _scan0[--index] = color.B;
+#if USEUNCHECKED
+            }
+#endif
         }
 
         /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
@@ -166,25 +194,29 @@ namespace System.Drawing.Analysis
         /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
         public override void SetPixel(Point point, Color color)
         {
-            SetPixel(point.X, point.Y, color);
+            if (point.X >= Size.Width || point.Y >= Size.Height)
+                throw new InvalidOperationException();
+            SetPixelInternal(point.X, point.Y, color);
         }
 
         #endregion
         #region IPixelProvider
-        
+
         private unsafe Color SwapPixelInternal(int x, int y, Color color)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
 
             int a = _scan0[index];
-            int r = _scan0[--index];
-            int g = _scan0[--index];
-            int b = _scan0[--index];
+            _scan0[index] = color.A;
 
+            int r = _scan0[--index];
+            _scan0[index] = color.R;
+
+            int g = _scan0[--index];
+            _scan0[index] = color.G;
+
+            int b = _scan0[--index];
             _scan0[index] = color.B;
-            _scan0[++index] = color.G;
-            _scan0[++index] = color.R;
-            _scan0[++index] = color.A;
 
             return Color.FromArgb(a, r, g, b);
         }
@@ -197,7 +229,7 @@ namespace System.Drawing.Analysis
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
-            return SwapPixelInternal(x,y, color);
+            return SwapPixelInternal(x, y, color);
         }
 
         #endregion

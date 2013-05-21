@@ -1,3 +1,7 @@
+#if NET40
+using System.Runtime;
+#endif
+
 namespace System.Drawing.Analysis.Manipulation
 {
     /// <summary>
@@ -9,16 +13,46 @@ namespace System.Drawing.Analysis.Manipulation
         private int _x;
 
         /// <summary>Gets or sets the x-coordinate of the pixel.</summary>
-        public int X { get { return _x; } set { _x = value; } }
+        public int X
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _x; }
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            set { _x = value; }
+        }
 
         private int _y;
 
         /// <summary>Gets or sets the y-coordinate of the pixel.</summary>
-        public int Y { get { return _y; } set { _y = value; } }
+        public int Y
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _y; }
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            set { _y = value; }
+        }
 
         private Color _color;
         /// <summary>Gets or sets The <see cref="T:System.Drawing.Color"/> of the pixel.</summary>
-        public Color Color { get { return _color; } set { _color = value; } }
+        public Color Color
+        {
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            get { return _color; }
+#if NET40
+            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
+#endif
+            set { _color = value; }
+        }
 
         #region ctors
 
@@ -93,7 +127,7 @@ namespace System.Drawing.Analysis.Manipulation
         {
             return !(pixel1 == pixel2);
         }
-        
+
         #endregion
     }
 }
