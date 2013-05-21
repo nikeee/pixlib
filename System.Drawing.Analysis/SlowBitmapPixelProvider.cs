@@ -81,22 +81,6 @@ namespace System.Drawing.Analysis
             return GetPixel(point.X, point.Y);
         }
 
-        /// <summary>Copies the entire pixel data to another provider.</summary>
-        /// <param name="destination">The destination pixel provider.</param>
-        public override void CopyTo(ISetPixelProvider destination)
-        {
-            if (Size != destination.Size)
-                throw new InvalidOperationException("Unmatiching sizes!");
-            int x, y;
-            Color c;
-            for (y = 0; y < Size.Height; ++y)
-                for (x = 0; x < Size.Width; ++x)
-                {
-                    c = GetPixel(x, y);
-                    destination.SetPixel(x, y, c);
-                }
-        }
-
         #endregion
         #region SetPixel
 
