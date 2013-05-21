@@ -1,3 +1,5 @@
+#define USEUNCHECKED
+
 using System.Drawing.Imaging;
 using System.Security;
 
@@ -114,13 +116,20 @@ namespace System.Drawing.Analysis
 #endif
         internal unsafe Color GetPixelInternal(int x, int y)
         {
-            int index = PixelSize * Size.Width * y + PixelSize * x + 3;
-            return Color.FromArgb(
-                    _scan0[index],
-                    _scan0[--index],
-                    _scan0[--index],
-                    _scan0[--index]
-                );
+#if USEUNCHECKED
+            unchecked
+            {
+#endif
+                int index = PixelSize * Size.Width * y + PixelSize * x + 3;
+                return Color.FromArgb(
+                        _scan0[index],
+                        _scan0[--index],
+                        _scan0[--index],
+                        _scan0[--index]
+                    );
+#if USEUNCHECKED
+            }
+#endif
         }
 
         /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
@@ -155,11 +164,18 @@ namespace System.Drawing.Analysis
 #endif
         internal unsafe void SetPixelInternal(int x, int y, Color color)
         {
-            int index = PixelSize * Size.Width * y + PixelSize * x + 3;
-            _scan0[index] = color.A;
-            _scan0[--index] = color.R;
-            _scan0[--index] = color.G;
-            _scan0[--index] = color.B;
+#if USEUNCHECKED
+            unchecked
+            {
+#endif
+                int index = PixelSize * Size.Width * y + PixelSize * x + 3;
+                _scan0[index] = color.A;
+                _scan0[--index] = color.R;
+                _scan0[--index] = color.G;
+                _scan0[--index] = color.B;
+#if USEUNCHECKED
+            }
+#endif
         }
 
         /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
