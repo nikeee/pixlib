@@ -64,6 +64,7 @@
     <Compile Include="Manipulation\Pixel.cs" />
     <Compile Include="Manipulation\PixelExtensions.cs" />
     <Compile Include="Manipulation\RadialScanner.cs" />
+    <Compile Include="Manipulation\Union.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
