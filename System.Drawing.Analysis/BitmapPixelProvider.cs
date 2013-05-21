@@ -95,6 +95,8 @@ namespace System.Drawing.Analysis
         /// <param name="destination">The destination pixel provider.</param>
         public virtual void CopyTo(ISetPixelProvider destination)
         {
+            if (destination == null)
+                throw new ArgumentNullException("destination");
             if (Size != destination.Size)
                 throw new InvalidOperationException("Unmatiching sizes!");
             int x, y;
