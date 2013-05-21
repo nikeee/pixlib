@@ -89,7 +89,7 @@ namespace System.Drawing.Analysis
                 throw new InvalidOperationException("Unmatiching sizes!");
             int x, y;
             Color c;
-            for(y = 0; y <Size.Height; ++y)
+            for (y = 0; y < Size.Height; ++y)
                 for (x = 0; x < Size.Width; ++x)
                 {
                     c = GetPixel(x, y);

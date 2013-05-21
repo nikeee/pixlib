@@ -44,7 +44,7 @@ namespace System.Drawing.Analysis
             _bitmapData = Bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             unsafe
             {
-                _scan0 = (byte*) _bitmapData.Scan0.ToPointer();
+                _scan0 = (byte*)_bitmapData.Scan0.ToPointer();
             }
             _isLocked = true;
         }
@@ -190,17 +190,17 @@ namespace System.Drawing.Analysis
 
         #endregion
         #region IPixelProvider
-        
+
         private unsafe Color SwapPixelInternal(int x, int y, Color color)
         {
             int index = PixelSize * Size.Width * y + PixelSize * x + 3;
 
             int a = _scan0[index];
             _scan0[index] = color.A;
-            
+
             int r = _scan0[--index];
             _scan0[index] = color.R;
-            
+
             int g = _scan0[--index];
             _scan0[index] = color.G;
 
@@ -218,7 +218,7 @@ namespace System.Drawing.Analysis
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
-            return SwapPixelInternal(x,y, color);
+            return SwapPixelInternal(x, y, color);
         }
 
         #endregion
