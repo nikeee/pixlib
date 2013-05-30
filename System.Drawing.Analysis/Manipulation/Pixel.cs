@@ -131,6 +131,7 @@ namespace System.Drawing.Analysis.Manipulation
         #endregion
         #region overrides
 
+        /// <summary>Converts this <see cref="T:Pixel"/> structure to a human-readable string.</summary>
         public override string ToString()
         {
             var sb = new System.Text.StringBuilder();

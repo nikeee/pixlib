@@ -14,6 +14,6 @@ namespace System.Drawing.Analysis.Manipulation
     //    public T Value1;
 
     //    [FieldOffset(0)]
-    //    public T Value2;
+    //    public U Value2;
     //}
 }
