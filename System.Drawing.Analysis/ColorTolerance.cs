@@ -101,10 +101,9 @@ namespace System.Drawing.Analysis
         /// <param name="r">The value for the red channel.</param>
         /// <param name="g">The value for the green channel.</param>
         /// <param name="b">The value for the blue channel.</param>
-        /// <param name="ignoreAlpha">A value indicating whether to do ignore the alpha channel.</param>
-        public ColorTolerance(int a, int r, int g, int b, bool ignoreAlpha)
+        public ColorTolerance(int a, int r, int g, int b)
         {
-            _a = ignoreAlpha ? -1 : a;
+            _a = a;
             _r = r;
             _g = g;
             _b = b;
