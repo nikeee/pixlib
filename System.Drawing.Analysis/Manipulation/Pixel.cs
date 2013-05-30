@@ -134,12 +134,19 @@ namespace System.Drawing.Analysis.Manipulation
         public override string ToString()
         {
             var sb = new System.Text.StringBuilder();
-            sb.Append("X: ");
+            sb.Append("X=");
             sb.Append(_x);
-            sb.Append(", Y: ");
+            sb.Append(", Y=");
             sb.Append(_y);
-            sb.Append(", Color: ");
-            sb.Append(Color.ToString());
+            sb.Append(", Color: [A=");
+            sb.Append(_color.A);
+            sb.Append(", R=");
+            sb.Append(_color.R);
+            sb.Append(", G=");
+            sb.Append(_color.G);
+            sb.Append(", B=");
+            sb.Append(_color.B);
+            sb.Append(']');
             return sb.ToString();
         }
 
