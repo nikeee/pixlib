@@ -103,7 +103,7 @@ namespace System.Drawing.Analysis.Manipulation
         /// <returns>The hash code for this <see cref="T:Pixel"/></returns>
         public override int GetHashCode()
         {
-            return X ^ Y ^ Color.GetHashCode();
+            return _x ^ _y ^ Color.GetHashCode();
         }
 
         #endregion
@@ -126,6 +126,21 @@ namespace System.Drawing.Analysis.Manipulation
         public static bool operator !=(Pixel pixel1, Pixel pixel2)
         {
             return !(pixel1 == pixel2);
+        }
+
+        #endregion
+        #region overrides
+
+        public override string ToString()
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.Append("X: ");
+            sb.Append(_x);
+            sb.Append(", Y: ");
+            sb.Append(_y);
+            sb.Append(", Color: ");
+            sb.Append(Color.ToString());
+            return sb.ToString();
         }
 
         #endregion
