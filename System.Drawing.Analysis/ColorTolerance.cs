@@ -90,7 +90,7 @@ namespace System.Drawing.Analysis
         /// <summary>Creates a new instance of a <see cref="T:ColorTolerance"/> setting every color channel to a single value.</summary>
         /// <param name="all">The value for every color channel.</param>
         /// <param name="ignoreAlpha">A value indicating whether to do ignore the alpha channel.</param>
-        public ColorTolerance(byte all, bool ignoreAlpha)
+        public ColorTolerance(int all, bool ignoreAlpha)
         {
             _r = _g = _b = all;
             _a = ignoreAlpha ? -1 : all;
@@ -102,7 +102,7 @@ namespace System.Drawing.Analysis
         /// <param name="g">The value for the green channel.</param>
         /// <param name="b">The value for the blue channel.</param>
         /// <param name="ignoreAlpha">A value indicating whether to do ignore the alpha channel.</param>
-        public ColorTolerance(byte a, byte r, byte g, byte b, bool ignoreAlpha)
+        public ColorTolerance(int a, int r, int g, int b, bool ignoreAlpha)
         {
             _a = ignoreAlpha ? -1 : a;
             _r = r;
