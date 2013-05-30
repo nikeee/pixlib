@@ -57,7 +57,7 @@ namespace System.Drawing.Analysis.Manipulation
         #region ctors
 
 
-        /// <summary>Creates a new <see cref="T:Pixel"/> instance using the given parameters.</summary>
+        /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance using the given parameters.</summary>
         /// <param name="x">The x-coordinate of the pixel.</param>
         /// <param name="y">The y-coordinate of the pixel.</param>
         /// <param name="a">The alpha value of the pixel.</param>
@@ -68,7 +68,7 @@ namespace System.Drawing.Analysis.Manipulation
             : this(x, y, Color.FromArgb(a, r, g, b))
         { }
 
-        /// <summary>Creates a new <see cref="T:Pixel"/> instance using the given parameters.</summary>
+        /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance using the given parameters.</summary>
         /// <param name="x">The x-coordinate of the pixel.</param>
         /// <param name="y">The y-coordinate of the pixel.</param>
         /// <param name="argb">An integer that represents the ARGB values.</param>
@@ -76,7 +76,7 @@ namespace System.Drawing.Analysis.Manipulation
             : this(x, y, Color.FromArgb(argb))
         { }
 
-        /// <summary>Creates a new <see cref="T:Pixel"/> instance using the given parameters.</summary>
+        /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance using the given parameters.</summary>
         /// <param name="x">The x-coordinate of the pixel.</param>
         /// <param name="y">The y-coordinate of the pixel.</param>
         /// <param name="color">A <see cref="T:System.Drawing.Color"/> instance that represents the color of the pixel.</param>
@@ -90,8 +90,8 @@ namespace System.Drawing.Analysis.Manipulation
         #endregion
         #region equals
 
-        /// <summary>Determines whether this instance and another specified <see cref="T:Pixel"/> object have the same values.</summary>
-        /// <param name="obj">The other <see cref="T:Pixel"/> instance.</param>
+        /// <summary>Determines whether this instance and another specified <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> object have the same values.</summary>
+        /// <param name="obj">The other <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance.</param>
         /// <returns>true if the values of the <paramref name="obj"/> parameter are the same as this instance; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
@@ -99,8 +99,8 @@ namespace System.Drawing.Analysis.Manipulation
             return (p.X == X) && (p.Y == Y) && (p.Color.ValuesEqual(Color));
         }
 
-        /// <summary>Returns the hash code for this <see cref="T:Pixel"/>.</summary>
-        /// <returns>The hash code for this <see cref="T:Pixel"/></returns>
+        /// <summary>Returns the hash code for this <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>.</summary>
+        /// <returns>The hash code for this <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/></returns>
         public override int GetHashCode()
         {
             return _x ^ _y ^ Color.GetHashCode();
@@ -109,9 +109,9 @@ namespace System.Drawing.Analysis.Manipulation
         #endregion
         #region ==-operator
 
-        /// <summary>Determines whether two instances of <see cref="T:Pixel"/> objects have the same values.</summary>
-        /// <param name="pixel1">The first <see cref="T:Pixel"/> instance.</param>
-        /// <param name="pixel2">The second <see cref="T:Pixel"/> instance.</param>
+        /// <summary>Determines whether two instances of <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> objects have the same values.</summary>
+        /// <param name="pixel1">The first <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance.</param>
+        /// <param name="pixel2">The second <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance.</param>
         /// <returns>true if the values of the given instances have the same values; otherwise, false.</returns>
         public static bool operator ==(Pixel pixel1, Pixel pixel2)
         {
@@ -119,9 +119,9 @@ namespace System.Drawing.Analysis.Manipulation
             return (pixel1.X == pixel2.X) && (pixel1.Y == pixel2.Y) && (pixel1.Color.ValuesEqual(pixel2.Color));
         }
 
-        /// <summary>Determines whether two instances of <see cref="T:Pixel"/> objects do not have the same values.</summary>
-        /// <param name="pixel1">The first <see cref="T:Pixel"/> instance.</param>
-        /// <param name="pixel2">The second <see cref="T:Pixel"/> instance.</param>
+        /// <summary>Determines whether two instances of <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> objects do not have the same values.</summary>
+        /// <param name="pixel1">The first <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance.</param>
+        /// <param name="pixel2">The second <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance.</param>
         /// <returns>true if the values of the given instances do not have the same values; otherwise, false.</returns>
         public static bool operator !=(Pixel pixel1, Pixel pixel2)
         {
@@ -131,7 +131,7 @@ namespace System.Drawing.Analysis.Manipulation
         #endregion
         #region overrides
 
-        /// <summary>Converts this <see cref="T:Pixel"/> structure to a human-readable string.</summary>
+        /// <summary>Converts this <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> structure to a human-readable string.</summary>
         public override string ToString()
         {
             var sb = new System.Text.StringBuilder();

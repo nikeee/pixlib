@@ -27,11 +27,11 @@
                 || color1.B != color2.B;
         }
 
-        /// <summary>Indicates whether a <see cref="T:System.Drawing.Color"/> fits within a set of <see cref="T:ColorToleranceBorders"/>.</summary>
+        /// <summary>Indicates whether a <see cref="T:System.Drawing.Color"/> fits within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</summary>
         /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
-        /// <param name="borders">The <see cref="T:ColorToleranceBorders"/> to check the color for.</param>
-        /// <param name="tolerance">The initial <see cref="T:ColorTolerance"/>.</param>
-        /// <returns>A value which indicates whether a <see cref="T:System.Drawing.Color"/> fits within a set of <see cref="T:ColorToleranceBorders"/>.</returns>
+        /// <param name="borders">The <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/> to check the color for.</param>
+        /// <param name="tolerance">The initial <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
+        /// <returns>A value which indicates whether a <see cref="T:System.Drawing.Color"/> fits within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</returns>
         public static bool ValuesFitTolerance(this Color color, ColorToleranceBorders borders, ColorTolerance tolerance)
         {
             // May enhance?
@@ -41,11 +41,11 @@
                 && (tolerance.IgnoreB || (borders.MinB <= color.B && color.B <= borders.MaxB));
         }
 
-        /// <summary>Indicates whether a <see cref="T:System.Drawing.Color"/> does not fit within a set of <see cref="T:ColorToleranceBorders"/>.</summary>
+        /// <summary>Indicates whether a <see cref="T:System.Drawing.Color"/> does not fit within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</summary>
         /// <param name="color">The <see cref="T:System.Drawing.Color"/>.</param>
-        /// <param name="borders">The <see cref="T:ColorToleranceBorders"/> to check the color for.</param>
-        /// <param name="tolerance">The initial <see cref="T:ColorTolerance"/>.</param>
-        /// <returns>A value which indicates whether a <see cref="T:System.Drawing.Color"/> does not fit within a set of <see cref="T:ColorToleranceBorders"/>.</returns>
+        /// <param name="borders">The <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/> to check the color for.</param>
+        /// <param name="tolerance">The initial <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
+        /// <returns>A value which indicates whether a <see cref="T:System.Drawing.Color"/> does not fit within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</returns>
         public static bool ValuesNotFitTolerance(this Color color, ColorToleranceBorders borders, ColorTolerance tolerance)
         {
             return (tolerance.IgnoreA || (borders.MinA > color.A || color.A > borders.MaxA))

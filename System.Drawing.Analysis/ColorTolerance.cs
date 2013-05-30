@@ -13,7 +13,7 @@ namespace System.Drawing.Analysis
         private readonly int _g;
         private readonly int _b;
 
-        /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the alpha channel.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.Analysis.ColorTolerance"/> value of the alpha channel.</summary>
         public int A
         {
 #if NET40
@@ -22,7 +22,7 @@ namespace System.Drawing.Analysis
             get { return _a; }
         }
 
-        /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the red channel.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.Analysis.ColorTolerance"/> value of the red channel.</summary>
         public int R
         {
 #if NET40
@@ -31,7 +31,7 @@ namespace System.Drawing.Analysis
             get { return _r; }
         }
 
-        /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the green channel.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.Analysis.ColorTolerance"/> value of the green channel.</summary>
         public int G
         {
 #if NET40
@@ -40,7 +40,7 @@ namespace System.Drawing.Analysis
             get { return _g; }
         }
 
-        /// <summary>Gets The <see cref="T:ColorTolerance"/> value of the blue channel.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.Analysis.ColorTolerance"/> value of the blue channel.</summary>
         public int B
         {
 #if NET40
@@ -49,7 +49,7 @@ namespace System.Drawing.Analysis
             get { return _b; }
         }
 
-        /// <summary>Gets a value indicating whether the alpha channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
+        /// <summary>Gets a value indicating whether the alpha channel is being ignored regarding The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
         public bool IgnoreA
         {
 #if NET40
@@ -58,7 +58,7 @@ namespace System.Drawing.Analysis
             get { return _a < 0; }
         }
 
-        /// <summary>Gets a value indicating whether the red channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
+        /// <summary>Gets a value indicating whether the red channel is being ignored regarding The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
         public bool IgnoreR
         {
 #if NET40
@@ -67,7 +67,7 @@ namespace System.Drawing.Analysis
             get { return _r < 0; }
         }
 
-        /// <summary>Gets a value indicating whether the green channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
+        /// <summary>Gets a value indicating whether the green channel is being ignored regarding The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
         public bool IgnoreG
         {
 #if NET40
@@ -76,7 +76,7 @@ namespace System.Drawing.Analysis
             get { return _g < 0; }
         }
 
-        /// <summary>Gets a value indicating whether the blue channel is being ignored regarding The <see cref="T:ColorTolerance"/>.</summary>
+        /// <summary>Gets a value indicating whether the blue channel is being ignored regarding The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
         public bool IgnoreB
         {
 #if NET40
@@ -87,7 +87,7 @@ namespace System.Drawing.Analysis
 
         #region Ctors
 
-        /// <summary>Creates a new instance of a <see cref="T:ColorTolerance"/> setting every color channel to a single value.</summary>
+        /// <summary>Creates a new instance of a <see cref="T:System.Drawing.Analysis.ColorTolerance"/> setting every color channel to a single value.</summary>
         /// <param name="all">The value for every color channel.</param>
         /// <param name="ignoreAlpha">A value indicating whether to do ignore the alpha channel.</param>
         public ColorTolerance(int all, bool ignoreAlpha)
@@ -96,7 +96,7 @@ namespace System.Drawing.Analysis
             _a = ignoreAlpha ? -1 : all;
         }
 
-        /// <summary>Creates a new instance of a <see cref="T:ColorTolerance"/>.</summary>
+        /// <summary>Creates a new instance of a <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
         /// <param name="a">The value for the alpha channel.</param>
         /// <param name="r">The value for the red channel.</param>
         /// <param name="g">The value for the green channel.</param>
@@ -112,8 +112,8 @@ namespace System.Drawing.Analysis
         #endregion
         #region equals
 
-        /// <summary>Determines whether this instance and another specified <see cref="T:ColorTolerance"/> object have the same values.</summary>
-        /// <param name="obj">The other <see cref="T:ColorTolerance"/> instance.</param>
+        /// <summary>Determines whether this instance and another specified <see cref="T:System.Drawing.Analysis.ColorTolerance"/> object have the same values.</summary>
+        /// <param name="obj">The other <see cref="T:System.Drawing.Analysis.ColorTolerance"/> instance.</param>
         /// <returns>true if the values of the <paramref name="obj"/> parameter are the same as this instance; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
@@ -128,8 +128,8 @@ namespace System.Drawing.Analysis
                 && (ct.IgnoreB == IgnoreB);
         }
 
-        /// <summary>Returns the hash code for this <see cref="T:ColorTolerance"/>.</summary>
-        /// <returns>The hash code for this <see cref="T:ColorTolerance"/>.</returns>
+        /// <summary>Returns the hash code for this <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
+        /// <returns>The hash code for this <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</returns>
         public override int GetHashCode()
         {
             return A ^ R ^ G ^ B;
@@ -138,9 +138,9 @@ namespace System.Drawing.Analysis
         #endregion
         #region ==-operator
 
-        /// <summary>Determines whether two instances of <see cref="T:ColorTolerance"/> objects have the same values.</summary>
-        /// <param name="tolerance1">The first <see cref="T:ColorTolerance"/> instance.</param>
-        /// <param name="tolerance2">The second <see cref="T:ColorTolerance"/> instance.</param>
+        /// <summary>Determines whether two instances of <see cref="T:System.Drawing.Analysis.ColorTolerance"/> objects have the same values.</summary>
+        /// <param name="tolerance1">The first <see cref="T:System.Drawing.Analysis.ColorTolerance"/> instance.</param>
+        /// <param name="tolerance2">The second <see cref="T:System.Drawing.Analysis.ColorTolerance"/> instance.</param>
         /// <returns>true if the values of the given instances have the same values; otherwise, false.</returns>
         public static bool operator ==(ColorTolerance tolerance1, ColorTolerance tolerance2)
         {
@@ -155,9 +155,9 @@ namespace System.Drawing.Analysis
                 && (tolerance1.IgnoreB == tolerance2.IgnoreB);
         }
 
-        /// <summary>Determines whether two instances of <see cref="T:ColorTolerance"/> objects do not have the same values.</summary>
-        /// <param name="tolerance1">The first <see cref="T:ColorTolerance"/> instance.</param>
-        /// <param name="tolerance2">The second <see cref="T:ColorTolerance"/> instance.</param>
+        /// <summary>Determines whether two instances of <see cref="T:System.Drawing.Analysis.ColorTolerance"/> objects do not have the same values.</summary>
+        /// <param name="tolerance1">The first <see cref="T:System.Drawing.Analysis.ColorTolerance"/> instance.</param>
+        /// <param name="tolerance2">The second <see cref="T:System.Drawing.Analysis.ColorTolerance"/> instance.</param>
         /// <returns>true if the values of the given instances do not have the same values; otherwise, false.</returns>
         public static bool operator !=(ColorTolerance tolerance1, ColorTolerance tolerance2)
         {
