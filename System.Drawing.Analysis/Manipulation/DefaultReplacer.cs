@@ -3,12 +3,12 @@
     /// <summary>Provides basic functionality to perform replace operations on pixel data.</summary>
     public class DefaultReplacer : DefaultScanner, IPixelReplacer
     {
-        private IPixelProvider _provider;
+        private readonly IPixelProvider _provider;
 
         #region Ctors
 
-        /// <summary>Creates a new instance of <see cref="T:DefaultReplacer"/> using a given <see cref="T:IPixelProvider"/>.</summary>
-        /// <param name="provider">The <see cref="T:IPixelProvider"/>.</param>
+        /// <summary>Creates a new instance of <see cref="T:System.Drawing.Analysis.Manipulation.DefaultReplacer"/> using a given <see cref="T:System.Drawing.Analysis.IPixelProvider"/>.</summary>
+        /// <param name="provider">The <see cref="T:System.Drawing.Analysis.IPixelProvider"/>.</param>
         public DefaultReplacer(IPixelProvider provider)
             : base(provider)
         {

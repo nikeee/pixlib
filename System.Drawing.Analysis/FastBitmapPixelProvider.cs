@@ -18,15 +18,15 @@ namespace System.Drawing.Analysis
 
         #region Ctors
 
-        /// <summary>Initializes a new instance of the <see cref="T:FastBitmapPixelProvider" /> class with the specified bitmap image.</summary>
+        /// <summary>Initializes a new instance of the <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider" /> class with the specified bitmap image.</summary>
         /// <param name="bitmap">The bitmap to use</param>
         public FastBitmapPixelProvider(Bitmap bitmap)
             : this(bitmap, true)
         { }
 
-        /// <summary>Initializes a new instance of the <see cref="T:FastBitmapPixelProvider" /> class with the specified bitmap image.</summary>
+        /// <summary>Initializes a new instance of the <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider" /> class with the specified bitmap image.</summary>
         /// <param name="bitmap">The bitmap to use</param>
-        /// /// <param name="disposeBitmapOnFinalize">A value indicating whether the bitmap object is getting disposed if this <see cref="T:FastBitmapPixelProvider" /> instance is disposed.</param>
+        /// /// <param name="disposeBitmapOnFinalize">A value indicating whether the bitmap object is getting disposed if this <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider" /> instance is disposed.</param>
         public FastBitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
             : base(bitmap, disposeBitmapOnFinalize)
         {
@@ -68,25 +68,25 @@ namespace System.Drawing.Analysis
         #endregion
         #region Static Inits
 
-        /// <summary>Creates a new <see cref="T:FastBitmapPixelProvider"/> instance using a screenshot of the virtual screen.</summary>
-        /// <returns>A new <see cref="T:FastBitmapPixelProvider"/> instance.</returns>
+        /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider"/> instance using a screenshot of the virtual screen.</summary>
+        /// <returns>A new <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider"/> instance.</returns>
         public static FastBitmapPixelProvider FromScreen()
         {
             return FromScreen(Environment.VirtualScreen);
         }
 
-        /// <summary>Creates a new <see cref="T:FastBitmapPixelProvider"/> instance using a screenshot of a spefic rectangle on the screen.</summary>
+        /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider"/> instance using a screenshot of a spefic rectangle on the screen.</summary>
         /// <param name="rectangle">The rectangle</param>
-        /// <returns>A new <see cref="T:FastBitmapPixelProvider"/> instance.</returns>
+        /// <returns>A new <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider"/> instance.</returns>
         public static FastBitmapPixelProvider FromScreen(Rectangle rectangle)
         {
             return FromScreen(rectangle, CopyPixelOperation.SourceCopy);
         }
 
-        /// <summary>Creates a new <see cref="T:FastBitmapPixelProvider"/> instance using a screenshot of a spefic rectangle on the screen.</summary>
+        /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider"/> instance using a screenshot of a spefic rectangle on the screen.</summary>
         /// <param name="rectangle">The rectangle</param>
         /// <param name="operation">The <see cref="T:System.Drawing.CopyPixelOperation"/> to use.</param>
-        /// <returns>A new <see cref="T:FastBitmapPixelProvider"/> instance.</returns>
+        /// <returns>A new <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider"/> instance.</returns>
         public static FastBitmapPixelProvider FromScreen(Rectangle rectangle, CopyPixelOperation operation)
         {
             if (rectangle.Width < 1)
@@ -235,9 +235,9 @@ namespace System.Drawing.Analysis
         #endregion
         #region explicits
 
-        /// <summary>Explicitly creates a new instance of <see cref="T:FastBitmapPixelProvider"/> using a <see cref="T:System.Drawing.Bitmap"/>.</summary>
+        /// <summary>Explicitly creates a new instance of <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider"/> using a <see cref="T:System.Drawing.Bitmap"/>.</summary>
         /// <param name="bitmap">The <see cref="T:System.Drawing.Bitmap"/> to use.</param>
-        /// <returns>A new instance of <see cref="T:FastBitmapPixelProvider"/></returns>
+        /// <returns>A new instance of <see cref="T:System.Drawing.Analysis.FastBitmapPixelProvider"/></returns>
         /// <remarks>Same as the constructor using only one bitmap parameter.</remarks>
         public static explicit operator FastBitmapPixelProvider(Bitmap bitmap)
         {

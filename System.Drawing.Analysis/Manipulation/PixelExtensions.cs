@@ -5,10 +5,10 @@ namespace System.Drawing.Analysis.Manipulation
     /// <summary>Provides extension methods for the <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> type.</summary>
     public static class PixelExtensions
     {
-        /// <summary>Iterates through a set of <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>s and sets the <see cref="T:System.Drawing.Color"/> using a given <see cref="T:ISetPixelProvider"/>.</summary>
+        /// <summary>Iterates through a set of <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>s and sets the <see cref="T:System.Drawing.Color"/> using a given <see cref="T:System.Drawing.Analysis.ISetPixelProvider"/>.</summary>
         /// <param name="source">The source.</param>
         /// <param name="color">The <see cref="T:System.Drawing.Color"/> to set the <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> to.</param>
-        /// <param name="provider">The <see cref="T:ISetPixelProvider"/> that will be used to perform the SetPixel operation.</param>
+        /// <param name="provider">The <see cref="T:System.Drawing.Analysis.ISetPixelProvider"/> that will be used to perform the SetPixel operation.</param>
         /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{Pixel}"/> with the new colors set.</returns>
         public static IEnumerable<Pixel> SetColor(this IEnumerable<Pixel> source, Color color, ISetPixelProvider provider)
         {
