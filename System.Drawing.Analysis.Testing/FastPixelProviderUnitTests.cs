@@ -39,8 +39,8 @@ namespace System.Drawing.Analysis.Testing
         }
         public void GetPixelFast(PixelFormat format)
         {
-            var testBitmap = TestingHelper.GetTestBitmap();
-            using (var testBitmapUnlocked = TestingHelper.GetTestBitmap())
+            var testBitmap = TestingHelper.GetTestBitmap(format);
+            using (var testBitmapUnlocked = TestingHelper.GetTestBitmap(format))
             {
                 using (var fast = new FastBitmapPixelProvider(testBitmap, true))
                 {

@@ -19,7 +19,7 @@ namespace System.Drawing.Analysis.Testing
         }
         public static Bitmap GetTestBitmap(PixelFormat format)
         {
-            using (var orig = new Bitmap(@"c:\temp\24bpp.bmp"))
+            using (var orig = GetTestBitmap())
             {
                 var clone = new Bitmap(orig.Width, orig.Height, format);
                 using (var g = Graphics.FromImage(clone))
