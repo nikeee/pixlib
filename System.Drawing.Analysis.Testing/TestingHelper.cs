@@ -1,3 +1,5 @@
+using System.Drawing.Imaging;
+
 namespace System.Drawing.Analysis.Testing
 {
     internal static class TestingHelper
@@ -14,6 +16,16 @@ namespace System.Drawing.Analysis.Testing
         public static Bitmap GetTestBitmap()
         {
             return new Bitmap(RelativeTestImagePath);
+        }
+        public static Bitmap GetTestBitmap(PixelFormat format)
+        {
+            using (var orig = new Bitmap(@"c:\temp\24bpp.bmp"))
+            {
+                var clone = new Bitmap(orig.Width, orig.Height, format);
+                using (var g = Graphics.FromImage(clone))
+                    g.DrawImage(orig, new Rectangle(0, 0, clone.Width, clone.Height));
+                return clone;
+            }
         }
 
         public static Bitmap GetTestBitmap2()

@@ -1,3 +1,4 @@
+using System.Drawing.Imaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace System.Drawing.Analysis.Testing
@@ -9,6 +10,34 @@ namespace System.Drawing.Analysis.Testing
         [TestCategory("PixelProvider")]
         [TestCategory("Fast")]
         public void GetPixelFast()
+        {
+            GetPixelFastNoPixelFormat();
+            GetPixelFast(PixelFormat.Format32bppArgb);
+            GetPixelFast(PixelFormat.Format32bppPArgb);
+            GetPixelFast(PixelFormat.Format48bppRgb);
+            GetPixelFast(PixelFormat.Format32bppRgb);
+        }
+
+        public void GetPixelFastNoPixelFormat()
+        {
+            var testBitmap = TestingHelper.GetTestBitmap();
+            using (var testBitmapUnlocked = TestingHelper.GetTestBitmap())
+            {
+                using (var fast = new FastBitmapPixelProvider(testBitmap, true))
+                {
+                    for (int x = 0; x < testBitmap.Width; ++x)
+                    {
+                        for (int y = 0; y < testBitmap.Height; ++y)
+                        {
+                            var expected = testBitmapUnlocked.GetPixel(x, y);
+                            var actual = fast.GetPixel(x, y);
+                            Assert.AreEqual(expected, actual);
+                        }
+                    }
+                }
+            }
+        }
+        public void GetPixelFast(PixelFormat format)
         {
             var testBitmap = TestingHelper.GetTestBitmap();
             using (var testBitmapUnlocked = TestingHelper.GetTestBitmap())
