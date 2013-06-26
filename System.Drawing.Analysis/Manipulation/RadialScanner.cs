@@ -8,7 +8,7 @@ namespace System.Drawing.Analysis.Manipulation
         /// <summary>Scan clockwise.</summary>
         Clockwise,
         /// <summary>Scan counter clockwise.</summary>
-        CounterClockwise
+        Counterclockwise
     }
 
     /// <summary>Represents the pixel scanner which scans in a radial motion.</summary>

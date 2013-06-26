@@ -98,7 +98,7 @@ namespace System.Drawing.Analysis
             if (destination == null)
                 throw new ArgumentNullException("destination");
             if (Size != destination.Size)
-                throw new InvalidOperationException("Unmatiching sizes!");
+                throw new InvalidOperationException("The sizes of the providers must be equal");
             int x, y;
             Color c;
             for (y = 0; y < Size.Height; ++y)
