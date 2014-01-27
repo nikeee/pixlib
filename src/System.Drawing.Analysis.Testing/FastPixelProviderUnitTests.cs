@@ -29,9 +29,9 @@ namespace System.Drawing.Analysis.Testing
                     {
                         for (int y = 0; y < testBitmap.Height; ++y)
                         {
-                            var expected = testBitmapUnlocked.GetPixel(x, y);
+                            var expected =Color.FromDrawingColor( testBitmapUnlocked.GetPixel(x, y));
                             var actual = fast.GetPixel(x, y);
-                            Assert.AreEqual(expected, actual);
+                            Assert.AreEqual<Color>(expected, actual);
                         }
                     }
                 }
@@ -48,9 +48,9 @@ namespace System.Drawing.Analysis.Testing
                     {
                         for (int y = 0; y < testBitmap.Height; ++y)
                         {
-                            var expected = testBitmapUnlocked.GetPixel(x, y);
+                            var expected = Color.FromDrawingColor(testBitmapUnlocked.GetPixel(x, y));
                             var actual = fast.GetPixel(x, y);
-                            Assert.AreEqual(expected, actual);
+                            Assert.AreEqual<Color>(expected, actual);
                         }
                     }
                 }
@@ -71,9 +71,9 @@ namespace System.Drawing.Analysis.Testing
                     {
                         for (int y = 0; y < testBitmap.Height; ++y)
                         {
-                            var expected = testBitmapUnlocked.GetPixel(x, y);
+                            var expected = Color.FromDrawingColor(testBitmapUnlocked.GetPixel(x, y));
                             var actual = fast.GetPixel(x, y);
-                            Assert.AreEqual(expected, actual);
+                            Assert.AreEqual<Color>(expected, actual);
                         }
                     }
                 }
@@ -95,13 +95,13 @@ namespace System.Drawing.Analysis.Testing
                         for (int y = 0; y < testBitmap.Height; ++y)
                         {
                             Color expected = TestingHelper.GetRandomColor();
-                            testBitmapUnlocked.SetPixel(x, y, expected);
+                            testBitmapUnlocked.SetPixel(x, y, expected.ToDrawingColor());
                             fast.SetPixel(x, y, expected);
 
-                            var actualNative = testBitmapUnlocked.GetPixel(x, y);
+                            var actualNative = Color.FromDrawingColor(testBitmapUnlocked.GetPixel(x, y));
                             var actualFast = fast.GetPixel(x, y);
-                            Assert.AreEqual(expected, actualNative);
-                            Assert.AreEqual(expected, actualFast);
+                            Assert.AreEqual<Color>(expected, actualNative);
+                            Assert.AreEqual<Color>(expected, actualFast);
                         }
                     }
                 }
@@ -123,13 +123,13 @@ namespace System.Drawing.Analysis.Testing
                         for (int y = 0; y < testBitmap.Height; ++y)
                         {
                             Color expected = TestingHelper.GetRandomColor();
-                            testBitmapUnlocked.SetPixel(x, y, expected);
+                            testBitmapUnlocked.SetPixel(x, y, expected.ToDrawingColor());
                             fast.SetPixel(x, y, expected);
 
-                            var actualNative = testBitmapUnlocked.GetPixel(x, y);
+                            var actualNative = Color.FromDrawingColor(testBitmapUnlocked.GetPixel(x, y));
                             var actualFast = fast.GetPixel(x, y);
-                            Assert.AreEqual(expected, actualNative);
-                            Assert.AreEqual(expected, actualFast);
+                            Assert.AreEqual<Color>(expected, actualNative);
+                            Assert.AreEqual<Color>(expected, actualFast);
                         }
                     }
                 }
@@ -159,7 +159,7 @@ namespace System.Drawing.Analysis.Testing
                     {
                         var expected = fast.GetPixel(x, y);
                         var actual = fast.SwapPixel(x, y, TestingHelper.GetRandomColor());
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<Color>(expected, actual);
                     }
                 }
             }

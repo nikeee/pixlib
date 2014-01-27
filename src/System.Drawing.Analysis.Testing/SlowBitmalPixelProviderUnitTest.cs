@@ -18,9 +18,9 @@ namespace System.Drawing.Analysis.Testing
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        var expected = testBitmap.GetPixel(x, y);
+                        var expected = Color.FromDrawingColor(testBitmap.GetPixel(x, y));
                         var actual = slow.GetPixel(x, y);
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<Color>(expected, actual);
                     }
                 }
             }
@@ -39,9 +39,9 @@ namespace System.Drawing.Analysis.Testing
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        var expected = testBitmap.GetPixel(x, y);
+                        var expected = Color.FromDrawingColor(testBitmap.GetPixel(x, y));
                         var actual = slow.GetPixel(x, y);
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<Color>(expected, actual);
                     }
                 }
             }
@@ -64,7 +64,7 @@ namespace System.Drawing.Analysis.Testing
 
                         Color actual = slow.GetPixel(x, y);
 
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<Color>(expected, actual);
                     }
                 }
             }
@@ -87,7 +87,7 @@ namespace System.Drawing.Analysis.Testing
                         
                         Color actual = slow.GetPixel(x, y);
 
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<Color>(expected, actual);
                     }
                 }
             }
@@ -109,7 +109,7 @@ namespace System.Drawing.Analysis.Testing
 
                         var expected = slow.GetPixel(x, y);
                         var actual = slow.SwapPixel(x, y, c);
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<Color>(expected, actual);
                     }
                 }
             }

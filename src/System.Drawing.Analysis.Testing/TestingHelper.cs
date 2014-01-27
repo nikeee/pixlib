@@ -39,10 +39,8 @@ namespace System.Drawing.Analysis.Testing
 
         public static Color GetRandomColor()
         {
-            var buffer = new byte[4];
-            Random.NextBytes(buffer);
-            buffer[0] = 255;
-            return Color.FromArgb(buffer[0], buffer[1], buffer[2], buffer[3]);
+            var buffer = Random.Next(int.MaxValue);
+            return new Color(buffer);
         }
 
         public static bool GetRandomBool()

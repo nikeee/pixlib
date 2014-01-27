@@ -29,10 +29,10 @@ namespace System.Drawing.Analysis.Testing
             {
                 var scanner = new DefaultScanner(provider);
                 
-                bool actual = scanner.Any(Color.White);
+                bool actual = scanner.Any(Colors.White);
                 Assert.AreEqual(true, actual);
 
-                actual = scanner.Any(Color.FromArgb(255, 255, 255, 255));
+                actual = scanner.Any(new Color(255, 255, 255, 255));
                 Assert.AreEqual(true, actual);
             }
         }
@@ -87,7 +87,7 @@ namespace System.Drawing.Analysis.Testing
             {
                 var scanner = new DefaultScanner(provider);
 
-                var iterator = scanner.FindPixels(Color.White);
+                var iterator = scanner.FindPixels(Colors.White);
                 int counter = 0;
                 foreach (var pixel in iterator)
                 {
@@ -102,7 +102,7 @@ namespace System.Drawing.Analysis.Testing
             {
                 var scanner = new DefaultScanner(provider);
 
-                var iterator = scanner.FindPixels(Color.Black);
+                var iterator = scanner.FindPixels(Colors.Black);
                 int counter = iterator.Count();
                 Assert.AreEqual(18, counter); // There are exactly 18 Black pixels
             }
@@ -121,7 +121,7 @@ namespace System.Drawing.Analysis.Testing
                 int count = scanner.Count();
                 Assert.AreEqual(testBitmap.Width*testBitmap.Height, count);
 
-                count = scanner.Count(Color.Black);
+                count = scanner.Count(Colors.Black);
                 Assert.AreEqual(18, count); // There are exactly 18 Black pixels
 
                 int trues = 0;
@@ -148,16 +148,16 @@ namespace System.Drawing.Analysis.Testing
             using (var provider = new SlowBitmapPixelProvider(testBitmap, false))
             {
                 var scanner = new DefaultScanner(provider);
-                bool actual = scanner.Any(Color.FromArgb(255, 100, 100, 100), new ColorTolerance(60, true));
+                bool actual = scanner.Any(new Color(255, 100, 100, 100), new ColorTolerance(60, true));
                 Assert.AreEqual(true, actual);
 
-                actual = scanner.Any(Color.FromArgb(255, 100, 100, 100), new ColorTolerance(60, false));
+                actual = scanner.Any(new Color(255, 100, 100, 100), new ColorTolerance(60, false));
                 Assert.AreEqual(true, actual);
 
-                actual = scanner.Any(Color.FromArgb(255, 100, 100, 100), new ColorTolerance(30, true));
+                actual = scanner.Any(new Color(255, 100, 100, 100), new ColorTolerance(30, true));
                 Assert.AreEqual(false, actual);
 
-                actual = scanner.Any(Color.FromArgb(255, 100, 100, 100), new ColorTolerance(30, false));
+                actual = scanner.Any(new Color(255, 100, 100, 100), new ColorTolerance(30, false));
                 Assert.AreEqual(false, actual);
             }
         }

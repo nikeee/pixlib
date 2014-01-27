@@ -7,16 +7,12 @@ namespace System.Drawing.Analysis
     {
         [FieldOffset(0)]
         private byte _b;
-
         [FieldOffset(1)]
         private byte _g;
-
         [FieldOffset(2)]
         private byte _r;
-
         [FieldOffset(3)]
         private byte _a;
-
         [FieldOffset(0)]
         private int _bgra;
 
@@ -28,18 +24,28 @@ namespace System.Drawing.Analysis
 
         public Color(byte a, byte r, byte g, byte b)
         {
+            _bgra = 0;
             _a = a;
             _r = r;
             _g = g;
             _b = b;
         }
-        public Color(int bgra) {
+        public Color(int bgra)
+        {
+            _a = _r = _b = _g = 0;
             _bgra = bgra;
         }
 
         public static Color FromArgb(int argb)
         {
+            int abc = argb;
+            abc = abc;
             return new Color((byte)(argb >> 24), (byte)(argb >> 16), (byte)(argb >> 8), (byte)argb);
+        }
+
+        public override string ToString()
+        {
+            return string.Concat("A: ",_a,", R: ",_r,", G:", _g, ", B: ",_b);
         }
 
         public System.Drawing.Color ToDrawingColor()
@@ -50,5 +56,14 @@ namespace System.Drawing.Analysis
         {
             return new Color(c.A, c.R, c.G, c.B);
         }
+    }
+
+    public static class Colors
+    {
+        private static Color _white = new Color(0xFF, 0xFF, 0xFF, 0xFF);
+        public static Color White { get { return _white; } }
+
+        private static Color _black = new Color(0xFF, 0x0, 0x0, 0x0);
+        public static Color Black { get { return _black; } }
     }
 }
