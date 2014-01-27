@@ -87,7 +87,7 @@ namespace System.Drawing.Analysis.Manipulation
             avgR /= pixelCount;
             avgG /= pixelCount;
             avgB /= pixelCount;
-            return Color.FromArgb((byte)avgA, (byte)avgR, (byte)avgG, (byte)avgB);
+            return new Color((byte)avgA, (byte)avgR, (byte)avgG, (byte)avgB);
         }
 
         /// <summary>Filters the pixels matching a color.</summary>

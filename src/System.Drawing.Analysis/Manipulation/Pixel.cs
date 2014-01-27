@@ -65,7 +65,7 @@ namespace System.Drawing.Analysis.Manipulation
         /// <param name="g">The grenn value of the pixel.</param>
         /// <param name="b">The blue value of the pixel.</param>
         public Pixel(int x, int y, byte a, byte r, byte g, byte b)
-            : this(x, y, Color.FromArgb(a, r, g, b))
+            : this(x, y, new Color(a, r, g, b))
         { }
 
         /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance using the given parameters.</summary>
@@ -73,7 +73,7 @@ namespace System.Drawing.Analysis.Manipulation
         /// <param name="y">The y-coordinate of the pixel.</param>
         /// <param name="argb">An integer that represents the ARGB values.</param>
         public Pixel(int x, int y, int argb)
-            : this(x, y, Color.FromArgb(argb))
+            : this(x, y, System.Drawing.Analysis.Color.FromArgb(argb))
         { }
 
         /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance using the given parameters.</summary>

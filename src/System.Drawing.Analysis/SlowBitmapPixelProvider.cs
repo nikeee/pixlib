@@ -51,7 +51,7 @@ namespace System.Drawing.Analysis
             {
                 using (var g = Graphics.FromImage(bmp))
                 {
-                    g.Clear(GdiConstants.CopyFromScreenBugFixColor);
+                    g.Clear(GdiConstants.CopyFromScreenBugFixColor.ToDrawingColor());
                     g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
                     return new SlowBitmapPixelProvider(bmp.Clone() as Bitmap, true);
                 }
@@ -73,7 +73,7 @@ namespace System.Drawing.Analysis
 #endif
         public override Color GetPixel(int x, int y)
         {
-            return Bitmap.GetPixel(x, y);
+            return Color.FromDrawingColor(Bitmap.GetPixel(x, y));
         }
 
         /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
@@ -84,7 +84,7 @@ namespace System.Drawing.Analysis
 #endif
         public override Color GetPixel(Point point)
         {
-            return Bitmap.GetPixel(point.X, point.Y);
+            return Color.FromDrawingColor(Bitmap.GetPixel(point.X, point.Y));
         }
 
         #endregion
@@ -102,7 +102,7 @@ namespace System.Drawing.Analysis
 #endif
         public override void SetPixel(int x, int y, Color color)
         {
-            Bitmap.SetPixel(x, y, color);
+            Bitmap.SetPixel(x, y, color.ToDrawingColor());
         }
 
         /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
@@ -113,7 +113,7 @@ namespace System.Drawing.Analysis
 #endif
         public override void SetPixel(Point point, Color color)
         {
-            Bitmap.SetPixel(point.X, point.Y, color);
+            Bitmap.SetPixel(point.X, point.Y, color.ToDrawingColor());
         }
 
         #endregion

@@ -12,9 +12,7 @@ namespace System.Drawing.Analysis
         private BitmapData _bitmapData;
 
         [SecurityCritical]
-        private unsafe byte* _scan0;
-
-        private const int PixelSize = 4;
+        private unsafe Color* _scan0;
 
         #region Ctors
 
@@ -48,7 +46,7 @@ namespace System.Drawing.Analysis
             _bitmapData = Bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             unsafe
             {
-                _scan0 = (byte*)_bitmapData.Scan0.ToPointer();
+                _scan0 = (Color*)_bitmapData.Scan0.ToPointer();
             }
         }
 
@@ -98,7 +96,7 @@ namespace System.Drawing.Analysis
             {
                 using (var g = Graphics.FromImage(bmp))
                 {
-                    g.Clear(GdiConstants.CopyFromScreenBugFixColor);
+                    g.Clear(GdiConstants.CopyFromScreenBugFixColor.ToDrawingColor());
                     g.CopyFromScreen(rectangle.X, rectangle.Y, 0, 0, bmp.Size, operation);
                     return new FastBitmapPixelProvider(bmp.Clone() as Bitmap, true);
                 }
@@ -120,13 +118,15 @@ namespace System.Drawing.Analysis
             unchecked
             {
 #endif
-                int index = PixelSize * Size.Width * y + PixelSize * x + 3;
-                return Color.FromArgb(
+                int index = Size.Width * y + x;
+                return _scan0[index]; 
+                /* Color.FromArgb(
                         _scan0[index],
                         _scan0[--index],
                         _scan0[--index],
                         _scan0[--index]
                     );
+                 * */
 #if USEUNCHECKED
             }
 #endif
@@ -168,11 +168,8 @@ namespace System.Drawing.Analysis
             unchecked
             {
 #endif
-                int index = PixelSize * Size.Width * y + PixelSize * x + 3;
-                _scan0[index] = color.A;
-                _scan0[--index] = color.R;
-                _scan0[--index] = color.G;
-                _scan0[--index] = color.B;
+                int index = Size.Width * y + x;
+                _scan0[index] = color;
 #if USEUNCHECKED
             }
 #endif
@@ -204,21 +201,12 @@ namespace System.Drawing.Analysis
 
         private unsafe Color SwapPixelInternal(int x, int y, Color color)
         {
-            int index = PixelSize * Size.Width * y + PixelSize * x + 3;
+            int index = Size.Width * y + x;
 
-            int a = _scan0[index];
-            _scan0[index] = color.A;
+            var c = _scan0[index];
+            _scan0[index] = color;
 
-            int r = _scan0[--index];
-            _scan0[index] = color.R;
-
-            int g = _scan0[--index];
-            _scan0[index] = color.G;
-
-            int b = _scan0[--index];
-            _scan0[index] = color.B;
-
-            return Color.FromArgb(a, r, g, b);
+            return c;
         }
         /// <summary>Swaps a pixel color at a specific location with the given one.</summary>
         /// <param name="x">The x-coordinate of the pixel to set.</param>

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 
 namespace System.Drawing.Analysis
 {
+    [StructLayout(LayoutKind.Explicit)]
     public struct Color
     {
         [FieldOffset(0)]
@@ -29,5 +25,30 @@ namespace System.Drawing.Analysis
         public byte G { get { return _g; } set { _g = value; } }
         public byte B { get { return _b; } set { _b = value; } }
         public int Bgra { get { return _bgra; } set { _bgra = value; } }
+
+        public Color(byte a, byte r, byte g, byte b)
+        {
+            _a = a;
+            _r = r;
+            _g = g;
+            _b = b;
+        }
+        public Color(int bgra) {
+            _bgra = bgra;
+        }
+
+        public static Color FromArgb(int argb)
+        {
+            return new Color((byte)(argb >> 24), (byte)(argb >> 16), (byte)(argb >> 8), (byte)argb);
+        }
+
+        public System.Drawing.Color ToDrawingColor()
+        {
+            return System.Drawing.Color.FromArgb(_a, _r, _g, _b);
+        }
+        public static Color FromDrawingColor(System.Drawing.Color c)
+        {
+            return new Color(c.A, c.R, c.G, c.B);
+        }
     }
 }
