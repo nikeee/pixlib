@@ -102,7 +102,7 @@ namespace System.Drawing.Analysis
 #endif
         public override void SetPixel(int x, int y, Color color)
         {
-            Bitmap.SetPixel(x, y, color.ToDrawingColor());
+            Bitmap.SetPixel(x, y,  color.ToDrawingColor());
         }
 
         /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>

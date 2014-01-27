@@ -119,14 +119,7 @@ namespace System.Drawing.Analysis
             {
 #endif
                 int index = Size.Width * y + x;
-                return _scan0[index]; 
-                /* Color.FromArgb(
-                        _scan0[index],
-                        _scan0[--index],
-                        _scan0[--index],
-                        _scan0[--index]
-                    );
-                 * */
+                return _scan0[index];
 #if USEUNCHECKED
             }
 #endif
@@ -205,7 +198,6 @@ namespace System.Drawing.Analysis
 
             var c = _scan0[index];
             _scan0[index] = color;
-
             return c;
         }
         /// <summary>Swaps a pixel color at a specific location with the given one.</summary>

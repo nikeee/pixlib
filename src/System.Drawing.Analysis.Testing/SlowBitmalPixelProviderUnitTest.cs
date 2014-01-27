@@ -34,7 +34,6 @@ namespace System.Drawing.Analysis.Testing
             var testBitmap = TestingHelper.GetTestBitmap2();
             using (var slow = new SlowBitmapPixelProvider(testBitmap, true))
             {
-
                 for (int x = 0; x < testBitmap.Width; ++x)
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
@@ -63,7 +62,9 @@ namespace System.Drawing.Analysis.Testing
                         slow.SetPixel(x, y, expected);
 
                         Color actual = slow.GetPixel(x, y);
+                        Color actual2 = Color.FromDrawingColor(testBitmap.GetPixel(x, y));
 
+                        Assert.AreEqual<Color>(expected, actual2);
                         Assert.AreEqual<Color>(expected, actual);
                     }
                 }

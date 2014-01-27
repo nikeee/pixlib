@@ -4,7 +4,7 @@ namespace System.Drawing.Analysis.Testing
 {
     internal static class TestingHelper
     {
-        private const string TestImageExtension = ".bmp";
+        private const string TestImageExtension = ".png";
         private const string RelativeResourcesPath = "..\\..\\Resources\\";
 
         private const string RelativeTestImagePath = RelativeResourcesPath + "testImage" + TestImageExtension;
