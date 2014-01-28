@@ -5,7 +5,7 @@ using System.Runtime;
 namespace System.Drawing.Analysis
 {
     /// <summary>
-    /// Defines an interval of color channel values that can be used to determine if a <see cref="T:System.Drawing.Color"/> matches another <see cref="T:System.Drawing.Color"/> with a given <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.
+    /// Defines an interval of color channel values that can be used to determine if a <see cref="T:System.Drawing.NativeColor"/> matches another <see cref="T:System.Drawing.NativeColor"/> with a given <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.
     /// </summary>
     [Serializable]
     public struct ColorToleranceBorders
@@ -92,13 +92,13 @@ namespace System.Drawing.Analysis
             get { return _maxB; }
         }
 
-        private readonly Color _baseColor;
+        private readonly NativeColor _baseColor;
         private readonly ColorTolerance _baseTolerance;
 
-        /// <summary>Creates a new instance of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/> from a given <see cref="T:System.Drawing.Color"/> and <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
-        /// <param name="baseColor">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <summary>Creates a new instance of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/> from a given <see cref="T:System.Drawing.NativeColor"/> and <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
+        /// <param name="baseColor">The <see cref="T:System.Drawing.NativeColor"/>.</param>
         /// <param name="tolerance">The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
-        public ColorToleranceBorders(Color baseColor, ColorTolerance tolerance)
+        public ColorToleranceBorders(NativeColor baseColor, ColorTolerance tolerance)
         {
             _baseColor = baseColor;
             _baseTolerance = tolerance;

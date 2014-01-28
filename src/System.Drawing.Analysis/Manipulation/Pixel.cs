@@ -40,9 +40,9 @@ namespace System.Drawing.Analysis.Manipulation
             set { _y = value; }
         }
 
-        private Color _color;
-        /// <summary>Gets or sets The <see cref="T:System.Drawing.Color"/> of the pixel.</summary>
-        public Color Color
+        private NativeColor _color;
+        /// <summary>Gets or sets The <see cref="T:System.Drawing.NativeColor"/> of the pixel.</summary>
+        public NativeColor Color
         {
 #if NET40
             [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
@@ -65,7 +65,7 @@ namespace System.Drawing.Analysis.Manipulation
         /// <param name="g">The grenn value of the pixel.</param>
         /// <param name="b">The blue value of the pixel.</param>
         public Pixel(int x, int y, byte a, byte r, byte g, byte b)
-            : this(x, y, new Color(a, r, g, b))
+            : this(x, y, new NativeColor(a, r, g, b))
         { }
 
         /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance using the given parameters.</summary>
@@ -73,14 +73,14 @@ namespace System.Drawing.Analysis.Manipulation
         /// <param name="y">The y-coordinate of the pixel.</param>
         /// <param name="argb">An integer that represents the ARGB values.</param>
         public Pixel(int x, int y, int argb)
-            : this(x, y, System.Drawing.Analysis.Color.FromArgb(argb))
+            : this(x, y, System.Drawing.Analysis.NativeColor.FromArgb(argb))
         { }
 
         /// <summary>Creates a new <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance using the given parameters.</summary>
         /// <param name="x">The x-coordinate of the pixel.</param>
         /// <param name="y">The y-coordinate of the pixel.</param>
-        /// <param name="color">A <see cref="T:System.Drawing.Color"/> instance that represents the color of the pixel.</param>
-        public Pixel(int x, int y, Color color)
+        /// <param name="color">A <see cref="T:System.Drawing.NativeColor"/> instance that represents the color of the pixel.</param>
+        public Pixel(int x, int y, NativeColor color)
         {
             _x = x;
             _y = y;
@@ -139,7 +139,7 @@ namespace System.Drawing.Analysis.Manipulation
             sb.Append(_x);
             sb.Append(", Y=");
             sb.Append(_y);
-            sb.Append(", Color: [A=");
+            sb.Append(", NativeColor: [A=");
             sb.Append(_color.A);
             sb.Append(", R=");
             sb.Append(_color.R);

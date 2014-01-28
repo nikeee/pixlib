@@ -32,7 +32,7 @@ namespace System.Drawing.Analysis.Testing
                 bool actual = scanner.Any(Colors.White);
                 Assert.AreEqual(true, actual);
 
-                actual = scanner.Any(new Color(255, 255, 255, 255));
+                actual = scanner.Any(new NativeColor(255, 255, 255, 255));
                 Assert.AreEqual(true, actual);
             }
         }
@@ -148,16 +148,16 @@ namespace System.Drawing.Analysis.Testing
             using (var provider = new SlowBitmapPixelProvider(testBitmap, false))
             {
                 var scanner = new DefaultScanner(provider);
-                bool actual = scanner.Any(new Color(255, 100, 100, 100), new ColorTolerance(60, true));
+                bool actual = scanner.Any(new NativeColor(255, 100, 100, 100), new ColorTolerance(60, true));
                 Assert.AreEqual(true, actual);
 
-                actual = scanner.Any(new Color(255, 100, 100, 100), new ColorTolerance(60, false));
+                actual = scanner.Any(new NativeColor(255, 100, 100, 100), new ColorTolerance(60, false));
                 Assert.AreEqual(true, actual);
 
-                actual = scanner.Any(new Color(255, 100, 100, 100), new ColorTolerance(30, true));
+                actual = scanner.Any(new NativeColor(255, 100, 100, 100), new ColorTolerance(30, true));
                 Assert.AreEqual(false, actual);
 
-                actual = scanner.Any(new Color(255, 100, 100, 100), new ColorTolerance(30, false));
+                actual = scanner.Any(new NativeColor(255, 100, 100, 100), new ColorTolerance(30, false));
                 Assert.AreEqual(false, actual);
             }
         }

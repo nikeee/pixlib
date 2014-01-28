@@ -3,7 +3,7 @@
 namespace System.Drawing.Analysis
 {
     [StructLayout(LayoutKind.Explicit)]
-    public struct Color
+    public struct NativeColor
     {
         [FieldOffset(0)]
         private byte _b;
@@ -22,7 +22,7 @@ namespace System.Drawing.Analysis
         public byte B { get { return _b; } set { _b = value; } }
         public int Bgra { get { return _bgra; } set { _bgra = value; } }
 
-        public Color(byte a, byte r, byte g, byte b)
+        public NativeColor(byte a, byte r, byte g, byte b)
         {
             _bgra = 0;
             _a = a;
@@ -30,15 +30,15 @@ namespace System.Drawing.Analysis
             _g = g;
             _b = b;
         }
-        public Color(int bgra)
+        public NativeColor(int bgra)
         {
             _a = _r = _b = _g = 0;
             _bgra = bgra;
         }
 
-        public static Color FromArgb(int argb)
+        public static NativeColor FromArgb(int argb)
         {
-            return new Color((byte)(argb >> 24), (byte)(argb >> 16), (byte)(argb >> 8), (byte)argb);
+            return new NativeColor((byte)(argb >> 24), (byte)(argb >> 16), (byte)(argb >> 8), (byte)argb);
         }
 
         public override string ToString()
@@ -50,16 +50,16 @@ namespace System.Drawing.Analysis
         {
             return System.Drawing.Color.FromArgb(_a, _r, _g, _b);
         }
-        public static Color FromDrawingColor(System.Drawing.Color c)
+        public static NativeColor FromDrawingColor(System.Drawing.Color c)
         {
-            return new Color(c.A, c.R, c.G, c.B);
+            return new NativeColor(c.A, c.R, c.G, c.B);
         }
 
         /// <summary>Indicates whether the channel values of two colors are equal.</summary>
-        /// <param name="color1">The first <see cref="T:System.Drawing.Analysis.Color"/>.</param>
-        /// <param name="color2">The second <see cref="T:System.Drawing.Analysis.Color"/>.</param>
+        /// <param name="color1">The first <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
+        /// <param name="color2">The second <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <returns>A value that indicates whether the channel values of two colors are equal.</returns>
-        public static bool operator ==(Color color1, Color color2)
+        public static bool operator ==(NativeColor color1, NativeColor color2)
         {
             return color1.A == color2.A
                     && color1.R == color2.R
@@ -68,10 +68,10 @@ namespace System.Drawing.Analysis
         }
 
         /// <summary>Indicates whether the channel values of two colors are not equal.</summary>
-        /// <param name="color1">The first <see cref="T:System.Drawing.Analysis.Color"/>.</param>
-        /// <param name="color2">The second <see cref="T:System.Drawing.Analysis.Color"/>.</param>
+        /// <param name="color1">The first <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
+        /// <param name="color2">The second <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <returns>A value that indicates whether the channel values of two colors are not equal.</returns>
-        public static bool operator !=(Color color1, Color color2)
+        public static bool operator !=(NativeColor color1, NativeColor color2)
         {
             return color1.A != color2.A
                     || color1.R != color2.R
@@ -82,22 +82,22 @@ namespace System.Drawing.Analysis
 
     public static class Colors
     {
-        private static Color _white = new Color(0xFF, 0xFF, 0xFF, 0xFF);
-        public static Color White { get { return _white; } }
+        private static NativeColor _white = new NativeColor(0xFF, 0xFF, 0xFF, 0xFF);
+        public static NativeColor White { get { return _white; } }
 
-        private static Color _black = new Color(0xFF, 0x0, 0x0, 0x0);
-        public static Color Black { get { return _black; } }
+        private static NativeColor _black = new NativeColor(0xFF, 0x0, 0x0, 0x0);
+        public static NativeColor Black { get { return _black; } }
 
-        private static Color _transparent = new Color(0x0, 0x0, 0x0, 0x0);
-        public static Color Transparent { get { return _transparent; } }
+        private static NativeColor _transparent = new NativeColor(0x0, 0x0, 0x0, 0x0);
+        public static NativeColor Transparent { get { return _transparent; } }
 
-        private static Color _red = new Color(0xFF, 0xFF, 0x0, 0x0);
-        public static Color Red { get { return _red; } }
+        private static NativeColor _red = new NativeColor(0xFF, 0xFF, 0x0, 0x0);
+        public static NativeColor Red { get { return _red; } }
 
-        private static Color _green = new Color(0xFF, 0x0, 0xFF, 0x0);
-        public static Color Green { get { return _green; } }
+        private static NativeColor _green = new NativeColor(0xFF, 0x0, 0xFF, 0x0);
+        public static NativeColor Green { get { return _green; } }
 
-        private static Color _blue = new Color(0xFF, 0x0, 0x0, 0xFF);
-        public static Color Blue { get { return _blue; } }
+        private static NativeColor _blue = new NativeColor(0xFF, 0x0, 0x0, 0xFF);
+        public static NativeColor Blue { get { return _blue; } }
     }
 }

@@ -25,7 +25,7 @@ namespace System.Drawing.Analysis.Testing
         public void CheckGdiContants()
         {
             // To implement
-            // Assert.AreEqual(Color.FromArgb(0xFF, 0xD, 0xB, 0xC), System.Drawing.Analysis.GdiConstants.CopyFromScreenBugFixColor);
+            // Assert.AreEqual(NativeColor.FromArgb(0xFF, 0xD, 0xB, 0xC), System.Drawing.Analysis.GdiConstants.CopyFromScreenBugFixColor);
         }
 
         //[TestMethod]

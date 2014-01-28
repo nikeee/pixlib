@@ -37,10 +37,10 @@ namespace System.Drawing.Analysis.Testing
             return new Bitmap(RelativeTolerancePath);
         }
 
-        public static Color GetRandomColor()
+        public static NativeColor GetRandomColor()
         {
             var buffer = Random.Next(int.MaxValue);
-            return new Color(buffer);
+            return new NativeColor(buffer);
         }
 
         public static bool GetRandomBool()

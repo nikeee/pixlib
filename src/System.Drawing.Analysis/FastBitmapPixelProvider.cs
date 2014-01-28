@@ -12,7 +12,7 @@ namespace System.Drawing.Analysis
         private BitmapData _bitmapData;
 
         [SecurityCritical]
-        private unsafe Color* _scan0;
+        private unsafe NativeColor* _scan0;
 
         #region Ctors
 
@@ -46,7 +46,7 @@ namespace System.Drawing.Analysis
             _bitmapData = Bitmap.LockBits(_bitmapDimensions, ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
             unsafe
             {
-                _scan0 = (Color*)_bitmapData.Scan0.ToPointer();
+                _scan0 = (NativeColor*)_bitmapData.Scan0.ToPointer();
             }
         }
 
@@ -112,7 +112,7 @@ namespace System.Drawing.Analysis
 #if NET45
         [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        internal unsafe Color GetPixelInternal(int x, int y)
+        internal unsafe NativeColor GetPixelInternal(int x, int y)
         {
 #if USEUNCHECKED
             unchecked
@@ -125,21 +125,21 @@ namespace System.Drawing.Analysis
 #endif
         }
 
-        /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel in the provider.</summary>
         /// <param name="x">The x-coordinate of the pixel to retrieve.</param>
         /// <param name="y">The y-coordinate of the pixel to retrieve.</param>
-        /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
-        public override Color GetPixel(int x, int y)
+        /// <returns>A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel.</returns>
+        public override NativeColor GetPixel(int x, int y)
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
             return GetPixelInternal(x, y);
         }
 
-        /// <summary>Gets The <see cref="T:System.Drawing.Color"/> of the specified pixel in the provider.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel in the provider.</summary>
         /// <param name="point">The coordinates of the pixel to retrieve.</param>
-        /// <returns>A Color structure that represents The <see cref="T:System.Drawing.Color"/> of the specified pixel.</returns>
-        public override Color GetPixel(Point point)
+        /// <returns>A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel.</returns>
+        public override NativeColor GetPixel(Point point)
         {
             if (point.X >= Size.Width || point.Y >= Size.Height)
                 throw new InvalidOperationException();
@@ -155,7 +155,7 @@ namespace System.Drawing.Analysis
 #if NET45
         [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        internal unsafe void SetPixelInternal(int x, int y, Color color)
+        internal unsafe void SetPixelInternal(int x, int y, NativeColor color)
         {
 #if USEUNCHECKED
             unchecked
@@ -168,21 +168,21 @@ namespace System.Drawing.Analysis
 #endif
         }
 
-        /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
+        /// <summary>Sets The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel in this provider.</summary>
         /// <param name="x">The x-coordinate of the pixel to set.</param>
         /// <param name="y">The y-coordinate of the pixel to set.</param>
-        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
-        public override void SetPixel(int x, int y, Color color)
+        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> to assign to the specified pixel.</param>
+        public override void SetPixel(int x, int y, NativeColor color)
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
             SetPixelInternal(x, y, color);
         }
 
-        /// <summary>Sets The <see cref="T:System.Drawing.Color"/> of the specified pixel in this provider.</summary>
+        /// <summary>Sets The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel in this provider.</summary>
         /// <param name="point">The coordinates of the pixel to set.</param>
-        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
-        public override void SetPixel(Point point, Color color)
+        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> to assign to the specified pixel.</param>
+        public override void SetPixel(Point point, NativeColor color)
         {
             if (point.X >= Size.Width || point.Y >= Size.Height)
                 throw new InvalidOperationException();
@@ -192,7 +192,7 @@ namespace System.Drawing.Analysis
         #endregion
         #region IPixelProvider
 
-        private unsafe Color SwapPixelInternal(int x, int y, Color color)
+        private unsafe NativeColor SwapPixelInternal(int x, int y, NativeColor color)
         {
             int index = Size.Width * y + x;
 
@@ -203,9 +203,9 @@ namespace System.Drawing.Analysis
         /// <summary>Swaps a pixel color at a specific location with the given one.</summary>
         /// <param name="x">The x-coordinate of the pixel to set.</param>
         /// <param name="y">The y-coordinate of the pixel to set.</param>
-        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
-        /// <returns>A Color structure that represents the previous color of the specified pixel.</returns>
-        public override Color SwapPixel(int x, int y, Color color)
+        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> to assign to the specified pixel.</param>
+        /// <returns>A NativeColor structure that represents the previous color of the specified pixel.</returns>
+        public override NativeColor SwapPixel(int x, int y, NativeColor color)
         {
             if (x >= Size.Width || y >= Size.Height)
                 throw new InvalidOperationException();
