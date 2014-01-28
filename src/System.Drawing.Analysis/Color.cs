@@ -52,9 +52,14 @@ namespace System.Drawing.Analysis
             return _bgra;
         }
 
-        public System.Drawing.Color ToDrawingColor()
+        public int ToArgb()
         {
-            return System.Drawing.Color.FromArgb(_a, _r, _g, _b);
+            return (_a << 24) | (_r << 16) | (_g << 8) | (_b << 0);
+        }
+
+        public Color ToDrawingColor()
+        {
+            return Color.FromArgb(_a, _r, _g, _b);
         }
         public static NativeColor FromDrawingColor(Color color)
         {
