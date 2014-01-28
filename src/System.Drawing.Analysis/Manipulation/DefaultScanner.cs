@@ -91,7 +91,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Filters the pixels matching a color.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>s which matched the given color.</returns>
         public IEnumerable<Pixel> FindPixels(NativeColor color)
         {
@@ -111,7 +111,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Filters the pixels matching a color respecting a given tolerance.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <param name="tolerance">The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
         /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>s which matched the given color and tolerance.</returns>
         public IEnumerable<Pixel> FindPixels(NativeColor color, ColorTolerance tolerance)
@@ -135,7 +135,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         //see: http://msdn.microsoft.com/en-us/library/bb535050.aspx
         /// <summary>Gets the first <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> matching a specified color.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/> to find.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/> to find.</param>
         /// <returns>A <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance which represents the found pixel.</returns>
         public Pixel First(NativeColor color)
         {
@@ -154,7 +154,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Gets the first <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> matching a specified color taking care of a given tolerance.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/> to find.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/> to find.</param>
         /// <param name="tolerance">The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
         /// <returns>A <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance which represents the found pixel.</returns>
         public Pixel First(NativeColor color, ColorTolerance tolerance)
@@ -176,7 +176,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Gets the first <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> matching a specified color.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/> to find.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/> to find.</param>
         /// <returns>A <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>.</returns>
         public Pixel? FirstOrDefault(NativeColor color)
         {
@@ -195,7 +195,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Gets the first <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> matching a specified color taking care of a given tolerance.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/> to find.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/> to find.</param>
         /// <param name="tolerance">The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
         /// <returns>A <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance which represents the found pixel. If there is none, the method returns the default value of <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>.</returns>
         public Pixel? FirstOrDefault(NativeColor color, ColorTolerance tolerance)
@@ -217,7 +217,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Determines whether all pixels of the provider are the same color.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         public bool All(NativeColor color)
         {
@@ -232,7 +232,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Determines whether all pixels of the provider are the same color respecting a given tolerance.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <param name="tolerance">The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
         /// <returns>true if every pixel is the same color, or if the sequence is empty; otherwise, false.</returns>
         public bool All(NativeColor color, ColorTolerance tolerance)
@@ -250,7 +250,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Determines whether any pixel of the provider has this color.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <returns>true if any pixel has this color; otherwise, false.</returns>
         public bool Any(NativeColor color)
         {
@@ -265,7 +265,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         /// <summary>Determines whether any pixel of the provider has this color respecting a given tolerance.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <param name="tolerance">The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
         /// <returns>true if any pixel is this color respecting a given tolerance; otherwise, false.</returns>
         public bool Any(NativeColor color, ColorTolerance tolerance)
@@ -289,8 +289,8 @@ namespace System.Drawing.Analysis.Manipulation
             return _view.Width * _view.Height;
         }
 
-        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.NativeColor"/>.</summary>
-        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.NativeColor"/>.</returns>
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Analysis.NativeColor"/>.</summary>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Analysis.NativeColor"/>.</returns>
         public int Count(NativeColor color)
         {
             int counter = 0;
@@ -304,10 +304,10 @@ namespace System.Drawing.Analysis.Manipulation
             return counter;
         }
 
-        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.NativeColor"/>.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Analysis.NativeColor"/>.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <param name="tolerance">The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
-        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.NativeColor"/>.</returns>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Analysis.NativeColor"/>.</returns>
         public int Count(NativeColor color, ColorTolerance tolerance)
         {
             int counter = 0;
@@ -323,9 +323,9 @@ namespace System.Drawing.Analysis.Manipulation
             return counter;
         }
 
-        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.NativeColor"/> respecting a tolerance.</summary>
+        /// <summary>Returns the number of pixels in the current view matching a given <see cref="T:System.Drawing.Analysis.NativeColor"/> respecting a tolerance.</summary>
         /// <param name="condition">A function to test each pixel for a condition.</param>
-        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.NativeColor"/> respecting a tolerance.</returns>
+        /// <returns>The number of pixels in the current view matching a given <see cref="T:System.Drawing.Analysis.NativeColor"/> respecting a tolerance.</returns>
         public int Count(Func<int, int, NativeColor, bool> condition)
         {
             if (condition == null)

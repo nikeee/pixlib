@@ -17,8 +17,8 @@
 
         #endregion
 
-        /// <summary>Clears the current view using a specific <see cref="T:System.Drawing.NativeColor"/>.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <summary>Clears the current view using a specific <see cref="T:System.Drawing.Analysis.NativeColor"/>.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         public void Clear(NativeColor color)
         {
             // TODO: Unit testing

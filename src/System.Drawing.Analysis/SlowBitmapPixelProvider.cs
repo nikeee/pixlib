@@ -64,10 +64,10 @@ namespace System.Drawing.Analysis
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsGetPixelThreading { get { return false; } }
 
-        /// <summary>Gets The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel in the provider.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.Analysis.NativeColor"/> of the specified pixel in the provider.</summary>
         /// <param name="x">The x-coordinate of the pixel to retrieve.</param>
         /// <param name="y">The y-coordinate of the pixel to retrieve.</param>
-        /// <returns>A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel.</returns>
+        /// <returns>A NativeColor structure that represents The <see cref="T:System.Drawing.Analysis.NativeColor"/> of the specified pixel.</returns>
 #if NET45
         [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
@@ -76,9 +76,9 @@ namespace System.Drawing.Analysis
             return NativeColor.FromDrawingColor(Bitmap.GetPixel(x, y));
         }
 
-        /// <summary>Gets The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel in the provider.</summary>
+        /// <summary>Gets The <see cref="T:System.Drawing.Analysis.NativeColor"/> of the specified pixel in the provider.</summary>
         /// <param name="point">The coordinates of the pixel to retrieve.</param>
-        /// <returns>A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel.</returns>
+        /// <returns>A NativeColor structure that represents The <see cref="T:System.Drawing.Analysis.NativeColor"/> of the specified pixel.</returns>
 #if NET45
         [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
@@ -93,10 +93,10 @@ namespace System.Drawing.Analysis
         /// <summary>Gets a value indicating whether the current provider supports multiple threads.</summary>
         public override bool SupportsSetPixelThreading { get { return false; } }
 
-        /// <summary>Sets The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel in this provider.</summary>
+        /// <summary>Sets The <see cref="T:System.Drawing.Analysis.NativeColor"/> of the specified pixel in this provider.</summary>
         /// <param name="x">The x-coordinate of the pixel to set.</param>
         /// <param name="y">The y-coordinate of the pixel to set.</param>
-        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> to assign to the specified pixel.</param>
+        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.Analysis.NativeColor"/> to assign to the specified pixel.</param>
 #if NET45
         [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
@@ -105,9 +105,9 @@ namespace System.Drawing.Analysis
             Bitmap.SetPixel(x, y,  color.ToDrawingColor());
         }
 
-        /// <summary>Sets The <see cref="T:System.Drawing.NativeColor"/> of the specified pixel in this provider.</summary>
+        /// <summary>Sets The <see cref="T:System.Drawing.Analysis.NativeColor"/> of the specified pixel in this provider.</summary>
         /// <param name="point">The coordinates of the pixel to set.</param>
-        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> to assign to the specified pixel.</param>
+        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.Analysis.NativeColor"/> to assign to the specified pixel.</param>
 #if NET45
         [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
@@ -122,7 +122,7 @@ namespace System.Drawing.Analysis
         /// <summary>Swaps a pixel color at a specific location with the given one.</summary>
         /// <param name="x">The x-coordinate of the pixel to set.</param>
         /// <param name="y">The y-coordinate of the pixel to set.</param>
-        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.NativeColor"/> to assign to the specified pixel.</param>
+        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.Analysis.NativeColor"/> to assign to the specified pixel.</param>
         /// <returns>A NativeColor structure that represents the previous color of the specified pixel.</returns>
         public override NativeColor SwapPixel(int x, int y, NativeColor color)
         {

@@ -1,13 +1,13 @@
 ﻿namespace System.Drawing.Analysis
 {
-    /// <summary>Provides extension methods for the <see cref="T:System.Drawing.NativeColor"/> type.</summary>
+    /// <summary>Provides extension methods for the <see cref="T:System.Drawing.Analysis.NativeColor"/> type.</summary>
     public static class ColorExtensions
     {
-        /// <summary>Indicates whether a <see cref="T:System.Drawing.NativeColor"/> fits within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <summary>Indicates whether a <see cref="T:System.Drawing.Analysis.NativeColor"/> fits within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <param name="borders">The <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/> to check the color for.</param>
         /// <param name="tolerance">The initial <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
-        /// <returns>A value which indicates whether a <see cref="T:System.Drawing.NativeColor"/> fits within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</returns>
+        /// <returns>A value which indicates whether a <see cref="T:System.Drawing.Analysis.NativeColor"/> fits within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</returns>
         public static bool FitsTolerance(this NativeColor color, ColorToleranceBorders borders, ColorTolerance tolerance)
         {
             // May enhance?
@@ -17,11 +17,11 @@
                 && (tolerance.IgnoreB || (borders.MinB <= color.B && color.B <= borders.MaxB));
         }
 
-        /// <summary>Indicates whether a <see cref="T:System.Drawing.NativeColor"/> does not fit within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</summary>
-        /// <param name="color">The <see cref="T:System.Drawing.NativeColor"/>.</param>
+        /// <summary>Indicates whether a <see cref="T:System.Drawing.Analysis.NativeColor"/> does not fit within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</summary>
+        /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <param name="borders">The <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/> to check the color for.</param>
         /// <param name="tolerance">The initial <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
-        /// <returns>A value which indicates whether a <see cref="T:System.Drawing.NativeColor"/> does not fit within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</returns>
+        /// <returns>A value which indicates whether a <see cref="T:System.Drawing.Analysis.NativeColor"/> does not fit within a set of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/>.</returns>
         public static bool NotFitsTolerance(this NativeColor color, ColorToleranceBorders borders, ColorTolerance tolerance)
         {
             return (tolerance.IgnoreA || (borders.MinA > color.A || color.A > borders.MaxA))
