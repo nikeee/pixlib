@@ -38,8 +38,6 @@ namespace System.Drawing.Analysis
 
         public static Color FromArgb(int argb)
         {
-            int abc = argb;
-            abc = abc;
             return new Color((byte)(argb >> 24), (byte)(argb >> 16), (byte)(argb >> 8), (byte)argb);
         }
 
@@ -65,5 +63,17 @@ namespace System.Drawing.Analysis
 
         private static Color _black = new Color(0xFF, 0x0, 0x0, 0x0);
         public static Color Black { get { return _black; } }
+
+        private static Color _transparent = new Color(0x0, 0x0, 0x0, 0x0);
+        public static Color Transparent { get { return _transparent; } }
+
+        private static Color _red = new Color(0xFF, 0xFF, 0x0, 0x0);
+        public static Color Red { get { return _red; } }
+
+        private static Color _green = new Color(0xFF, 0x0, 0xFF, 0x0);
+        public static Color Green { get { return _green; } }
+
+        private static Color _blue = new Color(0xFF, 0x0, 0x0, 0xFF);
+        public static Color Blue { get { return _blue; } }
     }
 }
