@@ -18,9 +18,9 @@ namespace System.Drawing.Analysis.Testing
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        var expected = testBitmap.GetPixel(x, y);
+                        var expected = NativeColor.FromDrawingColor(testBitmap.GetPixel(x, y));
                         var actual = slow.GetPixel(x, y);
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<NativeColor>(expected, actual);
                     }
                 }
             }
@@ -34,14 +34,13 @@ namespace System.Drawing.Analysis.Testing
             var testBitmap = TestingHelper.GetTestBitmap2();
             using (var slow = new SlowBitmapPixelProvider(testBitmap, true))
             {
-
                 for (int x = 0; x < testBitmap.Width; ++x)
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        var expected = testBitmap.GetPixel(x, y);
+                        var expected = NativeColor.FromDrawingColor(testBitmap.GetPixel(x, y));
                         var actual = slow.GetPixel(x, y);
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<NativeColor>(expected, actual);
                     }
                 }
             }
@@ -59,12 +58,14 @@ namespace System.Drawing.Analysis.Testing
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        Color expected = TestingHelper.GetRandomColor();
+                        NativeColor expected = TestingHelper.GetRandomColor();
                         slow.SetPixel(x, y, expected);
 
-                        Color actual = slow.GetPixel(x, y);
+                        NativeColor actual = slow.GetPixel(x, y);
+                        NativeColor actual2 = NativeColor.FromDrawingColor(testBitmap.GetPixel(x, y));
 
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<NativeColor>(expected, actual2);
+                        Assert.AreEqual<NativeColor>(expected, actual);
                     }
                 }
             }
@@ -82,12 +83,12 @@ namespace System.Drawing.Analysis.Testing
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        Color expected = TestingHelper.GetRandomColor();
+                        NativeColor expected = TestingHelper.GetRandomColor();
                         slow.SetPixel(x, y, expected);
                         
-                        Color actual = slow.GetPixel(x, y);
+                        NativeColor actual = slow.GetPixel(x, y);
 
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<NativeColor>(expected, actual);
                     }
                 }
             }
@@ -105,11 +106,11 @@ namespace System.Drawing.Analysis.Testing
                 {
                     for (int y = 0; y < testBitmap.Height; ++y)
                     {
-                        Color c = TestingHelper.GetRandomColor();
+                        NativeColor c = TestingHelper.GetRandomColor();
 
                         var expected = slow.GetPixel(x, y);
                         var actual = slow.SwapPixel(x, y, c);
-                        Assert.AreEqual(expected, actual);
+                        Assert.AreEqual<NativeColor>(expected, actual);
                     }
                 }
             }

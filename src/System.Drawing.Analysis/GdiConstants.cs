@@ -2,6 +2,6 @@
 {
     internal static class GdiConstants
     {
-        internal static readonly Color CopyFromScreenBugFixColor = Color.FromArgb(0xFF, 0xD, 0xB, 0xC);
+        internal static readonly NativeColor CopyFromScreenBugFixColor = new NativeColor(0xFF, 0xD, 0xB, 0xC);
     }
 }

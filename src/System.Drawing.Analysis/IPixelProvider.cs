@@ -6,8 +6,8 @@ namespace System.Drawing.Analysis
         /// <summary>Swaps a pixel color at a specific location with the given one.</summary>
         /// <param name="x">The x-coordinate of the pixel to set.</param>
         /// <param name="y">The y-coordinate of the pixel to set.</param>
-        /// <param name="color">A Color structure that represents The <see cref="T:System.Drawing.Color"/> to assign to the specified pixel.</param>
-        /// <returns>A Color structure that represents the previous color of the specified pixel.</returns>
-        Color SwapPixel(int x, int y, Color color);
+        /// <param name="color">A NativeColor structure that represents The <see cref="T:System.Drawing.Analysis.NativeColor"/> to assign to the specified pixel.</param>
+        /// <returns>A NativeColor structure that represents the previous color of the specified pixel.</returns>
+        NativeColor SwapPixel(int x, int y, NativeColor color);
     }
 }

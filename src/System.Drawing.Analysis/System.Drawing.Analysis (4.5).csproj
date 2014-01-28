@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitmapPixelProvider.cs" />
+    <Compile Include="NativeColor.cs" />
     <Compile Include="ColorExtensions.cs" />
     <Compile Include="ColorTolerance.cs" />
     <Compile Include="ColorToleranceBorders.cs" />
@@ -65,7 +66,6 @@
     <Compile Include="Manipulation\PixelExtensions.cs" />
     <Compile Include="Manipulation\RadialScanner.cs" />
     <Compile Include="Manipulation\Union.cs" />
-    <Compile Include="NativeColor.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

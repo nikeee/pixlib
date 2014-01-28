@@ -97,16 +97,16 @@ namespace System.Drawing.Analysis
         }
 
         /// <summary>Creates a new instance of a <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
-        /// <param name="a">The value for the alpha channel.</param>
-        /// <param name="r">The value for the red channel.</param>
-        /// <param name="g">The value for the green channel.</param>
-        /// <param name="b">The value for the blue channel.</param>
-        public ColorTolerance(int a, int r, int g, int b)
+        /// <param name="alpha">The value for the alpha channel.</param>
+        /// <param name="red">The value for the red channel.</param>
+        /// <param name="green">The value for the green channel.</param>
+        /// <param name="blue">The value for the blue channel.</param>
+        public ColorTolerance(int alpha, int red, int green, int blue)
         {
-            _a = a;
-            _r = r;
-            _g = g;
-            _b = b;
+            _a = alpha;
+            _r = red;
+            _g = green;
+            _b = blue;
         }
 
         #endregion

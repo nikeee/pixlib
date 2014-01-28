@@ -5,7 +5,7 @@ using System.Runtime;
 namespace System.Drawing.Analysis
 {
     /// <summary>
-    /// Defines an interval of color channel values that can be used to determine if a <see cref="T:System.Drawing.Color"/> matches another <see cref="T:System.Drawing.Color"/> with a given <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.
+    /// Defines an interval of color channel values that can be used to determine if a <see cref="T:System.Drawing.Analysis.NativeColor"/> matches another <see cref="T:System.Drawing.Analysis.NativeColor"/> with a given <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.
     /// </summary>
     [Serializable]
     public struct ColorToleranceBorders
@@ -92,13 +92,13 @@ namespace System.Drawing.Analysis
             get { return _maxB; }
         }
 
-        private readonly Color _baseColor;
+        private readonly NativeColor _baseColor;
         private readonly ColorTolerance _baseTolerance;
 
-        /// <summary>Creates a new instance of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/> from a given <see cref="T:System.Drawing.Color"/> and <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
-        /// <param name="baseColor">The <see cref="T:System.Drawing.Color"/>.</param>
+        /// <summary>Creates a new instance of <see cref="T:System.Drawing.Analysis.ColorToleranceBorders"/> from a given <see cref="T:System.Drawing.Analysis.NativeColor"/> and <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</summary>
+        /// <param name="baseColor">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <param name="tolerance">The <see cref="T:System.Drawing.Analysis.ColorTolerance"/>.</param>
-        public ColorToleranceBorders(Color baseColor, ColorTolerance tolerance)
+        public ColorToleranceBorders(NativeColor baseColor, ColorTolerance tolerance)
         {
             _baseColor = baseColor;
             _baseTolerance = tolerance;
@@ -130,7 +130,7 @@ namespace System.Drawing.Analysis
                 && _maxR == other._maxR
                 && _maxG == other._maxG
                 && _maxB == other._maxB
-                && _baseColor.ValuesEqual(other._baseColor)
+                && _baseColor == other._baseColor
                 && _baseTolerance == other._baseTolerance;
         }
 
@@ -159,7 +159,7 @@ namespace System.Drawing.Analysis
                 && toleranceBorder1._maxR == toleranceBorder2._maxR
                 && toleranceBorder1._maxG == toleranceBorder2._maxG
                 && toleranceBorder1._maxB == toleranceBorder2._maxB
-                && toleranceBorder1._baseColor.ValuesEqual(toleranceBorder2._baseColor)
+                && toleranceBorder1._baseColor == toleranceBorder2._baseColor
                 && toleranceBorder1._baseTolerance == toleranceBorder2._baseTolerance;
         }
 
