@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace System.Drawing.Analysis
 {
@@ -83,6 +84,19 @@ namespace System.Drawing.Analysis
             return _bgra;
         }
 
+        /// <summary>Tests whether the specified object is a <see cref="T:System.Drawing.Analysis.NativeColor" /> structure and is equivalent to this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure.</summary>
+        /// <returns>true if <paramref name="obj" /> is a <see cref="T:System.Drawing.Analysis.NativeColor" /> structure equivalent to this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure; otherwise, false.</returns>
+        /// <param name="obj">The object to test. </param>
+        /// <filterpriority>1</filterpriority>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            var c = (NativeColor)obj;
+
+            return Equals(c);
+        }
+        
         #endregion
         #region "Color Interop"
 
@@ -142,6 +156,15 @@ namespace System.Drawing.Analysis
         public static bool operator !=(NativeColor color1, NativeColor color2)
         {
             return color1._bgra != color2._bgra;
+        }
+
+        /// <summary>Tests whether the specified object is a <see cref="T:System.Drawing.Analysis.NativeColor" /> structure and is equivalent to this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure.</summary>
+        /// <returns>true if <paramref name="other" /> is a <see cref="T:System.Drawing.Analysis.NativeColor" /> structure equivalent to this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure; otherwise, false.</returns>
+        /// <param name="other">The other <see cref="T:System.Drawing.Analysis.NativeColor" /> to test. </param>
+        /// <filterpriority>1</filterpriority>
+        public bool Equals(NativeColor other)
+        {
+            return this == other;
         }
 
         #endregion
