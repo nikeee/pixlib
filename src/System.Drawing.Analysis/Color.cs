@@ -55,6 +55,10 @@ namespace System.Drawing.Analysis
             return new Color(c.A, c.R, c.G, c.B);
         }
 
+        /// <summary>Indicates whether the channel values of two colors are equal.</summary>
+        /// <param name="color1">The first <see cref="T:System.Drawing.Analysis.Color"/>.</param>
+        /// <param name="color2">The second <see cref="T:System.Drawing.Analysis.Color"/>.</param>
+        /// <returns>A value that indicates whether the channel values of two colors are equal.</returns>
         public static bool operator ==(Color color1, Color color2)
         {
             return color1.A == color2.A
@@ -62,6 +66,11 @@ namespace System.Drawing.Analysis
                     && color1.G == color2.G
                     && color1.B == color2.B;
         }
+
+        /// <summary>Indicates whether the channel values of two colors are not equal.</summary>
+        /// <param name="color1">The first <see cref="T:System.Drawing.Analysis.Color"/>.</param>
+        /// <param name="color2">The second <see cref="T:System.Drawing.Analysis.Color"/>.</param>
+        /// <returns>A value that indicates whether the channel values of two colors are not equal.</returns>
         public static bool operator !=(Color color1, Color color2)
         {
             return color1.A != color2.A
