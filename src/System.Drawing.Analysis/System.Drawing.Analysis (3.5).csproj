@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitmapPixelProvider.cs" />
-    <Compile Include="Color.cs" />
     <Compile Include="ColorExtensions.cs" />
     <Compile Include="ColorTolerance.cs" />
     <Compile Include="ColorToleranceBorders.cs" />
