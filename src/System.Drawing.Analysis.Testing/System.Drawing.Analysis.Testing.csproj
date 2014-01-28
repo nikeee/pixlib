@@ -59,6 +59,7 @@
     <Compile Include="DefaultScannerTests.cs" />
     <Compile Include="MiscTests.cs" />
     <Compile Include="FastPixelProviderUnitTests.cs" />
+    <Compile Include="NativeColorTests.cs" />
     <Compile Include="SlowBitmalPixelProviderUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestingHelper.cs" />
