@@ -78,7 +78,6 @@ namespace System.Drawing.Analysis
                     || color1.G != color2.G
                     || color1.B != color2.B;
         }
-
     }
 
     public static class Colors
