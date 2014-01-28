@@ -67,10 +67,7 @@ namespace System.Drawing.Analysis
         /// <returns>A value that indicates whether the channel values of two colors are equal.</returns>
         public static bool operator ==(NativeColor color1, NativeColor color2)
         {
-            return color1.A == color2.A
-                    && color1.R == color2.R
-                    && color1.G == color2.G
-                    && color1.B == color2.B;
+            return color1._bgra == color2._bgra;
         }
 
         /// <summary>Indicates whether the channel values of two colors are not equal.</summary>
@@ -79,10 +76,7 @@ namespace System.Drawing.Analysis
         /// <returns>A value that indicates whether the channel values of two colors are not equal.</returns>
         public static bool operator !=(NativeColor color1, NativeColor color2)
         {
-            return color1.A != color2.A
-                    || color1.R != color2.R
-                    || color1.G != color2.G
-                    || color1.B != color2.B;
+            return color1._bgra != color2._bgra;
         }
     }
 
