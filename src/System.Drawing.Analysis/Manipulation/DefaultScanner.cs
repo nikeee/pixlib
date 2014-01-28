@@ -127,7 +127,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
+                    if (_provider.GetPixel(x, y).FitsTolerance(borders, tolerance))
                         yield return new Pixel(x, y, readColor);
                 }
             }
@@ -168,7 +168,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
+                    if (_provider.GetPixel(x, y).FitsTolerance(borders, tolerance))
                         return new Pixel(x, y, readColor);
                 }
 
@@ -209,7 +209,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
+                    if (_provider.GetPixel(x, y).FitsTolerance(borders, tolerance))
                         return new Pixel(x, y, readColor);
                 }
 
@@ -244,7 +244,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesNotFitTolerance(borders, tolerance)) // FitNot (!)
+                    if (_provider.GetPixel(x, y).NotFitsTolerance(borders, tolerance)) // FitNot (!)
                         return false;
             return true;
         }
@@ -277,7 +277,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
+                    if (_provider.GetPixel(x, y).FitsTolerance(borders, tolerance))
                         return true;
             return false;
         }
@@ -318,7 +318,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (_provider.GetPixel(x, y).ValuesFitTolerance(borders, tolerance))
+                    if (_provider.GetPixel(x, y).FitsTolerance(borders, tolerance))
                         ++counter;
             return counter;
         }
