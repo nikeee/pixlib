@@ -17,7 +17,7 @@ using (var provider = new FastBitmapPixelProvider(testBitmap))
   var scanner = new DefaultScanner(provider);
       
   var tolerance = new ColorTolerance(10, true); // Allow a tolerance of 10 and ignore the alpha channel
-  Color color = Color.White;
+  NativeColor color = Colors.White;
   
   IEnumerable<Pixel> pixels = scanner.FindPixels(color, tolerance);
   var colors = pixels.Select(p => p.Color); // here we go
@@ -30,7 +30,7 @@ using (var provider = new FastBitmapPixelProvider(testBitmap))
   var scanner = new DefaultScanner(provider);
   scanner.View = new Rectangle(10, 10, 20, 20); // Only look in this rectangle
 
-  Pixel? p = scanner.FirstOrDefault(Color.Black);
+  Pixel? p = scanner.FirstOrDefault(Colors.Black);
   
   if(p == null)
     Console.WriteLine("Nothin' found");
