@@ -96,7 +96,7 @@ namespace System.Drawing.Analysis.Manipulation
         public override bool Equals(object obj)
         {
             var p = (Pixel)obj;
-            return (p.X == X) && (p.Y == Y) && (p.Color.ValuesEqual(Color));
+            return (p.X == X) && (p.Y == Y) && (p.Color == Color);
         }
 
         /// <summary>Returns the hash code for this <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>.</summary>
@@ -116,7 +116,7 @@ namespace System.Drawing.Analysis.Manipulation
         public static bool operator ==(Pixel pixel1, Pixel pixel2)
         {
             // In case of refactoring to class, take care of this!
-            return (pixel1.X == pixel2.X) && (pixel1.Y == pixel2.Y) && (pixel1.Color.ValuesEqual(pixel2.Color));
+            return (pixel1.X == pixel2.X) && (pixel1.Y == pixel2.Y) && (pixel1.Color == pixel2.Color);
         }
 
         /// <summary>Determines whether two instances of <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> objects do not have the same values.</summary>

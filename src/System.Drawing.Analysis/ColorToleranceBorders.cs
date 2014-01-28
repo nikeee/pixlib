@@ -130,7 +130,7 @@ namespace System.Drawing.Analysis
                 && _maxR == other._maxR
                 && _maxG == other._maxG
                 && _maxB == other._maxB
-                && _baseColor.ValuesEqual(other._baseColor)
+                && _baseColor == other._baseColor
                 && _baseTolerance == other._baseTolerance;
         }
 
@@ -159,7 +159,7 @@ namespace System.Drawing.Analysis
                 && toleranceBorder1._maxR == toleranceBorder2._maxR
                 && toleranceBorder1._maxG == toleranceBorder2._maxG
                 && toleranceBorder1._maxB == toleranceBorder2._maxB
-                && toleranceBorder1._baseColor.ValuesEqual(toleranceBorder2._baseColor)
+                && toleranceBorder1._baseColor == toleranceBorder2._baseColor
                 && toleranceBorder1._baseTolerance == toleranceBorder2._baseTolerance;
         }
 

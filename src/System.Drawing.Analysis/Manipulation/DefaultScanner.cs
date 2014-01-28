@@ -104,7 +104,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (color.ValuesEqual(readColor))
+                    if (color == readColor)
                         yield return new Pixel(x, y, readColor);
                 }
             }
@@ -146,7 +146,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (color.ValuesEqual(readColor))
+                    if (color == readColor)
                         return new Pixel(x, y, readColor);
                 }
 
@@ -187,7 +187,7 @@ namespace System.Drawing.Analysis.Manipulation
                 for (int y = _view.Y; y < targetY; ++y)
                 {
                     var readColor = _provider.GetPixel(x, y);
-                    if (color.ValuesEqual(readColor))
+                    if (color == readColor)
                         return new Pixel(x, y, readColor);
                 }
 
@@ -226,7 +226,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (color.ValuesNotEqual(_provider.GetPixel(x, y)))
+                    if (color != _provider.GetPixel(x, y))
                         return false;
             return true;
         }
@@ -259,7 +259,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (color.ValuesEqual(_provider.GetPixel(x, y)))
+                    if (color == _provider.GetPixel(x, y))
                         return true;
             return false;
         }
@@ -299,7 +299,7 @@ namespace System.Drawing.Analysis.Manipulation
 
             for (int x = _view.X; x < targetX; ++x)
                 for (int y = _view.Y; y < targetY; ++y)
-                    if (color.ValuesEqual(_provider.GetPixel(x, y)))
+                    if (color == _provider.GetPixel(x, y))
                         ++counter;
             return counter;
         }

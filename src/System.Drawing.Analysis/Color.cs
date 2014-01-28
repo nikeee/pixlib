@@ -43,7 +43,7 @@ namespace System.Drawing.Analysis
 
         public override string ToString()
         {
-            return string.Concat("A: ",_a,", R: ",_r,", G:", _g, ", B: ",_b);
+            return string.Concat("A: ", _a, ", R: ", _r, ", G:", _g, ", B: ", _b);
         }
 
         public System.Drawing.Color ToDrawingColor()
@@ -54,6 +54,22 @@ namespace System.Drawing.Analysis
         {
             return new Color(c.A, c.R, c.G, c.B);
         }
+
+        public static bool operator ==(Color color1, Color color2)
+        {
+            return color1.A == color2.A
+                    && color1.R == color2.R
+                    && color1.G == color2.G
+                    && color1.B == color2.B;
+        }
+        public static bool operator !=(Color color1, Color color2)
+        {
+            return color1.A != color2.A
+                    || color1.R != color2.R
+                    || color1.G != color2.G
+                    || color1.B != color2.B;
+        }
+
     }
 
     public static class Colors
