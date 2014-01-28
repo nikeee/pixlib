@@ -2,6 +2,7 @@
 
 namespace System.Drawing.Analysis
 {
+    [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct NativeColor
     {
@@ -22,6 +23,7 @@ namespace System.Drawing.Analysis
         public byte B { get { return _b; } set { _b = value; } }
         public int Bgra { get { return _bgra; } set { _bgra = value; } }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "b")]
         public NativeColor(byte a, byte r, byte g, byte b)
         {
             _bgra = 0;
@@ -45,14 +47,18 @@ namespace System.Drawing.Analysis
         {
             return string.Concat("A: ", _a, ", R: ", _r, ", G:", _g, ", B: ", _b);
         }
+        public override int GetHashCode()
+        {
+            return _bgra;
+        }
 
         public System.Drawing.Color ToDrawingColor()
         {
             return System.Drawing.Color.FromArgb(_a, _r, _g, _b);
         }
-        public static NativeColor FromDrawingColor(System.Drawing.Color c)
+        public static NativeColor FromDrawingColor(Color color)
         {
-            return new NativeColor(c.A, c.R, c.G, c.B);
+            return new NativeColor(color.A, color.R, color.G, color.B);
         }
 
         /// <summary>Indicates whether the channel values of two colors are equal.</summary>
