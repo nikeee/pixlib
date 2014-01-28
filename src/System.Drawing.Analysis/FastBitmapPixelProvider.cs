@@ -112,7 +112,7 @@ namespace System.Drawing.Analysis
 #if NET45
         [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        internal unsafe NativeColor GetPixelInternal(int x, int y)
+        private unsafe NativeColor GetPixelInternal(int x, int y)
         {
 #if USEUNCHECKED
             unchecked
@@ -155,7 +155,7 @@ namespace System.Drawing.Analysis
 #if NET45
         [System.Runtime.CompilerServices.MethodImpl(Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
-        internal unsafe void SetPixelInternal(int x, int y, NativeColor color)
+        private unsafe void SetPixelInternal(int x, int y, NativeColor color)
         {
 #if USEUNCHECKED
             unchecked
