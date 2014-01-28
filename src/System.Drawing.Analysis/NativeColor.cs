@@ -2,6 +2,7 @@
 
 namespace System.Drawing.Analysis
 {
+    ///<summary>Represents an ARGB (alpha, red, green, blue) color that is often used in native memory bitmaps.</summary>
     [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct NativeColor
@@ -64,24 +65,28 @@ namespace System.Drawing.Analysis
             _a = _r = _b = _g = 0;
             _bgra = bgra;
         }
+        
+        #region "Common overrides"
 
-        /// <summary>Creates a <see cref="T:System.Drawing.Analysis.NativeColor" /> structure from a 32-bit ARGB value.</summary>
-        /// <param name="argb">A value specifying the 32-bit ARGB value. </param>
-        /// <returns>The <see cref="T:System.Drawing.Analysis.NativeColor" /> structure that this method creates.</returns>
-        public static NativeColor FromArgb(int argb)
-        {
-            return new NativeColor((byte)(argb >> 24), (byte)(argb >> 16), (byte)(argb >> 8), (byte)argb);
-        }
-
+        /// <summary>Converts this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure to a human-readable string.</summary>
+        /// <returns>A string that consists of the ARGB component names and their values.</returns>
+        /// <filterpriority>1</filterpriority>
         public override string ToString()
         {
             return string.Concat("A: ", _a, ", R: ", _r, ", G:", _g, ", B: ", _b);
         }
+        /// <summary>Returns a hash code for this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure.</summary>
+        /// <returns>An integer value that specifies the hash code for this <see cref="T:System.Drawing.Analysis.NativeColor" />.</returns>
+        /// <filterpriority>1</filterpriority>
         public override int GetHashCode()
         {
             return _bgra;
         }
 
+        #endregion
+        #region "Color Interop"
+
+        #region Argb
         /// <summary>
         /// Gets the 32-bit ARGB value of this <see cref="T:System.Drawing.Analysis.NativeColor"/> structure.
         /// </summary>
@@ -91,14 +96,35 @@ namespace System.Drawing.Analysis
             return (_a << 24) | (_r << 16) | (_g << 8) | (_b << 0);
         }
 
+        /// <summary>Creates a <see cref="T:System.Drawing.Analysis.NativeColor" /> structure from a 32-bit ARGB value.</summary>
+        /// <param name="argb">A value specifying the 32-bit ARGB value. </param>
+        /// <returns>The <see cref="T:System.Drawing.Analysis.NativeColor" /> structure that this method creates.</returns>
+        public static NativeColor FromArgb(int argb)
+        {
+            return new NativeColor((byte)(argb >> 24), (byte)(argb >> 16), (byte)(argb >> 8), (byte)argb);
+        }
+
+        #endregion
+        #region "System.Drawing.Color"
+
+        /// <summary>Creates a <see cref="T:System.Drawing.Color" /> structure using current instance of <see cref="T:System.Drawing.Analysis.NativeColor" />.</summary>
+        /// <returns>The <see cref="T:System.Drawing.Color" /> structure that this method creates.</returns>
         public Color ToDrawingColor()
         {
             return Color.FromArgb(_a, _r, _g, _b);
         }
+        /// <summary>Creates a <see cref="T:System.Drawing.Analysis.NativeColor" /> structure from a 32-bit ARGB value.</summary>
+        /// <param name="color">A color value.</param>
+        /// <returns>The <see cref="T:System.Drawing.Analysis.NativeColor" /> structure that this method creates.</returns>
         public static NativeColor FromDrawingColor(Color color)
         {
             return new NativeColor(color.A, color.R, color.G, color.B);
         }
+
+        #endregion
+
+        #endregion
+        #region "Operators"
 
         /// <summary>Indicates whether the channel values of two colors are equal.</summary>
         /// <param name="color1">The first <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
@@ -117,8 +143,11 @@ namespace System.Drawing.Analysis
         {
             return color1._bgra != color2._bgra;
         }
+
+        #endregion
     }
 
+    /// <summary>Standard colors. This class cannot be inherited.</summary>
     public static class Colors
     {
         private static readonly NativeColor _white = new NativeColor(0xFF, 0xFF, 0xFF, 0xFF);
