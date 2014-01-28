@@ -87,22 +87,22 @@ namespace System.Drawing.Analysis
 
     public static class Colors
     {
-        private static NativeColor _white = new NativeColor(0xFF, 0xFF, 0xFF, 0xFF);
+        private static readonly NativeColor _white = new NativeColor(0xFF, 0xFF, 0xFF, 0xFF);
         public static NativeColor White { get { return _white; } }
 
-        private static NativeColor _black = new NativeColor(0xFF, 0x0, 0x0, 0x0);
+        private static readonly NativeColor _black = new NativeColor(0xFF, 0x0, 0x0, 0x0);
         public static NativeColor Black { get { return _black; } }
 
-        private static NativeColor _transparent = new NativeColor(0x0, 0x0, 0x0, 0x0);
+        private static readonly NativeColor _transparent = new NativeColor(0x0, 0x0, 0x0, 0x0);
         public static NativeColor Transparent { get { return _transparent; } }
 
-        private static NativeColor _red = new NativeColor(0xFF, 0xFF, 0x0, 0x0);
+        private static readonly NativeColor _red = new NativeColor(0xFF, 0xFF, 0x0, 0x0);
         public static NativeColor Red { get { return _red; } }
 
-        private static NativeColor _green = new NativeColor(0xFF, 0x0, 0xFF, 0x0);
+        private static readonly NativeColor _green = new NativeColor(0xFF, 0x0, 0xFF, 0x0);
         public static NativeColor Green { get { return _green; } }
 
-        private static NativeColor _blue = new NativeColor(0xFF, 0x0, 0x0, 0xFF);
+        private static readonly NativeColor _blue = new NativeColor(0xFF, 0x0, 0x0, 0xFF);
         public static NativeColor Blue { get { return _blue; } }
     }
 }
