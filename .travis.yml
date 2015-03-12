@@ -1,0 +1,2 @@
+language: csharp
+solution: ./src/System.Drawing.Analysis.sln
