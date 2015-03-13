@@ -1,4 +1,12 @@
 language: csharp
 solution: ./src/System.Drawing.Analysis.sln
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+install:
+  - nuget restore ./src/System.Drawing.Analysis.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release /p:PostBuildEventUseInBuild=false /p:PreBuildEvent="" /p:PostBuildEvent="" /p:TargetFrameworkProfile="" ./src/System.Drawing.Analysis.sln
+  - cd ./src/System.Drawing.Analysis.Testing/bin/Release
+  - mono ../../../../testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe System.Drawing.Analysis.Testing.dll

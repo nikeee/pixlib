@@ -5,11 +5,12 @@ namespace System.Drawing.Analysis.Testing
     internal static class TestingHelper
     {
         private const string TestImageExtension = ".png";
-        private const string RelativeResourcesPath = "..\\..\\Resources\\";
+        private static readonly string DirectorySeparator = IO.Path.DirectorySeparatorChar.ToString();
+        private static readonly string RelativeResourcesPath = string.Format("..{0}..{0}Resources{0}", DirectorySeparator);
 
-        private const string RelativeTestImagePath = RelativeResourcesPath + "testImage" + TestImageExtension;
-        private const string RelativeTestImage2Path = RelativeResourcesPath + "testImage2" + TestImageExtension;
-        private const string RelativeTolerancePath = RelativeResourcesPath + "tolreanceTest" + TestImageExtension;
+        private static readonly string RelativeTestImagePath = RelativeResourcesPath + "testImage" + TestImageExtension;
+        private static readonly string RelativeTestImage2Path = RelativeResourcesPath + "testImage2" + TestImageExtension;
+        private static readonly string RelativeTolerancePath = RelativeResourcesPath + "tolreanceTest" + TestImageExtension;
 
         private static readonly Random Random = new Random();
 

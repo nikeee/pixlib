@@ -1,15 +1,15 @@
 using System.Drawing.Analysis.Manipulation;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace System.Drawing.Analysis.Testing
 {
-    [TestClass]
+    [TestFixture]
     public class DefaultScannerTests
     {
-        [TestMethod]
-        [TestCategory("Scanner")]
-        [TestCategory("DefaultScanner")]
+        [Test]
+        [Category("Scanner")]
+        [Category("DefaultScanner")]
         public void TestSimple()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
@@ -19,16 +19,16 @@ namespace System.Drawing.Analysis.Testing
             }
         }
 
-        [TestMethod]
-        [TestCategory("Scanner")]
-        [TestCategory("DefaultScanner")]
+        [Test]
+        [Category("Scanner")]
+        [Category("DefaultScanner")]
         public void TestSimpleAny()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
             using (var provider = new SlowBitmapPixelProvider(testBitmap))
             {
                 var scanner = new DefaultScanner(provider);
-                
+
                 bool actual = scanner.Any(Colors.White);
                 Assert.AreEqual(true, actual);
 
@@ -37,9 +37,9 @@ namespace System.Drawing.Analysis.Testing
             }
         }
 
-        [TestMethod]
-        [TestCategory("Scanner")]
-        [TestCategory("DefaultScanner")]
+        [Test]
+        [Category("Scanner")]
+        [Category("DefaultScanner")]
         public void TestSimpleForEach()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
@@ -54,10 +54,10 @@ namespace System.Drawing.Analysis.Testing
                 Assert.AreEqual(expected, actual);
             }
         }
-        
-        [TestMethod]
-        [TestCategory("Scanner")]
-        [TestCategory("DefaultScanner")]
+
+        [Test]
+        [Category("Scanner")]
+        [Category("DefaultScanner")]
         public void TestViewForEach()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
@@ -77,9 +77,9 @@ namespace System.Drawing.Analysis.Testing
             }
         }
 
-        [TestMethod]
-        [TestCategory("Scanner")]
-        [TestCategory("DefaultScanner")]
+        [Test]
+        [Category("Scanner")]
+        [Category("DefaultScanner")]
         public void TestSimpleFindPixels()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
@@ -107,10 +107,10 @@ namespace System.Drawing.Analysis.Testing
                 Assert.AreEqual(18, counter); // There are exactly 18 Black pixels
             }
         }
-        
-        [TestMethod]
-        [TestCategory("Scanner")]
-        [TestCategory("DefaultScanner")]
+
+        [Test]
+        [Category("Scanner")]
+        [Category("DefaultScanner")]
         public void TestSimpleCount()
         {
             var testBitmap = TestingHelper.GetTestBitmap();
@@ -119,7 +119,7 @@ namespace System.Drawing.Analysis.Testing
                 var scanner = new DefaultScanner(provider);
 
                 int count = scanner.Count();
-                Assert.AreEqual(testBitmap.Width*testBitmap.Height, count);
+                Assert.AreEqual(testBitmap.Width * testBitmap.Height, count);
 
                 count = scanner.Count(Colors.Black);
                 Assert.AreEqual(18, count); // There are exactly 18 Black pixels
@@ -128,7 +128,7 @@ namespace System.Drawing.Analysis.Testing
 
                 count = scanner.Count((x, y, c) =>
                                           {
-                                              if(TestingHelper.GetRandomBool())
+                                              if (TestingHelper.GetRandomBool())
                                               {
                                                   ++trues;
                                                   return true;
@@ -139,9 +139,9 @@ namespace System.Drawing.Analysis.Testing
             }
         }
 
-        [TestMethod]
-        [TestCategory("Scanner")]
-        [TestCategory("DefaultScanner")]
+        [Test]
+        [Category("Scanner")]
+        [Category("DefaultScanner")]
         public void TestSimpleTolerance()
         {
             var testBitmap = TestingHelper.GetToleranceBitmap();
