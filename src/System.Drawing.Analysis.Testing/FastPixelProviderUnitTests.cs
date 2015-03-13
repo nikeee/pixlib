@@ -14,7 +14,7 @@ namespace System.Drawing.Analysis.Testing
             GetPixelFastNoPixelFormat();
             GetPixelFast(PixelFormat.Format32bppArgb);
             GetPixelFast(PixelFormat.Format32bppPArgb);
-            GetPixelFast(PixelFormat.Format48bppRgb);
+            //GetPixelFast(PixelFormat.Format48bppRgb);
             GetPixelFast(PixelFormat.Format32bppRgb);
         }
 
