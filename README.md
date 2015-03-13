@@ -1,4 +1,4 @@
-pixlib
+pixlib [![Build Status](https://travis-ci.org/nikeee/pixlib.svg?branch=master)](https://travis-ci.org/nikeee/pixlib)
 ======
 Pixlib is a fast and simple image processing utility for all .NET languages.
 
@@ -8,7 +8,7 @@ Out of the box, there are two ```IPixelProvider```s. ```FastBitmapPixelProvider`
 
 Also, there is an advanced color tolerance system which you can use to find colors ignoring channels.
 
-[![Build Status](https://travis-ci.org/nikeee/pixlib.svg?branch=master)](https://travis-ci.org/nikeee/pixlib)
+
 
 Here are some usage examples of these two classes:
 
