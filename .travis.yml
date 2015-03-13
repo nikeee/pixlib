@@ -5,4 +5,5 @@ install:
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release /p:PostBuildEventUseInBuild=false /p:PreBuildEvent="" /p:PostBuildEvent="" /p:TargetFrameworkProfile="" ./src/System.Drawing.Analysis.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./src/System.Drawing.Analysis.Testing/bin/Release/System.Drawing.Analysis.Testing.dll
+  - cd ./src/System.Drawing.Analysis.Testing/bin/Release
+  - mono ../../../../testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe System.Drawing.Analysis.Testing.dll
