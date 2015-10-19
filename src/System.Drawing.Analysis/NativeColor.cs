@@ -37,7 +37,7 @@ namespace System.Drawing.Analysis
         /// Gets or sets the blue component value of this <see cref="T:System.Drawing.Analysis.NativeColor"/> structure.
         /// </summary>
         public byte B { get { return _b; } set { _b = value; } }
-        
+
         /// <summary>
         /// Gets or sets all component values of this <see cref="T:System.Drawing.Analysis.NativeColor"/> structure.
         /// </summary>
@@ -65,7 +65,7 @@ namespace System.Drawing.Analysis
             _a = _r = _b = _g = 0;
             _bgra = bgra;
         }
-        
+
         #region "Common overrides"
 
         /// <summary>Converts this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure to a human-readable string.</summary>
@@ -75,13 +75,11 @@ namespace System.Drawing.Analysis
         {
             return string.Concat("A: ", _a, ", R: ", _r, ", G:", _g, ", B: ", _b);
         }
-        /// <summary>Returns a hash code for this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure.</summary>
-        /// <returns>An integer value that specifies the hash code for this <see cref="T:System.Drawing.Analysis.NativeColor" />.</returns>
-        /// <filterpriority>1</filterpriority>
-        public override int GetHashCode()
-        {
-            return _bgra;
-        }
+
+        // <summary>Returns a hash code for this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure.</summary>
+        // <returns>An integer value that specifies the hash code for this <see cref="T:System.Drawing.Analysis.NativeColor" />.</returns>
+        // <filterpriority>1</filterpriority>
+        //public override int GetHashCode() => _bgra;
 
         /// <summary>Tests whether the specified object is a <see cref="T:System.Drawing.Analysis.NativeColor" /> structure and is equivalent to this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure.</summary>
         /// <returns>true if <paramref name="obj" /> is a <see cref="T:System.Drawing.Analysis.NativeColor" /> structure equivalent to this <see cref="T:System.Drawing.Analysis.NativeColor" /> structure; otherwise, false.</returns>
@@ -95,7 +93,7 @@ namespace System.Drawing.Analysis
 
             return Equals(c);
         }
-        
+
         #endregion
         #region "Color Interop"
 

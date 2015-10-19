@@ -10,49 +10,14 @@ namespace System.Drawing.Analysis.Manipulation
     [Serializable]
     public struct Pixel
     {
-        private int _x;
+        /// <summary>Gets the x-coordinate of the pixel.</summary>
+        public int X { get; }
 
-        /// <summary>Gets or sets the x-coordinate of the pixel.</summary>
-        public int X
-        {
-#if NET40
-            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
-#endif
-            get { return _x; }
-#if NET40
-            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
-#endif
-            set { _x = value; }
-        }
+        /// <summary>Gets the y-coordinate of the pixel.</summary>
+        public int Y { get; }
 
-        private int _y;
-
-        /// <summary>Gets or sets the y-coordinate of the pixel.</summary>
-        public int Y
-        {
-#if NET40
-            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
-#endif
-            get { return _y; }
-#if NET40
-            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
-#endif
-            set { _y = value; }
-        }
-
-        private NativeColor _color;
-        /// <summary>Gets or sets The <see cref="T:System.Drawing.Analysis.NativeColor"/> of the pixel.</summary>
-        public NativeColor Color
-        {
-#if NET40
-            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
-#endif
-            get { return _color; }
-#if NET40
-            [TargetedPatchingOptOut(CompileConstants.TargetedPatchingOptOutText)]
-#endif
-            set { _color = value; }
-        }
+        /// <summary>Gets The <see cref="T:System.Drawing.Analysis.NativeColor"/> of the pixel.</summary>
+        public NativeColor Color { get; }
 
         #region ctors
 
@@ -82,9 +47,9 @@ namespace System.Drawing.Analysis.Manipulation
         /// <param name="color">A <see cref="T:System.Drawing.Analysis.NativeColor"/> instance that represents the color of the pixel.</param>
         public Pixel(int x, int y, NativeColor color)
         {
-            _x = x;
-            _y = y;
-            _color = color;
+            X = x;
+            Y = y;
+            Color = color;
         }
 
         #endregion
@@ -101,10 +66,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>Returns the hash code for this <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>.</summary>
         /// <returns>The hash code for this <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/></returns>
-        public override int GetHashCode()
-        {
-            return _x ^ _y ^ Color.GetHashCode();
-        }
+        public override int GetHashCode() => X ^ Y ^ Color.GetHashCode();
 
         #endregion
         #region ==-operator
@@ -123,10 +85,7 @@ namespace System.Drawing.Analysis.Manipulation
         /// <param name="pixel1">The first <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance.</param>
         /// <param name="pixel2">The second <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/> instance.</param>
         /// <returns>true if the values of the given instances do not have the same values; otherwise, false.</returns>
-        public static bool operator !=(Pixel pixel1, Pixel pixel2)
-        {
-            return !(pixel1 == pixel2);
-        }
+        public static bool operator !=(Pixel pixel1, Pixel pixel2) => !(pixel1 == pixel2);
 
         #endregion
         #region overrides
@@ -136,17 +95,17 @@ namespace System.Drawing.Analysis.Manipulation
         {
             var sb = new System.Text.StringBuilder();
             sb.Append("X=");
-            sb.Append(_x);
+            sb.Append(X);
             sb.Append(", Y=");
-            sb.Append(_y);
+            sb.Append(Y);
             sb.Append(", NativeColor: [A=");
-            sb.Append(_color.A);
+            sb.Append(Color.A);
             sb.Append(", R=");
-            sb.Append(_color.R);
+            sb.Append(Color.R);
             sb.Append(", G=");
-            sb.Append(_color.G);
+            sb.Append(Color.G);
             sb.Append(", B=");
-            sb.Append(_color.B);
+            sb.Append(Color.B);
             sb.Append(']');
             return sb.ToString();
         }
