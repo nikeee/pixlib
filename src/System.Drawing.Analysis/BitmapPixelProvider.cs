@@ -19,7 +19,7 @@ namespace System.Drawing.Analysis
         protected BitmapPixelProvider(Bitmap bitmap, bool disposeBitmapOnFinalize)
         {
             if (bitmap == null)
-                throw new ArgumentNullException("bitmap");
+                throw new ArgumentNullException(nameof(bitmap));
             _internalBitmap = bitmap;
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
             Size = bitmap.Size;
@@ -96,7 +96,7 @@ namespace System.Drawing.Analysis
         public virtual void CopyTo(ISetPixelProvider destination)
         {
             if (destination == null)
-                throw new ArgumentNullException("destination");
+                throw new ArgumentNullException(nameof(destination));
             if (Size != destination.Size)
                 throw new InvalidOperationException("The sizes of the providers must be equal");
             int x, y;

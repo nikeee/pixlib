@@ -34,7 +34,7 @@ namespace System.Drawing.Analysis.Manipulation
         public DefaultScanner(IGetPixelProvider provider)
         {
             if (provider == null)
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(provider));
             _provider = provider;
             _view = new Rectangle(0, 0, _provider.Size.Width, _provider.Size.Height);
         }
@@ -329,7 +329,7 @@ namespace System.Drawing.Analysis.Manipulation
         public int Count(Func<int, int, NativeColor, bool> condition)
         {
             if (condition == null)
-                throw new ArgumentNullException("condition");
+                throw new ArgumentNullException(nameof(condition));
 
             int counter = 0;
             int targetX = GetTargetX;
@@ -347,7 +347,7 @@ namespace System.Drawing.Analysis.Manipulation
         public void ForEach(Action<int, int, NativeColor> action)
         {
             if (action == null)
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
 
             int targetX = GetTargetX;
             int targetY = GetTargetY;
@@ -362,7 +362,7 @@ namespace System.Drawing.Analysis.Manipulation
         public IEnumerable<Pixel> Where(Func<int, int, NativeColor, bool> condition)
         {
             if (condition == null)
-                throw new ArgumentNullException("condition");
+                throw new ArgumentNullException(nameof(condition));
 
             int targetX = GetTargetX;
             int targetY = GetTargetY;

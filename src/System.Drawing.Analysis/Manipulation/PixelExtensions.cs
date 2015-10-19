@@ -13,7 +13,7 @@ namespace System.Drawing.Analysis.Manipulation
         public static IEnumerable<Pixel> SetColor(this IEnumerable<Pixel> source, NativeColor color, ISetPixelProvider provider)
         {
             if (provider == null)
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(provider));
             foreach (var item in source)
             {
                 provider.SetPixel(item.X, item.Y, color);

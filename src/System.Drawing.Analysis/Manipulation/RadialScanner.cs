@@ -37,7 +37,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>The direction the scanner scans while performing operations.</summary>
         public RadialScanDirection ScanDirection { get; private set; }
-        
+
         #region Ctors
 
         /// <summary>Creates a new instance of <see cref="T:System.Drawing.Analysis.Manipulation.RadialScanner"/> using a given <see cref="T:System.Drawing.Analysis.IGetPixelProvider"/> scanning clockwise.</summary>
@@ -52,7 +52,7 @@ namespace System.Drawing.Analysis.Manipulation
         public RadialScanner(IGetPixelProvider provider, RadialScanDirection scanDirection)
         {
             if (provider == null)
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(provider));
             _provider = provider;
             ScanDirection = scanDirection;
             throw new NotImplementedException();

@@ -56,7 +56,7 @@ namespace System.Drawing.Analysis.Manipulation
         public RectangleScanner(IGetPixelProvider provider, RectangleScanDirection scanDirection)
         {
             if (provider == null)
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(provider));
             _provider = provider;
             ScanDirection = scanDirection;
             throw new NotImplementedException();
