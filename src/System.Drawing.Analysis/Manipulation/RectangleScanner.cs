@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 
 namespace System.Drawing.Analysis.Manipulation
 {
@@ -42,7 +41,7 @@ namespace System.Drawing.Analysis.Manipulation
 
         /// <summary>The direction the scanner scans while performing operations.</summary>
         public RectangleScanDirection ScanDirection { get; private set; }
-        
+
         #region Ctors
 
         /// <summary>Creates a new instance of <see cref="T:System.Drawing.Analysis.Manipulation.RectangleScanner"/> using a given <see cref="T:System.Drawing.Analysis.IGetPixelProvider"/> scanning from top to bottom.</summary>
@@ -64,7 +63,7 @@ namespace System.Drawing.Analysis.Manipulation
         }
 
         #endregion
-        
+
         /// <summary>Filters the pixels matching a color.</summary>
         /// <param name="color">The <see cref="T:System.Drawing.Analysis.NativeColor"/>.</param>
         /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that contains <see cref="T:System.Drawing.Analysis.Manipulation.Pixel"/>s which matched the given color.</returns>

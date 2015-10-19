@@ -24,7 +24,7 @@ namespace System.Drawing.Analysis
             DisposeBitmapOnFinalize = disposeBitmapOnFinalize;
             Size = bitmap.Size;
         }
-        
+
         #region IDisposable support
 
         private bool _disposed;
