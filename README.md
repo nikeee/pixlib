@@ -1,5 +1,7 @@
-pixlib [![Build Status](https://travis-ci.org/nikeee/pixlib.svg?branch=master)](https://travis-ci.org/nikeee/pixlib)
-======
+# pixlib [![Build Status](https://travis-ci.org/nikeee/pixlib.svg?branch=master)](https://travis-ci.org/nikeee/pixlib)
+
+Archived as of 2023-02-27. Well, use something else. This is pretty old and .NET-Framework only.
+
 Pixlib is a fast and simple image processing utility for all .NET languages.
 
 The ```IPixelProvider``` defines classes that can provide pixel data while the ```IPixelScanner``` defines classes that can work with this pixel data.
